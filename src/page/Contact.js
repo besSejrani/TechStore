@@ -1,7 +1,17 @@
 import React from "react";
 
+import Form from "../ContactPage/Form";
+
+import Hero from "../components/Hero";
+import contactImg from "../images/contactBcg.jpeg";
+
 const Contact = () => {
-  return <div>Contact</div>;
+  return (
+    <>
+      <Hero max title="Contact Us" img={contactImg} />
+      <Form />
+    </>
+  );
 };
 
 export default Contact;
