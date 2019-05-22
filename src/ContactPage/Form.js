@@ -11,8 +11,8 @@ const Form = () => {
           <form
             className="mt-5"
             name="contact"
-            action="/contact/success"
-            netlify
+            action="https://formspree.io/besjan.sejrani@outlook.fr"
+            method="POST"
           >
             <div className="form-group">
               <input
