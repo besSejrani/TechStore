@@ -2,7 +2,7 @@ import React from "react";
 
 import Hero from "../components/Hero";
 import AboutBcg from "../images/aboutBcg.jpeg";
-import Info from "../AboutPage/Info";
+import Info from "../components/AboutPage/Info";
 
 const About = () => {
   return (

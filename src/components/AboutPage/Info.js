@@ -1,7 +1,7 @@
 import React from "react";
 
-import Title from "../components/Title";
-import aboutBcg from "../images/aboutBcg.jpeg";
+import Title from "../Title";
+import aboutBcg from "../../images/aboutBcg.jpeg";
 
 const Info = () => {
   return (

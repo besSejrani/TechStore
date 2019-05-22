@@ -1,6 +1,6 @@
 import React from "react";
 
-import Form from "../ContactPage/Form";
+import Form from "../components/ContactPage/Form";
 
 import Hero from "../components/Hero";
 import contactImg from "../images/contactBcg.jpeg";
