@@ -30,7 +30,7 @@ const SideBar = ({ nav, sidebarToggle, menu }) => {
 
 const SideWrapper = styled.nav`
   position: fixed;
-  top: 61px;
+  top: 60px;
   left: 0px;
   width: 100%;
   height: 100%;

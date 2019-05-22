@@ -4,8 +4,9 @@ import { LinkNav } from "../layout/LinkNav";
 const initialState = {
   sidebarOpen: false,
   cartOpen: false,
+  links: LinkNav,
   cartItems: 0,
-  links: LinkNav
+  cart: []
 };
 
 export default (state = initialState, actions) => {
