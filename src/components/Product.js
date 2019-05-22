@@ -20,7 +20,7 @@ const Product = ({ product, addToCart, setSingleProduct }) => {
             style={{ height: "320px" }}
           />
 
-          <div className="product-icon">
+          <div className="product-icons">
             <Link
               to={`/products/${product.id}`}
               onClick={() => setSingleProduct(product.id)}
@@ -36,7 +36,7 @@ const Product = ({ product, addToCart, setSingleProduct }) => {
         </div>
         <div className="card-body d-flex justify-content-between">
           <p className="mb-0">{product.title}</p>
-          <p className="mb-0">{product.price} CHF</p>
+          <p className="mb-0 text-main">{product.price} CHF</p>
         </div>
       </div>
     </ProductWrapper>
@@ -48,12 +48,49 @@ const ProductWrapper = styled.div`
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
     transition: var(--mainTransition);
     height: 100%;
-    text-transform: uppercase;
   }
 
   .card:hover {
     box-shadow: 7px 8px 5px 0px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+  }
+
+  .card-img-top {
+    transition: var(--mainTransition);
+  }
+
+  .card:hover .card-img-top {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .product-icons {
+    transition: var(--mainTransition);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+    margin: 1rem;
+    padding: 0.5rem;
+    color: var(--mainBlack);
+  }
+
+  .card:hover .product-icons {
+    opacity: 1;
+  }
+
+  .card-body {
+    font-weight: 600;
+    text-transform: uppercase;
   }
 `;
 

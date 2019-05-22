@@ -11,7 +11,7 @@ const Featured = ({ featured }) => {
     <section className="py-5">
       <div className="container">
         <Title title="Featured products" center />
-        <div className="row">
+        <div className="row my-5">
           {featured.map(product => {
             return <Product key={product.id} product={product} />;
           })}
