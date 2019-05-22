@@ -8,7 +8,12 @@ const Form = () => {
       <div className="row">
         <div className="col-10 mx-auto col-md-6 my-3">
           <Title title="How can we help you ?" />
-          <form className="mt-5" name="contact" netlify>
+          <form
+            className="mt-5"
+            name="contact"
+            action="/contact/success"
+            netlify
+          >
             <div className="form-group">
               <input
                 type="text"
