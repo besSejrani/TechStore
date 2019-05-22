@@ -1,0 +1,2 @@
+export const SIDE_BAR_TOGGLE = "SIDE_BAR_TOGGLE";
+export const SIDE_CART_TOGGLE = "SIDE_CART_TOGGLE";

@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../page/Home";
 import About from "../page/About";
 import Products from "../page/Products";
+import Cart from "../page/Cart";
+import SingleProduct from "../page/SingleProduct";
 import NotFound from "../page/404";
 import Layout from "../layout";
 
@@ -13,15 +15,16 @@ class App extends Component {
     return (
       <>
         <Router>
-          <Layout />
-          <main>
+          <Layout>
             <Switch>
+              <Route path="/products/:id" exact component={SingleProduct} />
               <Route path="/products" exact component={Products} />
               <Route path="/about" exact component={About} />
+              <Route path="/cart" exact component={Cart} />
               <Route path="/" exact component={Home} />
               <Route component={NotFound} />
             </Switch>
-          </main>
+          </Layout>
         </Router>
       </>
     );
