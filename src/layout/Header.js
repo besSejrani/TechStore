@@ -35,12 +35,13 @@ class Header extends Component {
 
 const NavWrapper = styled.nav`
   position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   padding: 1rem 1.5rem;
   background: var(--mainGrey);
   border-bottom: 3px solid var(--primaryColor);
+  z-index: 1;
 
   .nav-center {
     display: flex;

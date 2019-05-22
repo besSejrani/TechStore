@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <Hero title="Awesome phones">
+        <Hero title="Awesome phones" max>
           <Link
             to="/products"
             className="main-link"

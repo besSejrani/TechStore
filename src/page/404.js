@@ -1,7 +1,20 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
+import Hero from "../components/Hero";
+import defaultBcg from "../images/defaultBcg.jpeg";
+
 const NotFound = () => {
-  return <div>404 sorry</div>;
+  return (
+    <>
+      <Hero img={defaultBcg} title="404, sorry dude, not found" max>
+        <Link to="/" className="main-link" style={{ marginTop: "30px" }}>
+          Return Home
+        </Link>
+      </Hero>
+    </>
+  );
 };
 
 export default NotFound;
