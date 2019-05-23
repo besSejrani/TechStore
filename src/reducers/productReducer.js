@@ -4,10 +4,11 @@ import {
   SIDE_CART_TOGGLE,
   ADD_TO_CART,
   ADD_TOTALS,
-  SET_ITEM,
-  GET_ITEM,
+  SET_ITEM_CART,
+  GET_ITEM_CART,
   SET_SINGLE_PRODUCT,
-  SET_PRODUCTS
+  SET_PRODUCTS,
+  GET_SINGLE_PRODUCT
 } from "../actions/types";
 import { LinkNav } from "../layout/LinkNav";
 import { social } from "../layout/linkFooter";
@@ -26,7 +27,7 @@ const initialState = {
   filteredProducts: [],
   featuredProducts: [],
   singleProduct: {},
-  loading: false
+  loading: true
 };
 
 export default (state = initialState, actions) => {
@@ -75,7 +76,7 @@ export default (state = initialState, actions) => {
         tempItem.total = parseFloat(tempItem.price * tempItem.count).toFixed(2);
       }
 
-      return { ...state, cart: tempCart, cartOpen: true };
+      return { ...state, cart: tempCart };
 
     case ADD_TOTALS:
       let subTotal = 0;
@@ -99,18 +100,18 @@ export default (state = initialState, actions) => {
         cartTotal: total
       };
 
-    case SET_ITEM:
+    case SET_ITEM_CART:
       localStorage.setItem("cart", JSON.stringify(state.cart));
       return { ...state };
 
-    case GET_ITEM:
+    case GET_ITEM_CART:
       let cart;
 
       if (!localStorage.getItem("cart")) {
         cart = [];
       } else if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart);
+        console.log("product reducer", cart);
       } else {
         return cart;
       }
@@ -118,7 +119,24 @@ export default (state = initialState, actions) => {
       return { ...state, cart: cart, cartItems: cart.length };
 
     case SET_SINGLE_PRODUCT:
-      return { ...state };
+      let product = state.storeProducts.find(item => item.id === payload);
+      localStorage.setItem("singleProduct", JSON.stringify(product));
+
+      return { ...state, singleProduct: { ...product }, loading: false };
+
+    case GET_SINGLE_PRODUCT:
+      let singleProduct;
+
+      if (!localStorage.getItem("singleProduct")) {
+        singleProduct = {};
+      } else if (localStorage.getItem("singleProduct")) {
+        singleProduct = JSON.parse(localStorage.getItem("singleProduct"));
+        console.log("set singleProduct", singleProduct);
+      } else {
+        return singleProduct;
+      }
+
+      return { ...state, singleProduct: { ...singleProduct }, loading: false };
 
     default:
       return state;
