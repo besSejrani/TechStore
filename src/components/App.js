@@ -20,39 +20,6 @@ class App extends Component {
     this.props.setProducts(items);
   };
 
-  setProdsucts = products => {
-    let storeProducts = products.map(item => {
-      const { id } = item.sys;
-      const product = { id, ...item.fields };
-
-      return product;
-    });
-    let featuredProducts = storeProducts.filter(item => item.featured === true);
-
-    this.setState({
-      storeProducts,
-      filteredProducts: storeProducts,
-      featuredProducts,
-      cart: this.getStorageCart(),
-      singleProduct: this.getStorageProduct(),
-      loading: false
-    });
-  };
-
-  getStorageCart = () => {
-    return [];
-  };
-
-  getStorageProduct = () => {
-    return [];
-  };
-
-  getTotals = () => {};
-
-  addTotals = () => {};
-
-  syncStorage = () => {};
-
   render() {
     return (
       <>
