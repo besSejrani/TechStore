@@ -107,11 +107,20 @@ export default (state = initialState, actions) => {
     case GET_ITEM_CART:
       let cart;
 
-      if (!localStorage.getItem("cart")) {
+      /* if (!localStorage.getItem("cart")) {
         cart = [];
       } else if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
         console.log("product reducer", cart);
+      } else {
+        return cart;
+      } */
+
+      if (localStorage.getItem("cart")) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        console.log("product reducer", cart);
+      } else if (!localStorage.getItem("cart")) {
+        cart = [];
       } else {
         return cart;
       }
