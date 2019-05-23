@@ -15,7 +15,7 @@ import { social } from "../layout/linkFooter";
 
 const initialState = {
   sidebarOpen: false,
-  cartOpen: false,
+  cartOpen: true,
   links: LinkNav,
   social: social,
   cartItems: 0,
