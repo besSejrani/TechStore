@@ -15,7 +15,7 @@ import { social } from "../layout/linkFooter";
 
 const initialState = {
   sidebarOpen: false,
-  cartOpen: true,
+  cartOpen: false,
   links: LinkNav,
   social: social,
   cartItems: 0,
@@ -73,7 +73,9 @@ export default (state = initialState, actions) => {
         tempCart = [...tempCart, cartItem];
       } else {
         tempItem.count++;
-        tempItem.total = parseFloat(tempItem.price * tempItem.count).toFixed(2);
+
+        tempItem.total = tempItem.price * tempItem.count;
+        tempItem.total = parseFloat(tempItem.total.toFixed(2));
       }
 
       return { ...state, cart: tempCart };
@@ -86,11 +88,10 @@ export default (state = initialState, actions) => {
         cartItems += item.count;
       });
 
-      subTotal = parseFloat(subTotal.toFixed(2));
-      let tax = subTotal * 0.2;
-      tax = parseFloat(tax.toFixed(2));
+      subTotal = parseFloat(subTotal).toFixed(2);
+      let tax = parseFloat(subTotal * 0.2).toFixed(2);
       let total = subTotal + tax;
-      total = parseFloat(total.toFixed(2));
+      total = parseFloat(total).toFixed(2);
 
       return {
         ...state,
@@ -102,30 +103,33 @@ export default (state = initialState, actions) => {
 
     case SET_ITEM_CART:
       localStorage.setItem("cart", JSON.stringify(state.cart));
-      return { ...state };
+      return { ...state, cartItems: state.cart.cartItems };
 
     case GET_ITEM_CART:
       let cart;
-
-      /* if (!localStorage.getItem("cart")) {
-        cart = [];
-      } else if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-        console.log("product reducer", cart);
-      } else {
-        return cart;
-      } */
+      let count = 0;
+      let cartTotal = 0;
 
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
         console.log("product reducer", cart);
+
+        cart.map(item => {
+          return (count += item.count);
+        });
+
+        cart.map(item => {
+          cartTotal += item.total;
+
+          return parseFloat(cartTotal).toFixed(2);
+        });
       } else if (!localStorage.getItem("cart")) {
         cart = [];
       } else {
         return cart;
       }
 
-      return { ...state, cart: cart, cartItems: cart.length };
+      return { ...state, cart: cart, cartItems: count, cartTotal: cartTotal };
 
     case SET_SINGLE_PRODUCT:
       let product = state.storeProducts.find(item => item.id === payload);
@@ -136,11 +140,11 @@ export default (state = initialState, actions) => {
     case GET_SINGLE_PRODUCT:
       let singleProduct;
 
-      if (!localStorage.getItem("singleProduct")) {
-        singleProduct = {};
-      } else if (localStorage.getItem("singleProduct")) {
+      if (localStorage.getItem("singleProduct")) {
         singleProduct = JSON.parse(localStorage.getItem("singleProduct"));
         console.log("set singleProduct", singleProduct);
+      } else if (!localStorage.getItem("singleProduct")) {
+        singleProduct = {};
       } else {
         return singleProduct;
       }

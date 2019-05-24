@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { items } from "../data/productData";
 import { connect } from "react-redux";
-import { setProducts } from "../actions";
+import { setProducts, getItemCart } from "../actions";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -18,7 +18,30 @@ import Layout from "../layout";
 class App extends Component {
   componentDidMount = () => {
     this.props.setProducts(items);
+    this.props.getItemCart();
   };
+
+  increment = id => {
+    console.log(id);
+  };
+
+  decrement = id => {
+    console.log(id);
+  };
+
+  removeItem = id => {
+    console.log(id);
+  };
+
+  clearCart = () => {
+    console.log("card cleared");
+  };
+
+  //state
+  //increment:increment
+  //decrement:decrement
+  //removeItem:removeItem
+  //clearCart:clearCart
 
   render() {
     return (
@@ -43,5 +66,5 @@ class App extends Component {
 
 export default connect(
   null,
-  { setProducts }
+  { setProducts, getItemCart }
 )(App);

@@ -26,8 +26,8 @@ export const addToCart = id => {
   console.log(`add to cart${id}`);
 
   return [
-    { type: SET_ITEM_CART },
     { type: ADD_TO_CART, payload: id },
+    { type: SET_ITEM_CART },
     { type: ADD_TOTALS }
   ];
 };
@@ -46,4 +46,8 @@ export const getSingleProduct = () => {
   console.log(`get single product`);
 
   return { type: GET_SINGLE_PRODUCT };
+};
+
+export const getItemCart = () => {
+  return { type: GET_ITEM_CART };
 };
