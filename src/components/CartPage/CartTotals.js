@@ -2,9 +2,13 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-const CartTotals = ({ cartTotal, cartSubTotal, cartTax }) => {
+const CartTotals = ({ cartSubTotal, cartTax }) => {
   const clearCart = () => {
     localStorage.clear();
+  };
+
+  const renderTotal = (sub, tax) => {
+    return sub + tax;
   };
 
   return (
@@ -20,7 +24,7 @@ const CartTotals = ({ cartTotal, cartSubTotal, cartTax }) => {
             </button>
             <h3>subTotal: {cartSubTotal} CHF</h3>
             <h3>tax : {cartTax} CHF</h3>
-            <h3>total: {cartTotal + cartTax} CHF</h3>
+            <h3>total: {renderTotal(cartSubTotal, cartTax)} CHF</h3>
           </div>
         </div>
       </div>
@@ -29,7 +33,6 @@ const CartTotals = ({ cartTotal, cartSubTotal, cartTax }) => {
 };
 
 const mapState = state => ({
-  cartTotal: state.product.cartTotal,
   cartSubTotal: state.product.cartSubTotal,
   cartTax: state.product.cartTax
 });
