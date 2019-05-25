@@ -20,7 +20,7 @@ const CartTotals = ({ cartTotal, cartSubTotal, cartTax }) => {
             </button>
             <h3>subTotal: {Number(cartSubTotal)} CHF</h3>
             <h3>tax : {Number(cartTax)} CHF</h3>
-            <h3>total: {Number(cartTotal + cartTax)} CHF</h3>
+            <h3>total: {cartSubTotal + cartTax} CHF</h3>
           </div>
         </div>
       </div>
