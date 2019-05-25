@@ -8,7 +8,8 @@ const CartTotals = ({ cartSubTotal, cartTax }) => {
   };
 
   const renderTotal = (sub, tax) => {
-    return parseFloat(sub + tax).toFixed(2);
+    let total = sub + tax;
+    return parseFloat(total).toFixed(2);
   };
 
   return (
