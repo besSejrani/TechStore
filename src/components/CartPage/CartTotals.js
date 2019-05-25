@@ -24,7 +24,7 @@ const CartTotals = ({ cartSubTotal, cartTax }) => {
             </button>
             <h3>subTotal: {cartSubTotal} CHF</h3>
             <h3>tax : {cartTax} CHF</h3>
-            <h3>total: {renderTotal(cartSubTotal, cartTax)} CHF</h3>
+            <h3>total: {renderTotal(cartSubTotal, cartTax).toFixed(2)} CHF</h3>
           </div>
         </div>
       </div>
