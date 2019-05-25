@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SideCart = ({ cart, cartOpen, sidebarCart, cartTotal }) => {
+  console.log("from sidecart: ", cart);
   return (
     <CartWrapper show={cartOpen} onClick={() => sidebarCart()}>
       <ul>

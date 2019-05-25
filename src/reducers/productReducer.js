@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-fallthrough */
 import {
   SIDE_BAR_TOGGLE,
@@ -102,34 +103,55 @@ export default (state = initialState, actions) => {
       };
 
     case SET_ITEM_CART:
-      localStorage.setItem("cart", JSON.stringify(state.cart));
-      return { ...state, cartItems: state.cart.cartItems };
+      let obj = {};
+      let cartStringify;
+      let cartSubTotalStringify;
+      let cartTaxStringify;
+
+      obj.cartStringify = state.cart;
+      obj.cartSubTotalStringify = Number(state.cartSubTotal);
+      obj.cartTaxStringify = Number(state.cartTax);
+
+      localStorage.setItem("cart", JSON.stringify(obj));
+
+      return {
+        ...state
+      };
 
     case GET_ITEM_CART:
-      let cart;
+      let cart = [];
       let count = 0;
       let cartTotal = 0;
+      let cartSubTotal = 0;
+      let cartTax = 0;
 
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
         console.log("product reducer", cart);
 
-        cart.map(item => {
+        cart.cartStringify.map(item => {
           return (count += item.count);
         });
 
-        cart.map(item => {
+        cart.cartStringify.map(item => {
           cartTotal += item.total;
 
           return parseFloat(cartTotal).toFixed(2);
         });
-      } else if (!localStorage.getItem("cart")) {
-        cart = [];
       } else {
-        return cart;
+        cart.cartStringify = cart;
+        cart.cartSubTotalStringify = parseFloat(cartSubTotal).toFixed(2);
+        cart.cartTaxStringify = parseFloat(cartTax).toFixed(2);
       }
 
-      return { ...state, cart: cart, cartItems: count, cartTotal: cartTotal };
+      return {
+        ...state,
+        cart: cart.cartStringify,
+        cartItems: count,
+        cartTotal: cartTotal,
+        cartSubTotal: cart.cartSubTotalStringify,
+        cartTax: cart.cartTaxStringify
+      };
 
     case SET_SINGLE_PRODUCT:
       let product = state.storeProducts.find(item => item.id === payload);

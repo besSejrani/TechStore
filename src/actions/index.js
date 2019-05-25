@@ -27,6 +27,7 @@ export const addToCart = id => {
 
   return [
     { type: ADD_TO_CART, payload: id },
+    { type: ADD_TOTALS },
     { type: SET_ITEM_CART },
     { type: ADD_TOTALS }
   ];
