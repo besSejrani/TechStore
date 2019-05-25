@@ -109,8 +109,8 @@ export default (state = initialState, actions) => {
       let cartTaxStringify;
 
       obj.cartStringify = state.cart;
-      obj.cartSubTotalStringify = Number(state.cartSubTotal);
-      obj.cartTaxStringify = Number(state.cartTax);
+      obj.cartSubTotalStringify = state.cartSubTotal;
+      obj.cartTaxStringify = state.cartTax;
 
       localStorage.setItem("cart", JSON.stringify(obj));
 
