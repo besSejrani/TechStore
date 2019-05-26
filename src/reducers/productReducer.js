@@ -9,7 +9,9 @@ import {
   GET_ITEM_CART,
   SET_SINGLE_PRODUCT,
   SET_PRODUCTS,
-  GET_SINGLE_PRODUCT
+  GET_SINGLE_PRODUCT,
+  INCREMENT,
+  DECREMENT
 } from "../actions/types";
 import { LinkNav } from "../layout/LinkNav";
 import { social } from "../layout/linkFooter";
@@ -172,6 +174,16 @@ export default (state = initialState, actions) => {
       }
 
       return { ...state, singleProduct: { ...singleProduct }, loading: false };
+
+    case INCREMENT:
+      let incCart = [...state.cart];
+      const cartItem = incCart.find(item => item.id === payload);
+
+      cartItem.coun++;
+      cartItem.total = cartItem.count * cartItem.price;
+      cartItem.total = parseFloat(cartItem.total).toFixed(2);
+
+      return { ...state, ...incCart };
 
     default:
       return state;

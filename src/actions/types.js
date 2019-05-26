@@ -9,3 +9,6 @@ export const GET_ITEM_CART = "GET_ITEM_CART";
 
 export const SET_SINGLE_PRODUCT = "SET_SINGLE_PRODUCT";
 export const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
+
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";

@@ -21,10 +21,6 @@ class App extends Component {
     this.props.getItemCart();
   };
 
-  increment = id => {
-    console.log(id);
-  };
-
   decrement = id => {
     console.log(id);
   };
@@ -36,12 +32,6 @@ class App extends Component {
   clearCart = () => {
     console.log("card cleared");
   };
-
-  //state
-  //increment:increment
-  //decrement:decrement
-  //removeItem:removeItem
-  //clearCart:clearCart
 
   render() {
     return (

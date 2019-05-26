@@ -7,7 +7,9 @@ import {
   GET_ITEM_CART,
   SET_PRODUCTS,
   SET_SINGLE_PRODUCT,
-  GET_SINGLE_PRODUCT
+  GET_SINGLE_PRODUCT,
+  INCREMENT,
+  DECREMENT
 } from "./types";
 
 export const sidebarToggle = () => {
@@ -51,4 +53,15 @@ export const getSingleProduct = () => {
 
 export const getItemCart = () => {
   return { type: GET_ITEM_CART };
+};
+
+export const increment = id => {
+  return [
+    { type: INCREMENT, payload: id },
+    { type: ADD_TO_CART, payload: id },
+    { type: ADD_TOTALS },
+    { type: SET_ITEM_CART },
+    { type: ADD_TOTALS },
+    { type: GET_ITEM_CART }
+  ];
 };
