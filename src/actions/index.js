@@ -68,6 +68,16 @@ export const increment = id => {
   ];
 };
 
+export const decrement = id => {
+  return [
+    { type: DECREMENT, payload: id },
+    { type: ADD_TOTALS },
+    { type: SET_ITEM_CART },
+    { type: ADD_TOTALS },
+    { type: GET_ITEM_CART }
+  ];
+};
+
 export const remove = id => {
   return [
     { type: REMOVE, payload: id },

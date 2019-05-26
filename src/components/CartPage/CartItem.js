@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { increment, remove } from "../../actions";
+import { increment, remove, decrement } from "../../actions";
 
 import {
   FaTrash,
@@ -70,5 +70,5 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
 
 export default connect(
   null,
-  { increment, remove }
+  { increment, remove, decrement }
 )(CartItem);

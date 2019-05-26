@@ -5,10 +5,6 @@ import cartBcg from "../images/storeBcg.jpeg";
 import CartSection from "../components/CartPage";
 
 class Cart extends Component {
-  /*  componentDidMount = () => {
-    this.forceUpdate();
-  }; */
-
   render() {
     return (
       <>

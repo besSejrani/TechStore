@@ -21,10 +21,6 @@ class App extends Component {
     this.props.getItemCart();
   };
 
-  decrement = id => {
-    console.log(id);
-  };
-
   render() {
     return (
       <>

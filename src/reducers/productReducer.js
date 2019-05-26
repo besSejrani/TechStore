@@ -177,11 +177,6 @@ export default (state = initialState, actions) => {
 
       return { ...state, singleProduct: { ...singleProduct }, loading: false };
 
-    case INCREMENT:
-      let incCart = [...state.cart];
-
-      return { ...state, ...incCart };
-
     case REMOVE:
       let removeCart = [...state.cart];
       removeCart = removeCart.filter(item => item.id !== payload);
@@ -190,6 +185,28 @@ export default (state = initialState, actions) => {
 
     case CLEAR:
       return { ...state, cart: [] };
+
+    case INCREMENT:
+      let incCart = [...state.cart];
+
+      return { ...state, ...incCart };
+
+    case DECREMENT:
+      let decCart = [...state.cart];
+      const cartItem = decCart.find(item => item.id === payload);
+
+      if (cartItem.count <= 1) {
+        let removeCart = [...state.cart];
+        removeCart = removeCart.filter(item => item.id !== payload);
+
+        return { ...state, cart: removeCart };
+      }
+
+      cartItem.count = cartItem.count - 1;
+      cartItem.total = cartItem.count * cartItem.price;
+      cartItem.total = parseFloat(cartItem.total).toFixed(2);
+
+      return { ...state, cart: decCart };
 
     default:
       return state;
