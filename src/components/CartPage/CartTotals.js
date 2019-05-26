@@ -1,12 +1,11 @@
 import React from "react";
 
 import { connect } from "react-redux";
+import { clearCart } from "../../actions";
 
-const CartTotals = ({ cartSubTotal, cartTax }) => {
-  const clearCart = () => {
-    localStorage.clear();
-  };
+import { withRouter } from "react-router-dom";
 
+const CartTotals = ({ cartSubTotal, cartTax, clearCart, history }) => {
   const renderTotal = (sub, tax) => {
     let subNumb = Number(sub);
     let taxNumb = Number(tax);
@@ -21,7 +20,7 @@ const CartTotals = ({ cartSubTotal, cartTax }) => {
           <div className="col text-title text-center my-4">
             <button
               className="btn btn-outline-danger text-capitalize mb-4"
-              onClick={() => clearCart()}
+              onClick={() => clearCart(history)}
             >
               Clear Cart
             </button>
@@ -40,4 +39,7 @@ const mapState = state => ({
   cartTax: state.product.cartTax
 });
 
-export default connect(mapState)(CartTotals);
+export default connect(
+  mapState,
+  { clearCart }
+)(withRouter(CartTotals));

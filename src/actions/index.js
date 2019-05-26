@@ -10,7 +10,8 @@ import {
   GET_SINGLE_PRODUCT,
   INCREMENT,
   DECREMENT,
-  REMOVE
+  REMOVE,
+  CLEAR
 } from "./types";
 
 export const sidebarToggle = () => {
@@ -75,4 +76,12 @@ export const remove = id => {
     { type: ADD_TOTALS },
     { type: GET_ITEM_CART }
   ];
+};
+
+export const clearCart = history => async () => {
+  await localStorage.clear();
+  await history.push("/products");
+  await window.location.reload();
+
+  return [{ type: CLEAR }];
 };

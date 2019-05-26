@@ -15,15 +15,7 @@ const CartList = ({ cart }) => {
     return (
       <>
         {cart.map(item => {
-          return (
-            <CartItem
-              key={item.id}
-              cartItem={item}
-              //increment={increment}
-              //decrement={decrement}
-              //removeItem={removeItem}
-            />
-          );
+          return <CartItem key={item.id} cartItem={item} />;
         })}
       </>
     );

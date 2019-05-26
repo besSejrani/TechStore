@@ -1,16 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Hero from "../components/Hero";
 import cartBcg from "../images/storeBcg.jpeg";
 import CartSection from "../components/CartPage";
 
-const Cart = () => {
-  return (
-    <>
-      <Hero img={cartBcg} />
-      <CartSection />
-    </>
-  );
-};
+class Cart extends Component {
+  /*  componentDidMount = () => {
+    this.forceUpdate();
+  }; */
+
+  render() {
+    return (
+      <>
+        <Hero img={cartBcg} />
+        <CartSection />
+      </>
+    );
+  }
+}
 
 export default Cart;

@@ -13,3 +13,4 @@ export const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 export const REMOVE = "REMOVE";
+export const CLEAR = "CLEAR";

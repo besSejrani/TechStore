@@ -12,7 +12,8 @@ import {
   GET_SINGLE_PRODUCT,
   INCREMENT,
   DECREMENT,
-  REMOVE
+  REMOVE,
+  CLEAR
 } from "../actions/types";
 import { LinkNav } from "../layout/LinkNav";
 import { social } from "../layout/linkFooter";
@@ -186,6 +187,9 @@ export default (state = initialState, actions) => {
       removeCart = removeCart.filter(item => item.id !== payload);
 
       return { ...state, cart: removeCart };
+
+    case CLEAR:
+      return { ...state, cart: [] };
 
     default:
       return state;
