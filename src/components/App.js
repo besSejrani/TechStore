@@ -25,10 +25,6 @@ class App extends Component {
     console.log(id);
   };
 
-  removeItem = id => {
-    console.log(id);
-  };
-
   clearCart = () => {
     console.log("card cleared");
   };

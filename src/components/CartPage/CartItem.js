@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { increment } from "../../actions";
+import { increment, remove } from "../../actions";
 
 import {
   FaTrash,
@@ -50,7 +50,12 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
 
       <div className="col-10 mx-auto col-lg-2 pb-2">
         <h6 style={{ fontWeight: 600 }}>
-          {<FaTrash className="text-danger cart-icon" />}
+          {
+            <FaTrash
+              className="text-danger cart-icon"
+              onClick={() => remove(id)}
+            />
+          }
         </h6>
       </div>
 
@@ -65,5 +70,5 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
 
 export default connect(
   null,
-  { increment }
+  { increment, remove }
 )(CartItem);

@@ -11,7 +11,8 @@ import {
   SET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   INCREMENT,
-  DECREMENT
+  DECREMENT,
+  REMOVE
 } from "../actions/types";
 import { LinkNav } from "../layout/LinkNav";
 import { social } from "../layout/linkFooter";
@@ -177,13 +178,14 @@ export default (state = initialState, actions) => {
 
     case INCREMENT:
       let incCart = [...state.cart];
-      const cartItem = incCart.find(item => item.id === payload);
-
-      cartItem.coun++;
-      cartItem.total = cartItem.count * cartItem.price;
-      cartItem.total = parseFloat(cartItem.total).toFixed(2);
 
       return { ...state, ...incCart };
+
+    case REMOVE:
+      let removeCart = [...state.cart];
+      removeCart = removeCart.filter(item => item.id !== payload);
+
+      return { ...state, cart: removeCart };
 
     default:
       return state;
