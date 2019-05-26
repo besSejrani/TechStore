@@ -203,10 +203,8 @@ export default (state = initialState, actions) => {
       }
 
       cartItem.count = cartItem.count - 1;
-      let cartNumb = Number(cartItem.count);
-      let cartPrice = Number(cartItem.price);
-
-      cartItem.total = parseFloat(cartNumb * cartPrice).toFixed(2);
+      cartItem.total = cartItem.count * cartItem.price;
+      cartItem.total = parseFloat(cartItem.total).toFixed(2);
 
       return { ...state, cart: decCart };
 
