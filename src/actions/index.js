@@ -27,8 +27,6 @@ export const setProducts = products => {
 };
 
 export const addToCart = id => {
-  console.log(`add to cart${id}`);
-
   return [
     { type: ADD_TO_CART, payload: id },
     { type: ADD_TOTALS },
@@ -42,14 +40,10 @@ export const addTotals = () => {
 };
 
 export const setSingleProduct = id => {
-  console.log(`set single product ${id}`);
-
   return { type: SET_SINGLE_PRODUCT, payload: id };
 };
 
 export const getSingleProduct = () => {
-  console.log(`get single product`);
-
   return { type: GET_SINGLE_PRODUCT };
 };
 

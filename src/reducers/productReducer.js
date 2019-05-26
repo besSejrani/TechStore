@@ -131,7 +131,6 @@ export default (state = initialState, actions) => {
 
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
-        console.log("product reducer", cart);
 
         cart.cartStringify.map(item => {
           return (count += item.count);
@@ -168,7 +167,6 @@ export default (state = initialState, actions) => {
 
       if (localStorage.getItem("singleProduct")) {
         singleProduct = JSON.parse(localStorage.getItem("singleProduct"));
-        console.log("set singleProduct", singleProduct);
       } else if (!localStorage.getItem("singleProduct")) {
         singleProduct = {};
       } else {
