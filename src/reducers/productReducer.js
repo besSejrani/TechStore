@@ -113,8 +113,8 @@ export default (state = initialState, actions) => {
       let cartTaxStringify;
 
       obj.cartStringify = state.cart;
-      obj.cartSubTotalStringify = state.cartSubTotal;
-      obj.cartTaxStringify = state.cartTax;
+      obj.cartSubTotalStringify = Number(state.cartSubTotal);
+      obj.cartTaxStringify = Number(state.cartTax);
 
       localStorage.setItem("cart", JSON.stringify(obj));
 
@@ -204,7 +204,6 @@ export default (state = initialState, actions) => {
 
       cartItem.count = cartItem.count - 1;
       cartItem.total = cartItem.count * cartItem.price;
-      cartItem.total = parseFloat(cartItem.total).toFixed(2);
 
       return { ...state, cart: decCart };
 
