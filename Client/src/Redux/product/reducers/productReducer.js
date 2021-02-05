@@ -13,10 +13,10 @@ import {
   INCREMENT,
   DECREMENT,
   REMOVE,
-  CLEAR
+  CLEAR,
 } from "../actions/types";
-import { LinkNav } from "../../layout/LinkNav";
-import { social } from "../../layout/linkFooter";
+import { LinkNav } from "../../../Layout/LinkNav";
+import { social } from "../../../Layout/linkFooter";
 
 const initialState = {
   sidebarOpen: false,
@@ -32,7 +32,7 @@ const initialState = {
   filteredProducts: [],
   featuredProducts: [],
   singleProduct: {},
-  loading: true
+  loading: true,
 };
 
 export default (state = initialState, actions) => {
@@ -46,7 +46,7 @@ export default (state = initialState, actions) => {
       return { ...state, cartOpen: !state.cartOpen };
 
     case SET_PRODUCTS:
-      let storeProducts = payload.map(item => {
+      let storeProducts = payload.map((item) => {
         const { id } = item.sys;
         const image = item.fields.image.fields.file.url;
         const product = { id, ...item.fields, image };
@@ -54,7 +54,7 @@ export default (state = initialState, actions) => {
       });
 
       let featuredProducts = storeProducts.filter(
-        item => item.featured === true
+        (item) => item.featured === true
       );
 
       return {
@@ -62,17 +62,17 @@ export default (state = initialState, actions) => {
         storeProducts: storeProducts,
         filteredProducts: storeProducts,
         featuredProducts: featuredProducts,
-        loading: false
+        loading: false,
       };
 
     case ADD_TO_CART:
       let tempCart = [...state.cart];
       let tempProducts = [...state.storeProducts];
 
-      let tempItem = tempCart.find(item => item.id === payload);
+      let tempItem = tempCart.find((item) => item.id === payload);
 
       if (!tempItem) {
-        tempItem = tempProducts.find(item => item.id === payload);
+        tempItem = tempProducts.find((item) => item.id === payload);
         let total = tempItem.price;
         let cartItem = { ...tempItem, count: 1, total };
         tempCart = [...tempCart, cartItem];
@@ -88,7 +88,7 @@ export default (state = initialState, actions) => {
     case ADD_TOTALS:
       let subTotal = 0;
       let cartItems = 0;
-      state.cart.forEach(item => {
+      state.cart.forEach((item) => {
         subTotal += item.total;
         cartItems += item.count;
       });
@@ -103,7 +103,7 @@ export default (state = initialState, actions) => {
         cartItems: cartItems,
         cartSubTotal: subTotal,
         cartTax: tax,
-        cartTotal: total
+        cartTotal: total,
       };
 
     case SET_ITEM_CART:
@@ -119,7 +119,7 @@ export default (state = initialState, actions) => {
       localStorage.setItem("cart", JSON.stringify(obj));
 
       return {
-        ...state
+        ...state,
       };
 
     case GET_ITEM_CART:
@@ -132,11 +132,11 @@ export default (state = initialState, actions) => {
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
 
-        cart.cartStringify.map(item => {
+        cart.cartStringify.map((item) => {
           return (count += item.count);
         });
 
-        cart.cartStringify.map(item => {
+        cart.cartStringify.map((item) => {
           cartTotal += item.total;
 
           return parseFloat(cartTotal).toFixed(2);
@@ -153,11 +153,11 @@ export default (state = initialState, actions) => {
         cartItems: count,
         cartTotal: cartTotal,
         cartSubTotal: cart.cartSubTotalStringify,
-        cartTax: cart.cartTaxStringify
+        cartTax: cart.cartTaxStringify,
       };
 
     case SET_SINGLE_PRODUCT:
-      let product = state.storeProducts.find(item => item.id === payload);
+      let product = state.storeProducts.find((item) => item.id === payload);
       localStorage.setItem("singleProduct", JSON.stringify(product));
 
       return { ...state, singleProduct: { ...product }, loading: false };
@@ -177,7 +177,7 @@ export default (state = initialState, actions) => {
 
     case REMOVE:
       let removeCart = [...state.cart];
-      removeCart = removeCart.filter(item => item.id !== payload);
+      removeCart = removeCart.filter((item) => item.id !== payload);
 
       return { ...state, cart: removeCart };
 
@@ -191,11 +191,11 @@ export default (state = initialState, actions) => {
 
     case DECREMENT:
       let decCart = [...state.cart];
-      const cartItem = decCart.find(item => item.id === payload);
+      const cartItem = decCart.find((item) => item.id === payload);
 
       if (cartItem.count <= 1) {
         let removeCart = [...state.cart];
-        removeCart = removeCart.filter(item => item.id !== payload);
+        removeCart = removeCart.filter((item) => item.id !== payload);
 
         return { ...state, cart: removeCart };
       }

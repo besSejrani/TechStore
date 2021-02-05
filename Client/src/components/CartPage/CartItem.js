@@ -1,13 +1,11 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { increment, remove, decrement } from "../../Redux/actions";
+import { increment, remove, decrement } from "../../Redux/product/actions";
 
-import {
-  FaTrash,
-  FaChevronCircleUp,
-  FaChevronCircleDown
-} from "react-icons/fa";
+import TrashIcon from "@material-ui/icons/Delete";
+import UpIcon from "@material-ui/icons/ArrowUpward";
+import DownIcon from "@material-ui/icons/ArrowDownward";
 
 const CartItem = ({ cartItem, increment, decrement, remove }) => {
   const { id, image, title, price, count, total } = cartItem;
@@ -28,7 +26,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
       <div className="col-10 mx-auto col-lg-2 my-2 pb-2 my-lg-0">
         <div className="d-flex justify-content-center">
           <div>
-            <FaChevronCircleDown
+            <DownIcon
               className="cart-icon text-primary"
               onClick={() => decrement(id)}
             />
@@ -40,7 +38,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
               {count}
             </span>
 
-            <FaChevronCircleUp
+            <UpIcon
               className="cart-icon text-primary"
               onClick={() => increment(id)}
             />
@@ -51,7 +49,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
       <div className="col-10 mx-auto col-lg-2 pb-2">
         <h6 style={{ fontWeight: 600 }}>
           {
-            <FaTrash
+            <TrashIcon
               className="text-danger cart-icon"
               onClick={() => remove(id)}
             />
@@ -68,7 +66,4 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
   );
 };
 
-export default connect(
-  null,
-  { increment, remove, decrement }
-)(CartItem);
+export default connect(null, { increment, remove, decrement })(CartItem);

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { clearCart } from "../../Redux/actions";
+import { clearCart } from "../../Redux/product/actions";
 
 const CartTotals = ({ cartSubTotal, cartTax, clearCart, history }) => {
   const renderTotal = (sub, tax) => {
@@ -32,12 +32,9 @@ const CartTotals = ({ cartSubTotal, cartTax, clearCart, history }) => {
   );
 };
 
-const mapState = state => ({
+const mapState = (state) => ({
   cartSubTotal: state.product.cartSubTotal,
-  cartTax: state.product.cartTax
+  cartTax: state.product.cartTax,
 });
 
-export default connect(
-  mapState,
-  { clearCart }
-)(CartTotals);
+export default connect(mapState, { clearCart })(CartTotals);

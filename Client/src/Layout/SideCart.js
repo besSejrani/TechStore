@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { sidebarCart } from "../Redux/actions";
+import { sidebarCart } from "../Redux/product/actions";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ const SideCart = ({ cart, cartOpen, sidebarCart, cartTotal }) => {
   return (
     <CartWrapper show={cartOpen} onClick={() => sidebarCart()}>
       <ul>
-        {cart.map(item => {
+        {cart.map((item) => {
           return (
             <li key={item.id} className="cart-item mb-4">
               <img width="70" src={`../${item.image}`} alt="cart item" />
@@ -45,7 +45,7 @@ const CartWrapper = styled.aside`
   border-left: 4px solid var(--primaryColor);
   transition: var(--mainTransition);
 
-  transform: ${props => (props.show ? "translateX(0)" : "translateX(100%)")};
+  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
 
   @media (min-width: 576px) {
     width: 20rem;
@@ -61,13 +61,10 @@ const CartWrapper = styled.aside`
   }
 `;
 
-const mapState = state => ({
+const mapState = (state) => ({
   cartOpen: state.product.cartOpen,
   cart: state.product.cart,
-  cartTotal: state.product.cartTotal
+  cartTotal: state.product.cartTotal,
 });
 
-export default connect(
-  mapState,
-  { sidebarCart }
-)(SideCart);
+export default connect(mapState, { sidebarCart })(SideCart);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { getSingleProduct, addToCart } from "../Redux/actions";
+import { getSingleProduct, addToCart } from "../Redux/product/actions";
 
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
@@ -18,7 +18,7 @@ class SingleProduct extends Component {
       id,
       price,
       title,
-      image
+      image,
     } = this.props.singleProduct;
 
     if (this.props.product) {
@@ -76,12 +76,11 @@ class SingleProduct extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   singleProduct: state.product.singleProduct,
-  loading: state.product.loading
+  loading: state.product.loading,
 });
 
-export default connect(
-  mapState,
-  { getSingleProduct, addToCart }
-)(SingleProduct);
+export default connect(mapState, { getSingleProduct, addToCart })(
+  SingleProduct
+);

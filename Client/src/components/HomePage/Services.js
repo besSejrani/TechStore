@@ -1,33 +1,36 @@
 import React, { Component } from "react";
 
 import styled from "styled-components";
-import { FaDolly, FaRedo, FaDollarSign } from "react-icons/fa";
+
+import ShippingIcon from "@material-ui/icons/LocalShipping";
+import ReturnIcon from "@material-ui/icons/Redo";
+import SecureIcon from "@material-ui/icons/Security";
 
 export class Services extends Component {
   state = {
     services: [
       {
         id: 0,
-        icon: <FaDolly />,
+        icon: <ShippingIcon />,
         title: "Free Shipping",
         text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum"
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum",
       },
       {
         id: 1,
-        icon: <FaRedo />,
+        icon: <ReturnIcon />,
         title: "30 days return policy",
         text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum"
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum",
       },
       {
         id: 2,
-        icon: <FaDollarSign />,
+        icon: <SecureIcon />,
         title: "Secure payment",
         text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum"
-      }
-    ]
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, ipsum",
+      },
+    ],
   };
 
   render() {
@@ -35,7 +38,7 @@ export class Services extends Component {
       <ServiceWrapper className="py-5">
         <div className="container">
           <div className="row">
-            {this.state.services.map(item => {
+            {this.state.services.map((item) => {
               return (
                 <div
                   className="col-10 mx-auto col-sm-6 col-md-4 text-center my-3 "

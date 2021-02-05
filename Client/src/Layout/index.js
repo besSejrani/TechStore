@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import SideBar from "./SideBar";
 import SideCart from "./SideCart";
 
+import { withTheme } from "./Theme";
+
 const index = ({ children }) => {
   return (
     <>
@@ -18,4 +20,4 @@ const index = ({ children }) => {
   );
 };
 
-export default index;
+export default withTheme(index);

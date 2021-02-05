@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { sidebarToggle } from "../Redux/actions";
+import { sidebarToggle } from "../Redux/product/actions";
 
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const SideBar = ({ nav, sidebarToggle, menu }) => {
   return (
     <SideWrapper show={menu}>
       <ul>
-        {nav.map(item => {
+        {nav.map((item) => {
           return (
             <li key={item.id}>
               <Link
@@ -38,7 +38,7 @@ const SideWrapper = styled.nav`
   z-index: 1;
   border-right: 4px solid var(--primaryColor);
   transition: var(--mainTransition);
-  transform: ${props => (props.show ? "translateX(0)" : "translateX(-100%)")};
+  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(-100%)")};
 
   ul {
     list-style: none;
@@ -67,12 +67,9 @@ const SideWrapper = styled.nav`
   }
 `;
 
-const mapState = state => ({
+const mapState = (state) => ({
   nav: state.product.links,
-  menu: state.product.sidebarOpen
+  menu: state.product.sidebarOpen,
 });
 
-export default connect(
-  mapState,
-  { sidebarToggle }
-)(SideBar);
+export default connect(mapState, { sidebarToggle })(SideBar);
