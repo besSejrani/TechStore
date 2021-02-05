@@ -2,7 +2,11 @@ import React from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { increment, remove, decrement } from "../../Redux/product/actions";
+import {
+  increment,
+  remove,
+  decrement,
+} from "../../Redux/product/productAction";
 
 // Icons
 import TrashIcon from "@material-ui/icons/Delete";

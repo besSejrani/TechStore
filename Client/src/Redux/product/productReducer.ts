@@ -1,22 +1,25 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-fallthrough */
-import {
-  SIDE_BAR_TOGGLE,
-  SIDE_CART_TOGGLE,
-  ADD_TO_CART,
-  ADD_TOTALS,
-  SET_ITEM_CART,
-  GET_ITEM_CART,
-  SET_SINGLE_PRODUCT,
-  SET_PRODUCTS,
-  GET_SINGLE_PRODUCT,
-  INCREMENT,
-  DECREMENT,
-  REMOVE,
-  CLEAR,
-} from "../actions/types";
-import { LinkNav } from "../../../Layout/LinkNav";
-import { social } from "../../../Layout/linkFooter";
+import { ProductType } from "./productType";
+import { LinkNav } from "../../Layout/LinkNav";
+import { social } from "../../Layout/linkFooter";
+
+interface ProductState {
+  sidebarOpen: boolean;
+  cartOpen: boolean;
+  links: any;
+  social: any;
+  cartItems: number;
+  cart: any[];
+  cartSubTotal: number;
+  cartTax: number;
+  cartTotal: number;
+  storeProducts: any[];
+  filteredProducts: any[];
+  featuredProducts: any[];
+  singleProduct: any;
+  loading: boolean;
+}
 
 const initialState = {
   sidebarOpen: false,
@@ -35,17 +38,25 @@ const initialState = {
   loading: true,
 };
 
-export default (state = initialState, actions) => {
-  const { payload, type } = actions;
+interface Action {
+  type: string;
+  payload?: any;
+}
+
+export default (
+  state: ProductState = initialState,
+  action: Action
+): ProductState => {
+  const { payload, type } = action;
 
   switch (type) {
-    case SIDE_BAR_TOGGLE:
+    case ProductType.SIDE_BAR_TOGGLE:
       return { ...state, sidebarOpen: !state.sidebarOpen };
 
-    case SIDE_CART_TOGGLE:
+    case ProductType.SIDE_CART_TOGGLE:
       return { ...state, cartOpen: !state.cartOpen };
 
-    case SET_PRODUCTS:
+    case ProductType.SET_PRODUCTS:
       let storeProducts = payload.map((item) => {
         const { id } = item.sys;
         const image = item.fields.image.fields.file.url;
@@ -65,7 +76,7 @@ export default (state = initialState, actions) => {
         loading: false,
       };
 
-    case ADD_TO_CART:
+    case ProductType.ADD_TO_CART:
       let tempCart = [...state.cart];
       let tempProducts = [...state.storeProducts];
 
@@ -85,16 +96,16 @@ export default (state = initialState, actions) => {
 
       return { ...state, cart: tempCart };
 
-    case ADD_TOTALS:
-      let subTotal = 0;
-      let cartItems = 0;
+    case ProductType.ADD_TOTALS:
+      let subTotal: any = 0;
+      let cartItems: any = 0;
       state.cart.forEach((item) => {
         subTotal += item.total;
         cartItems += item.count;
       });
 
       subTotal = parseFloat(subTotal).toFixed(2);
-      let tax = parseFloat(subTotal * 0.2).toFixed(2);
+      let tax = parseFloat((subTotal * 0.2) as any).toFixed(2);
       let total = subTotal + tax;
       total = parseFloat(total).toFixed(2);
 
@@ -102,12 +113,12 @@ export default (state = initialState, actions) => {
         ...state,
         cartItems: cartItems,
         cartSubTotal: subTotal,
-        cartTax: tax,
-        cartTotal: total,
+        cartTax: tax as any,
+        cartTotal: total as any,
       };
 
-    case SET_ITEM_CART:
-      let obj = {};
+    case ProductType.SET_ITEM_CART:
+      let obj: any = {};
       let cartStringify;
       let cartSubTotalStringify;
       let cartTaxStringify;
@@ -122,15 +133,15 @@ export default (state = initialState, actions) => {
         ...state,
       };
 
-    case GET_ITEM_CART:
-      let cart = [];
-      let count = 0;
-      let cartTotal = 0;
-      let cartSubTotal = 0;
-      let cartTax = 0;
+    case ProductType.GET_ITEM_CART:
+      let cart: any = [];
+      let count: any = 0;
+      let cartTotal: any = 0;
+      let cartSubTotal: any = 0;
+      let cartTax: any = 0;
 
       if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
+        cart = JSON.parse(localStorage.getItem("cart")!);
 
         cart.cartStringify.map((item) => {
           return (count += item.count);
@@ -156,17 +167,17 @@ export default (state = initialState, actions) => {
         cartTax: cart.cartTaxStringify,
       };
 
-    case SET_SINGLE_PRODUCT:
+    case ProductType.SET_SINGLE_PRODUCT:
       let product = state.storeProducts.find((item) => item.id === payload);
       localStorage.setItem("singleProduct", JSON.stringify(product));
 
       return { ...state, singleProduct: { ...product }, loading: false };
 
-    case GET_SINGLE_PRODUCT:
+    case ProductType.GET_SINGLE_PRODUCT:
       let singleProduct;
 
       if (localStorage.getItem("singleProduct")) {
-        singleProduct = JSON.parse(localStorage.getItem("singleProduct"));
+        singleProduct = JSON.parse(localStorage.getItem("singleProduct")!);
       } else if (!localStorage.getItem("singleProduct")) {
         singleProduct = {};
       } else {
@@ -175,21 +186,21 @@ export default (state = initialState, actions) => {
 
       return { ...state, singleProduct: { ...singleProduct }, loading: false };
 
-    case REMOVE:
+    case ProductType.REMOVE:
       let removeCart = [...state.cart];
       removeCart = removeCart.filter((item) => item.id !== payload);
 
       return { ...state, cart: removeCart };
 
-    case CLEAR:
+    case ProductType.CLEAR:
       return { ...state, cart: [] };
 
-    case INCREMENT:
+    case ProductType.INCREMENT:
       let incCart = [...state.cart];
 
       return { ...state, ...incCart };
 
-    case DECREMENT:
+    case ProductType.DECREMENT:
       let decCart = [...state.cart];
       const cartItem = decCart.find((item) => item.id === payload);
 

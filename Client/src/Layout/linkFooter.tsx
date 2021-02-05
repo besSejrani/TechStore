@@ -4,7 +4,13 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import LinkedinIcon from "@material-ui/icons/LinkedIn";
 
-export const social = [
+interface link {
+  id: number;
+  name: any;
+  url: string;
+}
+
+export const social: link[] = [
   {
     id: 0,
     name: <FacebookIcon className="icon" />,

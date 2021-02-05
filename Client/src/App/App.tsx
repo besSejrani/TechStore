@@ -2,7 +2,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { setProducts, getItemCart } from "../Redux/product/actions";
+import { setProducts, getItemCart } from "../Redux/product/productAction";
 
 import { items } from "../Data/productData";
 

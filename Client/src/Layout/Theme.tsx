@@ -1,5 +1,5 @@
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { grey } from "@material-ui/core/colors";
+import { grey, blue } from "@material-ui/core/colors";
 // import { useSelector } from "react-redux";
 // import { IAppState } from "../redux/rootReducer";
 
@@ -12,7 +12,7 @@ const Theme: React.FC<any> = (props) => {
         main: grey[900],
       },
       secondary: {
-        main: "#fff",
+        main: blue[500],
       },
       //   type: isDarkTheme ? "dark" : "light",
       type: "light",

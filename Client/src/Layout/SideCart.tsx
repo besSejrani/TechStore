@@ -1,8 +1,9 @@
 import React from "react";
 
 // Redux
+import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart } from "../Redux/product/actions";
+import { sidebarCart } from "../Redux/product/productAction";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -11,9 +12,9 @@ import { Button } from "@material-ui/core";
 
 const SideCart = () => {
   const dispatch = useDispatch();
-  const selectCartOpen = useSelector((state) => state.product.cartOpen);
-  const selectCart = useSelector((state) => state.product.cart);
-  const selectCartTotal = useSelector((state) => state.product.cartTotal);
+  const selectCartOpen = useSelector((state: IAppState) => state.product.cartOpen);
+  const selectCart = useSelector((state: IAppState) => state.product.cart);
+  const selectCartTotal = useSelector((state: IAppState) => state.product.cartTotal);
 
   return (
     <CartWrapper show={selectCartOpen} onClick={() => dispatch(sidebarCart())}>
@@ -24,25 +25,15 @@ const SideCart = () => {
               <img width="70" src={`../${item.image}`} alt="cart item" />
               <div className="mt-3">
                 <h6 className="text-uppercase">{item.title}</h6>
-                <h6 className="text-title text-capitalize">
-                  Amount: {item.count}
-                </h6>
+                <h6 className="text-title text-capitalize">Amount: {item.count}</h6>
               </div>
             </li>
           );
         })}
       </ul>
-      <h4 className="text-capitalize text-main">
-        cart total: {selectCartTotal} CHF
-      </h4>
+      <h4 className="text-capitalize text-main">cart total: {selectCartTotal} CHF</h4>
       <div className="text-center my-5">
-        <Button
-          component={Link}
-          to="/cart"
-          variant="outlined"
-          className="main-link"
-          style={{ marginTop: "30px" }}
-        >
+        <Button component={Link} to="/cart" variant="outlined" className="main-link" style={{ marginTop: "30px" }}>
           Cart Page
         </Button>
       </div>

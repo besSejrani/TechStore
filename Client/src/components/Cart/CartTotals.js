@@ -2,7 +2,7 @@ import React from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../../Redux/product/actions";
+import { clearCart } from "../../Redux/product/productAction";
 
 const CartTotals = ({ history }) => {
   const dispatch = useDispatch();

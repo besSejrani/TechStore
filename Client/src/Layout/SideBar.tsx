@@ -3,16 +3,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Redux
+import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarToggle } from "../Redux/product/actions";
+import { sidebarToggle } from "../Redux/product/productAction";
 
 import styled from "styled-components";
 
 const SideBar = () => {
   const dispatch = useDispatch();
 
-  const selectNav = useSelector((state) => state.product.links);
-  const selectMenu = useSelector((state) => state.product.sidebarOpen);
+  const selectNav = useSelector((state: IAppState) => state.product.links);
+  const selectMenu = useSelector((state: IAppState) => state.product.sidebarOpen);
 
   return (
     <SideWrapper show={selectMenu}>
@@ -20,11 +21,7 @@ const SideBar = () => {
         {selectNav.map((item) => {
           return (
             <li key={item.id}>
-              <Link
-                to={item.path}
-                className="sidebar-link"
-                onClick={() => dispatch(sidebarToggle())}
-              >
+              <Link to={item.path} className="sidebar-link" onClick={() => dispatch(sidebarToggle())}>
                 {item.text}
               </Link>
             </li>

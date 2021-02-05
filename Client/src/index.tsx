@@ -4,33 +4,12 @@ import App from "./App/App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import reducers from "./Redux/product/reducers";
+// Redux
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import reduxThunk from "redux-thunk";
-import reduxMulti from "redux-multi";
+import { store } from "./Redux/store";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-
-let composeEnhancers;
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
-
-if (process.env.NODE_ENV !== "production") {
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-} else {
-  composeEnhancers = null || compose;
-}
-
-const store = createStore(
-  reducers,
-  composeEnhancers(applyMiddleware(reduxThunk, reduxMulti))
-);
 
 ReactDOM.render(
   <React.StrictMode>

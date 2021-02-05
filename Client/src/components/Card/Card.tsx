@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { addToCart, setSingleProduct } from "../../Redux/product/actions";
+import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
 // Styles
 import PlusIcon from "@material-ui/icons/Add";
 
 import {
+  Button,
   Card,
   CardActionArea,
   CardActions,
@@ -38,17 +39,17 @@ const Product: React.FC<IProduct> = ({ product }) => {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea className={classes.area}>
         <CardMedia
           component={Link}
           to={`/products/${product.id}`}
           className={classes.media}
           onClick={() => dispatch(setSingleProduct(product.id))}
           image={product.image}
-          title="Contemplative Reptile"
+          title={product.title}
         />
       </CardActionArea>
-      <CardContent>
+      <CardContent className={classes.content}>
         <Typography gutterBottom variant="h5" component="h2">
           {product.title}
         </Typography>
@@ -57,11 +58,16 @@ const Product: React.FC<IProduct> = ({ product }) => {
         </Typography>
       </CardContent>
 
-      <CardActions>
-        <PlusIcon
-          className="icon"
+      <CardActions className={classes.actions}>
+        <Button
+          variant="outlined"
+          startIcon={<PlusIcon />}
+          color="secondary"
           onClick={() => dispatch(addToCart(product.id))}
-        />
+          title="hi"
+        >
+          Add To Cart
+        </Button>
         {product.price} CHF
       </CardActions>
     </Card>
@@ -78,13 +84,23 @@ const useStyles = makeStyles({
     flexDirection: "column",
     flexWrap: "wrap",
 
-    width: "340px",
-    height: "560px",
+    width: "360px",
+    height: "585px",
     marginRight: "20px",
     marginBottom: "20px",
+
+    padding: "20px",
+  },
+  area: {},
+  content: {
+    padding: "20px 0px",
   },
   media: {
     height: "320px",
   },
-  actions: {},
+  actions: {
+    padding: "2px 0px",
+    display: "flex",
+    justifyContent: "space-between",
+  },
 });

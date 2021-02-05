@@ -9,30 +9,26 @@ import CartIcon from "@material-ui/icons/ShoppingCart";
 
 import styled from "styled-components";
 
+// Redux
+import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart, sidebarToggle } from "../Redux/product/actions";
+import { sidebarCart, sidebarToggle } from "../Redux/product/productAction";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const selectProducts = useSelector((state) => state.product.cartItems);
+  const selectProducts = useSelector((state: IAppState) => state.product.cartItems);
 
   return (
     <header>
       <NavWrapper>
         <div className="nav-center">
-          <MenuIcon
-            className="nav-icon"
-            onClick={() => dispatch(sidebarToggle())}
-          />
+          <MenuIcon className="nav-icon" onClick={() => dispatch(sidebarToggle())} />
           <Link to="/">
             <img src={Logo} alt="Bestech logo" />
           </Link>
           <div className="nav-cart">
             <Badge badgeContent={selectProducts} color="secondary">
-              <CartIcon
-                className="nav-icon"
-                onClick={() => dispatch(sidebarCart())}
-              />
+              <CartIcon className="nav-icon" onClick={() => dispatch(sidebarCart())} />
             </Badge>
           </div>
         </div>
