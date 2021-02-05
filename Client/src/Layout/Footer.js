@@ -1,10 +1,13 @@
 import React from "react";
 
-import { connect } from "react-redux";
+//Redux
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
-const Footer = ({ social }) => {
+const Footer = () => {
+  const selectSocial = useSelector((state) => state.product.social);
+
   return (
     <FooterWrapper>
       <div className="container py-3">
@@ -16,7 +19,7 @@ const Footer = ({ social }) => {
             </p>
           </div>
           <div className="col-md-6 d-flex justify-content-between">
-            {social.map(link => {
+            {selectSocial.map((link) => {
               return (
                 <a href={link.url} key={link.id}>
                   {link.name}
@@ -29,6 +32,10 @@ const Footer = ({ social }) => {
     </FooterWrapper>
   );
 };
+
+export default Footer;
+
+// =================================================================
 
 const FooterWrapper = styled.footer`
   background: var(--darkGrey);
@@ -45,9 +52,3 @@ const FooterWrapper = styled.footer`
     color: var(--primaryColor);
   }
 `;
-
-const mapState = state => ({
-  social: state.product.social
-});
-
-export default connect(mapState)(Footer);

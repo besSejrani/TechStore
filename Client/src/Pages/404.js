@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import defaultBcg from "../images/defaultBcg.jpeg";
 
 const NotFound = () => {
@@ -18,3 +18,5 @@ const NotFound = () => {
 };
 
 export default NotFound;
+
+// =================================================================

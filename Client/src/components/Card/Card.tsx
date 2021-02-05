@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { addToCart, setSingleProduct } from "../Redux/product/actions";
+import { addToCart, setSingleProduct } from "../../Redux/product/actions";
 
 // Styles
 import PlusIcon from "@material-ui/icons/Add";
@@ -79,8 +79,9 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "340px",
-    height: "640px",
+    height: "560px",
     marginRight: "20px",
+    marginBottom: "20px",
   },
   media: {
     height: "320px",

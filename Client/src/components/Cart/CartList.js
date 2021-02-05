@@ -1,11 +1,14 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-import { connect } from "react-redux";
+// Redux
+import { useSelector } from "react-redux";
 
-const CartList = ({ cart }) => {
-  const renderCart = cart => {
-    if (cart.length === 0) {
+const CartList = () => {
+  const selectCart = useSelector((state) => state.product.cart);
+
+  const renderCart = (selectCart) => {
+    if (selectCart.length === 0) {
       return (
         <h1 className="text-title text-center text-capitalize my-4">
           Your cart is currently empty
@@ -14,7 +17,7 @@ const CartList = ({ cart }) => {
     }
     return (
       <>
-        {cart.map(item => {
+        {selectCart.map((item) => {
           return <CartItem key={item.id} cartItem={item} />;
         })}
       </>
@@ -24,14 +27,12 @@ const CartList = ({ cart }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col">{renderCart(cart)}</div>
+        <div className="col">{renderCart(selectCart)}</div>
       </div>
     </div>
   );
 };
 
-const mapState = state => ({
-  cart: state.product.cart
-});
+export default CartList;
 
-export default connect(mapState)(CartList);
+// =================================================================

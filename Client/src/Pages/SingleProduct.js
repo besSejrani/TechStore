@@ -1,86 +1,76 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct, addToCart } from "../Redux/product/actions";
 
 import { Link } from "react-router-dom";
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import singleProductImage from "../images/singleProductBcg.jpeg";
 
-class SingleProduct extends Component {
-  componentDidMount = () => {
-    this.props.getSingleProduct();
-  };
-  render() {
-    const {
-      company,
-      description,
-      id,
-      price,
-      title,
-      image,
-    } = this.props.singleProduct;
+import { Button } from "@material-ui/core";
 
-    if (this.props.product) {
-      return <h1>product is loading ...</h1>;
-    }
+const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const selectProduct = useSelector((state) => state.product.singleProduct);
 
-    return (
-      <>
-        <Hero img={singleProductImage} title="single product" />
-        <section>
-          <div className="container">
-            <div className="row">
-              <div className="col-10 mx-auto col-sm-8 col-md-6 my-5">
-                <img
-                  src={`../${image}`}
-                  alt="single product"
-                  className="img-fluid"
-                />
-              </div>
-              <div className="col-10 mx-auto col-sm-8 col-md-6 my-5">
-                <h5 className="text-title text-capitalize mb-4">
-                  Model :{title}
-                </h5>
-                <h5 className="text-capitalize text-muted mb-4">{company}</h5>
+  const { company, description, id, price, title, image } = selectProduct;
 
-                <h5 className="text-main text-capitalize">{price} CHF</h5>
+  useEffect(() => {
+    dispatch(getSingleProduct());
+  });
 
-                <p className="text-capitalize text title mt-3">
-                  Some info about product:
-                </p>
-                <p>{description}</p>
+  return (
+    <>
+      <Hero img={singleProductImage} title="single product" />
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-10 mx-auto col-sm-8 col-md-6 my-5">
+              <img
+                src={`../${image}`}
+                alt="single product"
+                className="img-fluid"
+              />
+            </div>
+            <div className="col-10 mx-auto col-sm-8 col-md-6 my-5">
+              <h5 className="text-title text-capitalize mb-4">
+                Model :{title}
+              </h5>
+              <h5 className="text-capitalize text-muted mb-4">{company}</h5>
 
-                <button
-                  className="main-link"
-                  type="button"
-                  style={{ margin: "0.75rem" }}
-                  onClick={() => this.props.addToCart(id)}
-                >
-                  Add to Cart
-                </button>
+              <h5 className="text-main text-capitalize">{price} CHF</h5>
 
-                <Link
-                  to="/products"
-                  className="main-link"
-                  style={{ margin: "0.75rem" }}
-                >
-                  Back to Products
-                </Link>
-              </div>
+              <p className="text-capitalize text title mt-3">
+                Some info about product:
+              </p>
+              <p>{description}</p>
+
+              <Button
+                variant="outlined"
+                className="main-link"
+                onClick={() => dispatch(addToCart(id))}
+                style={{ marginTop: "30px" }}
+              >
+                Add to Cart
+              </Button>
+
+              <Button
+                component={Link}
+                to="/products"
+                variant="outlined"
+                className="main-link"
+                style={{ marginTop: "30px" }}
+              >
+                Back to Products
+              </Button>
             </div>
           </div>
-        </section>
-      </>
-    );
-  }
-}
+        </div>
+      </section>
+    </>
+  );
+};
 
-const mapState = (state) => ({
-  singleProduct: state.product.singleProduct,
-  loading: state.product.loading,
-});
+export default SingleProduct;
 
-export default connect(mapState, { getSingleProduct, addToCart })(
-  SingleProduct
-);
+// =================================================================

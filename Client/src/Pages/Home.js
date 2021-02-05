@@ -1,30 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import { Link } from "react-router-dom";
 
-import Services from "../components/HomePage/Services";
-import Featured from "../components/HomePage/Featured";
+import Services from "../components/Services/Services";
+import Featured from "../components/Features/Features";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Hero title="Awesome phones" max="true">
-          <Link
-            to="/products"
-            className="main-link"
-            style={{ marginTop: "30px" }}
-          >
-            Our products
-          </Link>
-        </Hero>
+import { Button } from "@material-ui/core";
 
-        <Services />
-        <Featured />
-      </>
-    );
-  }
-}
+const Home = () => {
+  return (
+    <>
+      <Hero title="Awesome phones" max="true">
+        <Button
+          component={Link}
+          to="/products"
+          variant="outlined"
+          className="main-link"
+          style={{ marginTop: "30px" }}
+        >
+          Our products
+        </Button>
+      </Hero>
+
+      <Services />
+      <Featured />
+    </>
+  );
+};
 
 export default Home;
+
+// =================================================================

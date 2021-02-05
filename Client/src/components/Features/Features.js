@@ -1,30 +1,37 @@
 import React from "react";
 
+//React-Router-DOM
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
-import Title from "../Title";
-import Product from "../Product";
+// Redux
+import { useSelector } from "react-redux";
 
-const Featured = ({ featured }) => {
+import Product from "../Card/Card";
+
+import { Button } from "@material-ui/core";
+
+const Featured = () => {
+  const selectFeature = useSelector((state) => state.product.featuredProducts);
+
   return (
     <section className="py-5">
       <div className="container">
-        <Title title="Featured products" center />
         <div className="row my-5">
-          {featured.map(product => {
+          {selectFeature.map((product) => {
             return <Product key={product.id} product={product} />;
           })}
         </div>
         <div className="row mt-5">
           <div className="col text-center">
-            <Link
+            <Button
+              component={Link}
               to="/products"
+              variant="outlined"
               className="main-link"
               style={{ marginTop: "30px" }}
             >
               Our products
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -32,8 +39,4 @@ const Featured = ({ featured }) => {
   );
 };
 
-const mapState = state => ({
-  featured: state.product.featuredProducts
-});
-
-export default connect(mapState)(Featured);
+export default Featured;

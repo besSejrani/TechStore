@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Logo from "../images/logo.svg";
+import { Link } from "react-router-dom";
 
 import { Badge } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -23,7 +24,9 @@ const Header = () => {
             className="nav-icon"
             onClick={() => dispatch(sidebarToggle())}
           />
-          <img src={Logo} alt="Bestech logo" />
+          <Link to="/">
+            <img src={Logo} alt="Bestech logo" />
+          </Link>
           <div className="nav-cart">
             <Badge badgeContent={selectProducts} color="secondary">
               <CartIcon
@@ -37,6 +40,10 @@ const Header = () => {
     </header>
   );
 };
+
+export default Header;
+
+// =================================================================
 
 const NavWrapper = styled.nav`
   position: -webkit-sticky;
@@ -65,5 +72,3 @@ const NavWrapper = styled.nav`
     cursor: pointer;
   }
 `;
-
-export default Header;

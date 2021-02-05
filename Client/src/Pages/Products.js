@@ -1,7 +1,7 @@
 import React from "react";
 
-import Productss from "../components/ProductsPage/Products";
-import Hero from "../components/Hero";
+import Productss from "../components/Products/Products";
+import Hero from "../components/Hero/Hero";
 
 import ProductBcg from "../images/productsBcg.jpeg";
 
@@ -15,3 +15,5 @@ const Products = () => {
 };
 
 export default Products;
+
+// =================================================================

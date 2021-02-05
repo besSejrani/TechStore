@@ -1,8 +1,8 @@
 import React from "react";
 
-import Form from "../components/ContactPage/Form";
+import Form from "../components/Contact/Contact";
 
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import contactImg from "../images/contactBcg.jpeg";
 
 const Contact = () => {
@@ -15,3 +15,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+// =================================================================

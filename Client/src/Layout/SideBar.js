@@ -1,22 +1,29 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
+// Redux
+import { useDispatch, useSelector } from "react-redux";
 import { sidebarToggle } from "../Redux/product/actions";
 
 import styled from "styled-components";
 
-const SideBar = ({ nav, sidebarToggle, menu }) => {
+const SideBar = () => {
+  const dispatch = useDispatch();
+
+  const selectNav = useSelector((state) => state.product.links);
+  const selectMenu = useSelector((state) => state.product.sidebarOpen);
+
   return (
-    <SideWrapper show={menu}>
+    <SideWrapper show={selectMenu}>
       <ul>
-        {nav.map((item) => {
+        {selectNav.map((item) => {
           return (
             <li key={item.id}>
               <Link
                 to={item.path}
                 className="sidebar-link"
-                onClick={sidebarToggle}
+                onClick={() => dispatch(sidebarToggle())}
               >
                 {item.text}
               </Link>
@@ -27,6 +34,10 @@ const SideBar = ({ nav, sidebarToggle, menu }) => {
     </SideWrapper>
   );
 };
+
+export default SideBar;
+
+// =================================================================
 
 const SideWrapper = styled.nav`
   position: fixed;
@@ -66,10 +77,3 @@ const SideWrapper = styled.nav`
     width: 20rem;
   }
 `;
-
-const mapState = (state) => ({
-  nav: state.product.links,
-  menu: state.product.sidebarOpen,
-});
-
-export default connect(mapState, { sidebarToggle })(SideBar);

@@ -1,14 +1,19 @@
 import React from "react";
 
-import { connect } from "react-redux";
+// Redux
+import { useDispatch } from "react-redux";
 import { increment, remove, decrement } from "../../Redux/product/actions";
 
+// Icons
 import TrashIcon from "@material-ui/icons/Delete";
 import UpIcon from "@material-ui/icons/ArrowUpward";
 import DownIcon from "@material-ui/icons/ArrowDownward";
 
-const CartItem = ({ cartItem, increment, decrement, remove }) => {
+const CartItem = ({ cartItem }) => {
   const { id, image, title, price, count, total } = cartItem;
+
+  const dispatch = useDispatch();
+
   return (
     <div className="row mt-5 mt-lg-0 text-capitalize text-center align-items-center">
       <div className="col-10 mx-auto col-lg-2 pb-2">
@@ -28,7 +33,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
           <div>
             <DownIcon
               className="cart-icon text-primary"
-              onClick={() => decrement(id)}
+              onClick={() => dispatch(decrement(id))}
             />
 
             <span
@@ -40,7 +45,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
 
             <UpIcon
               className="cart-icon text-primary"
-              onClick={() => increment(id)}
+              onClick={() => dispatch(increment(id))}
             />
           </div>
         </div>
@@ -51,7 +56,7 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
           {
             <TrashIcon
               className="text-danger cart-icon"
-              onClick={() => remove(id)}
+              onClick={() => dispatch(remove(id))}
             />
           }
         </h6>
@@ -66,4 +71,6 @@ const CartItem = ({ cartItem, increment, decrement, remove }) => {
   );
 };
 
-export default connect(null, { increment, remove, decrement })(CartItem);
+export default CartItem;
+
+// =================================================================

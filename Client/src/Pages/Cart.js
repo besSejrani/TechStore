@@ -1,17 +1,18 @@
 import React from "react";
 
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import cartBcg from "../images/storeBcg.jpeg";
-import CartSection from "../components/CartPage";
+import CartSection from "../components/Cart/";
 
-const Cart = props => {
-  console.log(props);
+const Cart = ({ history }) => {
   return (
     <>
       <Hero img={cartBcg} />
-      <CartSection history={props.history} />
+      <CartSection history={history} />
     </>
   );
 };
 
 export default Cart;
+
+// =================================================================

@@ -1,6 +1,5 @@
 import React from "react";
 
-import Title from "../Title";
 import aboutBcg from "../../images/aboutBcg.jpeg";
 
 const Info = () => {
@@ -16,8 +15,6 @@ const Info = () => {
             />
           </div>
           <div className="col-10 mx-auto col-md-6 my-4">
-            <Title title="About Us" />
-
             <p className="text-lead text-muted my-4">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio a
               itaque quia laborum repudiandae recusandae asperiores! Amet in est

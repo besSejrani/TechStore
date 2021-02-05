@@ -1,6 +1,6 @@
 import React from "react";
 
-import mainBcg from "../images/mainBcg.jpeg";
+import mainBcg from "../../images/mainBcg.jpeg";
 
 import styled from "styled-components";
 
@@ -15,15 +15,19 @@ const Hero = ({ children, img = mainBcg, title, max }) => {
   );
 };
 
+export default Hero;
+
+// =================================================================
+
 const HeroWrapper = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${props => (props.max ? "100vh" : "60vh")};
+  min-height: ${(props) => (props.max ? "100vh" : "60vh")};
   color: var(--mainWhite);
   background: linear-gradient(var(--primaryRGBA), var(--primaryRGBA)),
-    url(${props => props.img}) center/cover no-repeat;
+    url(${(props) => props.img}) center/cover no-repeat;
 
   .title {
     padding-top: 2rem;
@@ -33,5 +37,3 @@ const HeroWrapper = styled.div`
     letter-spacing: var(--mainSpacing);
   }
 `;
-
-export default Hero;

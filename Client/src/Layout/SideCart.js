@@ -1,16 +1,24 @@
 import React from "react";
 
-import { connect } from "react-redux";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
 import { sidebarCart } from "../Redux/product/actions";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const SideCart = ({ cart, cartOpen, sidebarCart, cartTotal }) => {
+import { Button } from "@material-ui/core";
+
+const SideCart = () => {
+  const dispatch = useDispatch();
+  const selectCartOpen = useSelector((state) => state.product.cartOpen);
+  const selectCart = useSelector((state) => state.product.cart);
+  const selectCartTotal = useSelector((state) => state.product.cartTotal);
+
   return (
-    <CartWrapper show={cartOpen} onClick={() => sidebarCart()}>
+    <CartWrapper show={selectCartOpen} onClick={() => dispatch(sidebarCart())}>
       <ul>
-        {cart.map((item) => {
+        {selectCart.map((item) => {
           return (
             <li key={item.id} className="cart-item mb-4">
               <img width="70" src={`../${item.image}`} alt="cart item" />
@@ -24,15 +32,27 @@ const SideCart = ({ cart, cartOpen, sidebarCart, cartTotal }) => {
           );
         })}
       </ul>
-      <h4 className="text-capitalize text-main">cart total: {cartTotal} CHF</h4>
+      <h4 className="text-capitalize text-main">
+        cart total: {selectCartTotal} CHF
+      </h4>
       <div className="text-center my-5">
-        <Link to="/cart" className="main-link">
+        <Button
+          component={Link}
+          to="/cart"
+          variant="outlined"
+          className="main-link"
+          style={{ marginTop: "30px" }}
+        >
           Cart Page
-        </Link>
+        </Button>
       </div>
     </CartWrapper>
   );
 };
+
+export default SideCart;
+
+// =================================================================
 
 const CartWrapper = styled.aside`
   position: fixed;
@@ -60,11 +80,3 @@ const CartWrapper = styled.aside`
     list-style: none;
   }
 `;
-
-const mapState = (state) => ({
-  cartOpen: state.product.cartOpen,
-  cart: state.product.cart,
-  cartTotal: state.product.cartTotal,
-});
-
-export default connect(mapState, { sidebarCart })(SideCart);
