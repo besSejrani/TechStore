@@ -1,7 +1,7 @@
 import React from "react";
 
-import Productss from "../components/Products/Products";
-import Hero from "../components/Hero/Hero";
+import Productss from "../Components/Products/Products";
+import Hero from "../Components/Hero/Hero";
 
 import ProductBcg from "../images/productsBcg.jpeg";
 

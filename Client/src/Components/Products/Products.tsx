@@ -1,12 +1,13 @@
 import React from "react";
 
 // Redux
+import { IAppState } from "../../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
 import Product from "../Card/Card";
 
 const Products = () => {
-  const selectProducts = useSelector((state) => state.product.storeProducts);
+  const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
 
   return (
     <section className="py-5">

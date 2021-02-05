@@ -1,8 +1,8 @@
 import React from "react";
 
-import Hero from "../components/Hero/Hero";
+import Hero from "../Components/Hero/Hero";
 import AboutBcg from "../images/aboutBcg.jpeg";
-import Info from "../components/About/About";
+import Info from "../Components/About/About";
 
 const About = () => {
   return (

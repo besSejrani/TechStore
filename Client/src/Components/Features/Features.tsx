@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Redux
+import { IAppState } from "../../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
 import Product from "../Card/Card";
@@ -11,7 +12,7 @@ import Product from "../Card/Card";
 import { Button } from "@material-ui/core";
 
 const Featured = () => {
-  const selectFeature = useSelector((state) => state.product.featuredProducts);
+  const selectFeature = useSelector((state: IAppState) => state.product.featuredProducts);
 
   return (
     <section className="py-5">

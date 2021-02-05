@@ -1,19 +1,20 @@
 import React from "react";
 
 // Redux
+import { IAppState } from "../../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../Redux/product/productAction";
 
 const CartTotals = ({ history }) => {
   const dispatch = useDispatch();
-  const selectSubTotal = useSelector((state) => state.product.cartSubTotal);
-  const selectTax = useSelector((state) => state.product.cartTax);
+  const selectSubTotal = useSelector((state: IAppState) => state.product.cartSubTotal);
+  const selectTax = useSelector((state: IAppState) => state.product.cartTax);
 
   const renderTotal = (sub, tax) => {
     let subNumb = Number(sub);
     let taxNumb = Number(tax);
 
-    return parseFloat(subNumb + taxNumb).toFixed(2);
+    return parseFloat((subNumb + taxNumb) as any).toFixed(2);
   };
 
   return (
