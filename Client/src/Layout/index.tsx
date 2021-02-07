@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import SideBar from "./SideBar";
+import SideDrawerNavigation from "./SideDrawerNavigation";
 import SideCart from "./SideCart";
 
 import { withTheme } from "./Theme";
@@ -11,7 +11,8 @@ const index = ({ children }) => {
   return (
     <>
       <Header />
-      <SideBar />
+
+      <SideDrawerNavigation />
       <SideCart />
       {children}
 

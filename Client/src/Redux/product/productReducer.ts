@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-fallthrough */
 import { ProductType } from "./productType";
-import { LinkNav } from "../../Layout/LinkNav";
 import { social } from "../../Layout/linkFooter";
 
 interface ProductState {
   sidebarOpen: boolean;
   cartOpen: boolean;
-  links: any;
   social: any;
   cartItems: number;
   cart: any[];
@@ -24,7 +22,6 @@ interface ProductState {
 const initialState = {
   sidebarOpen: false,
   cartOpen: false,
-  links: LinkNav,
   social: social,
   cartItems: 0,
   cart: [],
@@ -43,10 +40,7 @@ interface Action {
   payload?: any;
 }
 
-export default (
-  state: ProductState = initialState,
-  action: Action
-): ProductState => {
+export default (state: ProductState = initialState, action: Action): ProductState => {
   const { payload, type } = action;
 
   switch (type) {
@@ -64,9 +58,7 @@ export default (
         return product;
       });
 
-      let featuredProducts = storeProducts.filter(
-        (item) => item.featured === true
-      );
+      let featuredProducts = storeProducts.filter((item) => item.featured === true);
 
       return {
         ...state,
