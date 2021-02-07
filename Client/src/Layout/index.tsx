@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import SideDrawerNavigation from "./SideDrawerNavigation";
-import SideCart from "./SideCart";
+import SideDrawerCart from "./SideDrawerCart";
 
 import { withTheme } from "./Theme";
 
@@ -13,7 +13,7 @@ const index = ({ children }) => {
       <Header />
 
       <SideDrawerNavigation />
-      <SideCart />
+      <SideDrawerCart />
       {children}
 
       <Footer />

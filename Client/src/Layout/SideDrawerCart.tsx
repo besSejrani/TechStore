@@ -1,23 +1,28 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Drawer, Divider, Button } from "@material-ui/core";
 
-// Redux
+import { Link } from "react-router-dom";
+
+//Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCart } from "../Redux/product/productAction";
 
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+type Anchor = "right";
 
-import { Button } from "@material-ui/core";
+const SideDrawerCart: React.FC<any> = () => {
+  const classes = useStyles();
 
-const SideCart = () => {
   const dispatch = useDispatch();
   const selectCartOpen = useSelector((state: IAppState) => state.product.cartOpen);
   const selectCart = useSelector((state: IAppState) => state.product.cart);
   const selectCartTotal = useSelector((state: IAppState) => state.product.cartTotal);
 
-  return (
-    <CartWrapper show={selectCartOpen} onClick={() => dispatch(sidebarCart())}>
+  const isSideDrawerOpen = useSelector((state: IAppState) => state.product.sidebarOpen);
+
+  const list = (anchor: Anchor) => (
+    <div className={classes.list}>
       <ul>
         {selectCart.map((item) => {
           return (
@@ -37,37 +42,37 @@ const SideCart = () => {
           Cart Page
         </Button>
       </div>
-    </CartWrapper>
+
+      <Divider />
+    </div>
+  );
+
+  return (
+    <div>
+      {(["right"] as Anchor[]).map((anchor) => (
+        <React.Fragment key={anchor}>
+          <Drawer anchor={anchor} open={selectCartOpen} onClose={() => dispatch(sidebarCart())}>
+            {list(anchor)}
+          </Drawer>
+        </React.Fragment>
+      ))}
+    </div>
   );
 };
 
-export default SideCart;
+export default SideDrawerCart;
 
-// =================================================================
-
-const CartWrapper = styled.aside`
-  position: fixed;
-  top: 60px;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--mainGrey);
-  z-index: 1;
-  border-left: 4px solid var(--primaryColor);
-  transition: var(--mainTransition);
-
-  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
-
-  @media (min-width: 576px) {
-    width: 20rem;
-  }
-
-  overflow: scroll;
-  padding: 2rem;
-  ul {
-    padding: 0 !important;
-  }
-  .cart-item {
-    list-style: none;
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  list: {
+    width: 250,
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+  },
+  imdb: {
+    height: "53px",
+    width: "50%",
+    margin: "30px 20px",
+  },
+}));
