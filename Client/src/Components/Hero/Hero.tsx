@@ -1,12 +1,10 @@
 import React from "react";
 
-import mainBcg from "../../images/mainBcg.jpeg";
-
 import styled from "styled-components";
 
-const Hero = ({ children, img = mainBcg, title, max }) => {
+const Hero = ({ children, title, max }) => {
   return (
-    <HeroWrapper max={max} img={img}>
+    <HeroWrapper max={max}>
       <div className="banner">
         <h1 className="title">{title}</h1>
         {children}{" "}

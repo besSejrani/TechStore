@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import styled from "styled-components";
 
+import { Container } from "@material-ui/core";
 import ShippingIcon from "@material-ui/icons/LocalShipping";
 import ReturnIcon from "@material-ui/icons/Redo";
 import SecureIcon from "@material-ui/icons/Security";
@@ -32,7 +33,7 @@ const Services = () => {
 
   return (
     <ServiceWrapper className="py-5">
-      <div className="container">
+      <Container>
         <div className="row">
           {services.services.map((item) => {
             return (
@@ -48,7 +49,7 @@ const Services = () => {
             );
           })}
         </div>
-      </div>
+      </Container>
     </ServiceWrapper>
   );
 };

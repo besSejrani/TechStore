@@ -11,12 +11,6 @@ import { Button } from "@material-ui/core";
 const Home = () => {
   return (
     <>
-      <Hero title="Awesome phones" max="true">
-        <Button component={Link} to="/products" variant="outlined" className="main-link" style={{ marginTop: "30px" }}>
-          Our products
-        </Button>
-      </Hero>
-
       <Services />
       <Featured />
     </>
