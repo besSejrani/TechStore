@@ -1,13 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Drawer, Divider, Button } from "@material-ui/core";
+import { Drawer, Divider, Button, CardMedia } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
 //Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart } from "../Redux/product/productAction";
+import { sidebarCart,  increment,remove, decrement, } from "../Redux/product/productAction";
+
+
+import {Typography} from "@material-ui/core"
 
 type Anchor = "right";
 
@@ -23,25 +26,38 @@ const SideDrawerCart: React.FC<any> = () => {
 
   const list = (anchor: Anchor) => (
     <div className={classes.list}>
-      <ul>
+  
         {selectCart.map((item) => {
           return (
-            <li key={item.id} className="cart-item mb-4">
-              <img width="70" src={`../${item.image}`} alt="cart item" />
-              <div className="mt-3">
-                <h6 className="text-uppercase">{item.title}</h6>
-                <h6 className="text-title text-capitalize">Amount: {item.count}</h6>
+            <div key={item.id} className={classes.product}>
+              <CardMedia
+               component={Link}
+               to={`/products/${item.id}`}
+              className={classes.media}
+              image={`../${item.image}`}
+              title={item.title}
+        />
+
+              <div className={classes.information}>
+                <Typography variant="body1">{item.title}</Typography>
+                <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(decrement(item.id))}>-</Button>
+                <Button variant="outlined" className={classes.actionButton}>{item.count}</Button>
+                <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(increment(item.id))}>+</Button>
               </div>
-            </li>
+            </div>
           );
         })}
-      </ul>
-      <h4 className="text-capitalize text-main">cart total: {selectCartTotal} CHF</h4>
-      <div className="text-center my-5">
-        <Button component={Link} to="/cart" variant="outlined" className="main-link" style={{ marginTop: "30px" }}>
-          Cart Page
-        </Button>
+
+      <div className={classes.amount}>
+        <Typography variant="body1" >Cart Total </Typography>
+        <Typography variant="subtitle2">{selectCartTotal} CHF</Typography>
       </div>
+     
+     
+      <Divider />
+        <Button component={Link} to="/cart" variant="contained" size="large" color="secondary" className={classes.checkout} >
+          Checkout
+        </Button>
 
       <Divider />
     </div>
@@ -64,15 +80,30 @@ export default SideDrawerCart;
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    width: 250,
+    width: 380,
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 150,
+  product:{
+    display: "flex",
+    margin: "30px 20px"
   },
-  imdb: {
-    height: "53px",
-    width: "50%",
-    margin: "30px 20px",
+  information:{
+   marginLeft: 20  
   },
+  actionButton:{
+    minWidth: "40px",
+    marginTop: "10px"
+  },
+  media: {
+    height: "110px",
+    width: "110px"
+  },
+  amount:{
+    margin: "50px 20px 10px 20px",
+    display : "flex",
+    justifyContent: "space-between"
+  },
+  checkout:{
+    margin: 20,
+    width: "90%"
+  }
 }));
