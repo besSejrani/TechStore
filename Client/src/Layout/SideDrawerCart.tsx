@@ -43,6 +43,7 @@ const SideDrawerCart: React.FC<any> = () => {
                 <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(decrement(item.id))}>-</Button>
                 <Button variant="outlined" className={classes.actionButton}>{item.count}</Button>
                 <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(increment(item.id))}>+</Button>
+                <Typography variant="body2" className={classes.priceProduct}>{item.total} CHF</Typography>
               </div>
             </div>
           );
@@ -87,11 +88,19 @@ const useStyles = makeStyles((theme) => ({
     margin: "30px 20px"
   },
   information:{
-   marginLeft: 20  
+   marginLeft: 20,
+   width:"60%",
+   position: "relative"
+  },
+  priceProduct :{
+    position: "absolute",
+    top: "42px",
+    right: "-7px",
   },
   actionButton:{
     minWidth: "40px",
-    marginTop: "10px"
+    marginTop: "10px",
+    padding: 5
   },
   media: {
     height: "110px",
