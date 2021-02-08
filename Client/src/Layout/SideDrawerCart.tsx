@@ -41,7 +41,7 @@ const SideDrawerCart: React.FC<any> = () => {
               <div className={classes.information}>
                 <Typography variant="body1">{item.title}</Typography>
                 <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(decrement(item.id))}>-</Button>
-                <Button variant="outlined" className={classes.actionButton}>{item.count}</Button>
+                <Button  variant="outlined" className={classes.actionButton}>{item.count}</Button>
                 <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(increment(item.id))}>+</Button>
                 <Typography variant="body2" className={classes.priceProduct}>{item.total} CHF</Typography>
               </div>
@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   product:{
     display: "flex",
+    alignItems: "center",
     margin: "30px 20px"
   },
   information:{
