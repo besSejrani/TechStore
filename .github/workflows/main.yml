@@ -8,14 +8,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Change Directory
+        with:
+          path: ../Documentation
+
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-
-      - name: Change Directory
-        with:
-          path: ../Documentation
 
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
