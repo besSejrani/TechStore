@@ -16,7 +16,7 @@ jobs:
       - name: Change Directory
         uses: actions/checkout@v2
         with:
-          path: ../Documentation
+          path: ./Documentation
 
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
