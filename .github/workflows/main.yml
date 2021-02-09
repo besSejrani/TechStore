@@ -1,8 +1,6 @@
 name: ci
 on:
   push:
-    paths:
-      - "Documentation/"
     branches:
       - master
       - main
@@ -14,5 +12,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+          working-directory: Documentation/
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
