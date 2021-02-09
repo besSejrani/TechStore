@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Change Directory
         with:
-          path: ../Documentation
+          path: ./Documentation
         uses: actions/checkout@v2
 
       - uses: actions/checkout@v2
