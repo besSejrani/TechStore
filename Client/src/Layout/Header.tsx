@@ -38,7 +38,7 @@ const Header = () => {
             </IconButton>
 
             <Typography component={Link} to="/" variant="h6" className={classes.title}>
-              Raspberry-Shop
+              RaspberryShop
             </Typography>
 
             <Button color="inherit">Login</Button>
