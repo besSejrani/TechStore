@@ -6,13 +6,11 @@ on:
       - main
 jobs:
   deploy:
+    defaults:
+      run:
+        working-directory: Documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Change Directory
-        with:
-          path: ./Documentation
-        uses: actions/checkout@v2
-
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
