@@ -8,7 +8,15 @@ import { useDispatch } from "react-redux";
 import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
 // Styles
-import PlusIcon from "@material-ui/icons/Add";
+import {withStyles} from "@material-ui/core/styles"
+
+import {IconButton} from "@material-ui/core"
+import Rating from '@material-ui/lab/Rating';
+
+// Icon
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AddIcon from '@material-ui/icons/Add';
+
 
 import {
   Button,
@@ -50,25 +58,31 @@ const Product: React.FC<IProduct> = ({ product }) => {
         />
       </CardActionArea>
       <CardContent className={classes.content}>
+        <Typography gutterBottom variant="body1" color="secondary">
+          {product.price}.-
+        </Typography>
+
         <Typography gutterBottom variant="h5" component="h2">
           {product.title}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {product.description}
         </Typography>
       </CardContent>
 
       <CardActions className={classes.actions}>
+
+      <StyledRating value={2} readOnly size="small" name="customized-color"
+          defaultValue={2}
+          precision={0.5} />
+
         <Button
-          variant="outlined"
-          startIcon={<PlusIcon />}
-          color="secondary"
+          size="small"
           onClick={() => dispatch(addToCart(product.id))}
-          title="hi"
+          title="Add to cart"
+          color="secondary"
+          variant="outlined"
+          startIcon={<AddIcon fontSize={"small"}/>}
         >
-          Add To Cart
+          Add to Cart
         </Button>
-        {product.price} CHF
       </CardActions>
     </Card>
   );
@@ -83,24 +97,37 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-
-    width: "360px",
-    height: "585px",
+    
+    width: "320px",
+    height: "380px",
     marginRight: "20px",
     marginBottom: "20px",
+    
 
-    padding: "20px",
   },
   area: {},
   content: {
-    padding: "20px 0px",
+    padding: "20px",
   },
   media: {
-    height: "320px",
+    height: "200px",
+    width: "200px",
+    margin: "10px auto"
   },
   actions: {
-    padding: "2px 0px",
+    padding: "0px 20px",
     display: "flex",
     justifyContent: "space-between",
   },
 });
+
+// =================================================================
+
+const StyledRating = withStyles({
+  iconFilled: {
+    // color: 'blue',
+  },
+  iconHover: {
+    color: '#ff3d47',
+  },
+})(Rating);
