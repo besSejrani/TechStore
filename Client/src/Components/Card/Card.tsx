@@ -8,15 +8,14 @@ import { useDispatch } from "react-redux";
 import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
 // Styles
-import {withStyles} from "@material-ui/core/styles"
+import { withStyles } from "@material-ui/core/styles";
 
-import {IconButton} from "@material-ui/core"
-import Rating from '@material-ui/lab/Rating';
+import { IconButton } from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
 
 // Icon
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import AddIcon from '@material-ui/icons/Add';
-
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import AddIcon from "@material-ui/icons/Add";
 
 import {
   Button,
@@ -62,16 +61,17 @@ const Product: React.FC<IProduct> = ({ product }) => {
           {product.price}.-
         </Typography>
 
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h6" component="h2">
           {product.title}
+        </Typography>
+
+        <Typography gutterBottom variant="body2">
+          {product.description.split("", 114).concat("...")}
         </Typography>
       </CardContent>
 
       <CardActions className={classes.actions}>
-
-      <StyledRating value={2} readOnly size="small" name="customized-color"
-          defaultValue={2}
-          precision={0.5} />
+        <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
 
         <Button
           size="small"
@@ -79,7 +79,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
           title="Add to cart"
           color="secondary"
           variant="outlined"
-          startIcon={<AddIcon fontSize={"small"}/>}
+          startIcon={<AddIcon fontSize={"small"} />}
         >
           Add to Cart
         </Button>
@@ -97,13 +97,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    
+
     width: "320px",
-    height: "380px",
+    height: "440px",
     marginRight: "20px",
     marginBottom: "20px",
-    
-
   },
   area: {},
   content: {
@@ -112,7 +110,7 @@ const useStyles = makeStyles({
   media: {
     height: "200px",
     width: "200px",
-    margin: "10px auto"
+    margin: "10px auto",
   },
   actions: {
     padding: "0px 20px",
@@ -128,6 +126,6 @@ const StyledRating = withStyles({
     // color: 'blue',
   },
   iconHover: {
-    color: '#ff3d47',
+    color: "#ff3d47",
   },
 })(Rating);

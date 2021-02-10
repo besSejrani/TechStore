@@ -9,10 +9,7 @@ export const sidebarCart = () => {
 };
 
 export const setProducts = (products) => {
-  return [
-    { type: ProductType.SET_PRODUCTS, payload: products },
-    { type: ProductType.GET_ITEM_CART },
-  ];
+  return [{ type: ProductType.SET_PRODUCTS, payload: products }, { type: ProductType.GET_ITEM_CART }];
 };
 
 export const addToCart = (id) => {
@@ -71,9 +68,8 @@ export const remove = (id) => {
   ];
 };
 
-export const clearCart = (history) => async () => {
+export const clearCart = () => async () => {
   await localStorage.clear();
-  await history.push("/products");
   await window.location.reload();
 
   return [{ type: ProductType.CLEAR }];

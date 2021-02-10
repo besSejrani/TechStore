@@ -22,10 +22,7 @@ const CartTotals = ({ history }) => {
       <div className="container">
         <div className="row">
           <div className="col text-title text-center my-4">
-            <button
-              className="btn btn-outline-danger text-capitalize mb-4"
-              onClick={() => dispatch(clearCart(history))}
-            >
+            <button className="btn btn-outline-danger text-capitalize mb-4" onClick={() => dispatch(clearCart())}>
               Clear Cart
             </button>
             <h5>subTotal: {selectSubTotal} CHF</h5>
