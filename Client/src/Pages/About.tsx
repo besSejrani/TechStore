@@ -1,12 +1,11 @@
 import React from "react";
 
-import Hero from "../Components/Hero/Hero";
 import Info from "../Components/About/About";
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <>
-      <Hero title="About Us" />
+
       <Info />
     </>
   );

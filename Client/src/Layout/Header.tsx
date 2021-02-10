@@ -32,7 +32,7 @@ const Header = () => {
     <header className={classes.root}>
       <AppBar position="fixed">
         <Container>
-          <Toolbar>
+          <Toolbar disableGutters>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon onClick={() => dispatch(sidebarToggle())} />
             </IconButton>

@@ -2,7 +2,7 @@ import React from "react";
 
 import Form from "../Components/Contact/Contact";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <>
       <Form />

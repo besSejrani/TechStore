@@ -7,22 +7,22 @@ import { Link } from "react-router-dom";
 import { IAppState } from "../../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
-import Product from "../Card/Card";
+import Card from "../Card/Card";
 
-import { Button } from "@material-ui/core";
+import { Button, Container, makeStyles} from "@material-ui/core";
 
-const Featured = () => {
+const Promotions = () => {
+  const classes = useStyles()
   const selectFeature = useSelector((state: IAppState) => state.product.featuredProducts);
 
   return (
-    <section className="py-5">
-      <div className="container">
-        <div className="row my-5">
+    <Container>
+        <section className={classes.root}>
           {selectFeature.map((product) => {
-            return <Product key={product.id} product={product} />;
+            return <Card key={product.id} product={product} />;
           })}
-        </div>
-        <div className="row mt-5">
+        </section>
+
           <div className="col text-center">
             <Button
               component={Link}
@@ -34,10 +34,18 @@ const Featured = () => {
               Our products
             </Button>
           </div>
-        </div>
-      </div>
-    </section>
+      </Container>
   );
 };
 
-export default Featured;
+export default Promotions;
+
+// =================================================================
+
+const useStyles = makeStyles({
+  root:{
+    display: "flex",
+    flexWrap: "wrap",
+    margin: "200px 0px 50px 0px"
+  }
+})

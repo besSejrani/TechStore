@@ -25,7 +25,9 @@ const SideDrawerCart: React.FC<any> = () => {
   let history = useHistory();
 
   const list = (anchor: Anchor) => (
-    <div className={classes.list}>
+    <div className={classes.list} >
+      <div className={classes.listProduct}>
+
       {selectCart.map((item) => {
         return (
           <div key={item.id} className={classes.product}>
@@ -35,7 +37,7 @@ const SideDrawerCart: React.FC<any> = () => {
               className={classes.media}
               image={`../${item.image}`}
               title={item.title}
-            />
+              />
 
             <div className={classes.information}>
               <Typography variant="body1">{item.title}</Typography>
@@ -55,37 +57,40 @@ const SideDrawerCart: React.FC<any> = () => {
           </div>
         );
       })}
-
-      <div className={classes.amount}>
-        <Typography variant="body1">Cart Total </Typography>
-        <Typography variant="subtitle2" color="secondary">
-          {selectCartTotal}.-
-        </Typography>
       </div>
+      <div>
 
-      <Divider />
-      <Button
-        component={Link}
-        to="/cart"
-        variant="contained"
-        size="large"
-        color="secondary"
-        className={classes.checkout}
-      >
-        Checkout
-      </Button>
+        <div className={classes.amount}>
+          <Typography variant="body1">Cart Total </Typography>
+          <Typography variant="subtitle2" color="secondary">
+            {selectCartTotal}.-
+          </Typography>
+        </div>
 
-      <Button
-        variant="outlined"
-        size="large"
-        color="primary"
-        className={classes.clearCart}
-        onClick={() => dispatch(clearCart())}
-      >
-        Clear Cart
-      </Button>
+        <Divider />
+        <Button
+          component={Link}
+          to="/cart"
+          variant="contained"
+          size="large"
+          color="secondary"
+          className={classes.checkout}
+          >
+          Checkout
+        </Button>
 
-      <Divider />
+        <Button
+          variant="outlined"
+          size="large"
+          color="primary"
+          className={classes.clearCart}
+          onClick={() => dispatch(clearCart())}
+          >
+          Clear Cart
+        </Button>
+
+        <Divider />
+      </div>
     </div>
   );
 
@@ -104,9 +109,17 @@ const SideDrawerCart: React.FC<any> = () => {
 
 export default SideDrawerCart;
 
+// =================================================================
+
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 380,
+    overflow: "auto",
+    overflowX: "hidden"
+  },
+  listProduct:{
+    maxHeight: "75%",
+    overflow: "auto"
   },
   product: {
     display: "flex",
