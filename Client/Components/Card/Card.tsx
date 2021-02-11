@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -44,14 +45,14 @@ const Product: React.FC<IProduct> = ({ product }) => {
   return (
     <Card className={classes.root}>
       <CardActionArea className={classes.area}>
-        <CardMedia
-          // component={Link}
-          // to={`/products/${product.id}`}
-          className={classes.media}
-          onClick={() => dispatch(setSingleProduct(product.id))}
-          image={product.image}
-          title={product.title}
-        />
+        <Link href={`/products/${product.id}`}>
+          <CardMedia
+            className={classes.media}
+            onClick={() => dispatch(setSingleProduct(product.id))}
+            image={product.image}
+            title={product.title}
+          />
+        </Link>
       </CardActionArea>
       <CardContent className={classes.content}>
         <Typography gutterBottom variant="body1" color="secondary">

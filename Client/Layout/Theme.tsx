@@ -4,21 +4,25 @@ import { grey, blue } from "@material-ui/core/colors";
 // import { useSelector } from "react-redux";
 // import { IAppState } from "../redux/rootReducer";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: grey[900],
+    },
+    secondary: {
+      main: blue[500],
+    },
+    //   type: isDarkTheme ? "dark" : "light",
+    type: "light",
+  },
+});
+
+export default theme;
+
+// =================================================================
+
 const Theme: React.FC<any> = (props) => {
   //   const isDarkTheme = useSelector((state: IAppState) => state.ui.isDarkTheme);
-
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: grey[900],
-      },
-      secondary: {
-        main: blue[500],
-      },
-      //   type: isDarkTheme ? "dark" : "light",
-      type: "light",
-    },
-  });
 
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 };

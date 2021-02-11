@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@material-ui/core";
 
@@ -24,26 +26,32 @@ const SideDrawer: React.FC<any> = () => {
   const list = (anchor: Anchor) => (
     <div className={classes.list}>
       <List subheader={<ListSubheader>Links</ListSubheader>}>
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
+        <Link href="/">
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
 
-        <ListItem button >
-          <ListItemIcon>
-            <QueueIcon />
-          </ListItemIcon>
-          <ListItemText primary="Products" />
-        </ListItem>
+        <Link href="/products">
+          <ListItem button>
+            <ListItemIcon>
+              <QueueIcon />
+            </ListItemIcon>
+            <ListItemText primary="Products" />
+          </ListItem>
+        </Link>
 
-        <ListItem button >
-          <ListItemIcon>
-            <ShoppingIcon />
-          </ListItemIcon>
-          <ListItemText primary="Cart" />
-        </ListItem>
+        <Link href="/checkout">
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingIcon />
+            </ListItemIcon>
+            <ListItemText primary="Checkout" />
+          </ListItem>
+        </Link>
       </List>
 
       <Divider />

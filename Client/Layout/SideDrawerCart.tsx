@@ -1,7 +1,8 @@
 import React from "react";
+import Link from "next/link";
+
 import { Drawer, Divider, Button, CardMedia } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
 
 //Redux
 import { IAppState } from "../Redux/rootReducer";
@@ -21,44 +22,45 @@ const SideDrawerCart: React.FC<any> = () => {
   const selectCartTotal = useSelector((state: IAppState) => state.product.cartTotal);
 
   const isSideDrawerOpen = useSelector((state: IAppState) => state.product.sidebarOpen);
-  // let history = useHistory();
 
   const list = (anchor: Anchor) => (
-    <div className={classes.list} >
+    <div className={classes.list}>
       <div className={classes.listProduct}>
+        {selectCart.map((item) => {
+          return (
+            <div key={item.id} className={classes.product}>
+              <Link href={`/products/${item.id}`}>
+                <CardMedia className={classes.media} image={`../${item.image}`} title={item.title} />
+              </Link>
 
-      {selectCart.map((item) => {
-        return (
-          <div key={item.id} className={classes.product}>
-            <CardMedia
-              // component={Link}
-              // to={`/products/${item.id}`}
-              className={classes.media}
-              image={`../${item.image}`}
-              title={item.title}
-              />
-
-            <div className={classes.information}>
-              <Typography variant="body1">{item.title}</Typography>
-              <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(decrement(item.id))}>
-                -
-              </Button>
-              <Button variant="outlined" className={classes.actionButton}>
-                {item.count}
-              </Button>
-              <Button variant="outlined" className={classes.actionButton} onClick={() => dispatch(increment(item.id))}>
-                +
-              </Button>
-              <Typography variant="body2" color="secondary" className={classes.priceProduct}>
-                {item.total}.-
-              </Typography>
+              <div className={classes.information}>
+                <Typography variant="body1">{item.title}</Typography>
+                <Button
+                  variant="outlined"
+                  className={classes.actionButton}
+                  onClick={() => dispatch(decrement(item.id))}
+                >
+                  -
+                </Button>
+                <Button variant="outlined" className={classes.actionButton}>
+                  {item.count}
+                </Button>
+                <Button
+                  variant="outlined"
+                  className={classes.actionButton}
+                  onClick={() => dispatch(increment(item.id))}
+                >
+                  +
+                </Button>
+                <Typography variant="body2" color="secondary" className={classes.priceProduct}>
+                  {item.total}.-
+                </Typography>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
       <div>
-
         <div className={classes.amount}>
           <Typography variant="body1">Cart Total </Typography>
           <Typography variant="subtitle2" color="secondary">
@@ -67,16 +69,11 @@ const SideDrawerCart: React.FC<any> = () => {
         </div>
 
         <Divider />
-        <Button
-          // component={Link}
-          // to="/cart"
-          variant="contained"
-          size="large"
-          color="secondary"
-          className={classes.checkout}
-          >
-          Checkout
-        </Button>
+        <Link href="/checkout">
+          <Button variant="contained" size="large" color="secondary" className={classes.checkout}>
+            Checkout
+          </Button>
+        </Link>
 
         <Button
           variant="outlined"
@@ -84,7 +81,7 @@ const SideDrawerCart: React.FC<any> = () => {
           color="primary"
           className={classes.clearCart}
           onClick={() => dispatch(clearCart())}
-          >
+        >
           Clear Cart
         </Button>
 
@@ -114,11 +111,11 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 380,
     overflow: "auto",
-    overflowX: "hidden"
+    overflowX: "hidden",
   },
-  listProduct:{
+  listProduct: {
     maxHeight: "75%",
-    overflow: "auto"
+    overflow: "auto",
   },
   product: {
     display: "flex",

@@ -1,5 +1,4 @@
-import React from "react";
-
+import Link from "next/link";
 
 import {
   AppBar,
@@ -36,9 +35,11 @@ const Header = () => {
               <MenuIcon onClick={() => dispatch(sidebarToggle())} />
             </IconButton>
 
-            <Typography  variant="h6" className={classes.title}>
-              RaspberryShop
-            </Typography>
+            <Link href="/">
+              <Typography variant="h6" className={classes.title}>
+                RaspberryShop
+              </Typography>
+            </Link>
 
             <Button color="inherit">Login</Button>
 
