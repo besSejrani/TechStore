@@ -5,7 +5,7 @@ import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubhea
 import { Link } from "react-router-dom";
 
 import HomeIcon from "@material-ui/icons/Home";
-import SearchIcon from "@material-ui/icons/Search";
+import ShoppingIcon from "@material-ui/icons/ShoppingCart";
 import QueueIcon from "@material-ui/icons/Queue";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -33,13 +33,6 @@ const SideDrawer: React.FC<any> = () => {
           <ListItemText primary="Home" />
         </ListItem>
 
-        <ListItem button component={Link} to="/about">
-          <ListItemIcon>
-            <SearchIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </ListItem>
-
         <ListItem button component={Link} to="/products">
           <ListItemIcon>
             <QueueIcon />
@@ -49,7 +42,7 @@ const SideDrawer: React.FC<any> = () => {
 
         <ListItem button component={Link} to="/cart">
           <ListItemIcon>
-            <QueueIcon />
+            <ShoppingIcon />
           </ListItemIcon>
           <ListItemText primary="Cart" />
         </ListItem>

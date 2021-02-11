@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-fallthrough */
 import { ProductType } from "./productType";
-import { social } from "../../Layout/linkFooter";
 
 interface ProductState {
   sidebarOpen: boolean;
   cartOpen: boolean;
-  social: any;
   cartItems: number;
   cart: any[];
   cartSubTotal: number;
@@ -22,7 +20,6 @@ interface ProductState {
 const initialState = {
   sidebarOpen: false,
   cartOpen: false,
-  social: social,
   cartItems: 0,
   cart: [],
   cartSubTotal: 0,
