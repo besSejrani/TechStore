@@ -1,5 +1,8 @@
 import React from "react";
+
+// Next
 import Link from "next/link";
+import Image from "next/image";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -46,10 +49,12 @@ const Product: React.FC<IProduct> = ({ product }) => {
     <Card className={classes.root}>
       <CardActionArea className={classes.area}>
         <Link href={`/products/${product.id}`}>
-          <CardMedia
+          <Image
+            width={200}
+            height={200}
             className={classes.media}
             onClick={() => dispatch(setSingleProduct(product.id))}
-            image={product.image}
+            src={`/${product.image}`}
             title={product.title}
           />
         </Link>
@@ -97,19 +102,18 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "440px",
+    height: "465px",
     marginRight: "20px",
     marginBottom: "20px",
   },
-  area: {},
+  area: {
+    display: "flex",
+    padding: "20px",
+  },
   content: {
     padding: "20px",
   },
-  media: {
-    height: "200px",
-    width: "200px",
-    margin: "10px auto",
-  },
+  media: {},
   actions: {
     padding: "0px 20px",
     display: "flex",
