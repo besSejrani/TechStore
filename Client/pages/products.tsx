@@ -1,6 +1,6 @@
 import React from "react";
 
-// Redux
+// Reduxx
 import { IAppState } from "../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
