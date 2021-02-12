@@ -60,23 +60,37 @@ const Product: React.FC<IProduct> = ({ product }) => {
       </CardActionArea>
       : <Skeleton variant="rect" animation="wave" width={320} height={273} />
       }
+
       <CardContent className={classes.content}>
+      {product ?
         <Typography gutterBottom variant="body1" color="secondary">
           {product.price}.-
         </Typography>
+        : <Skeleton variant="rect" animation="wave" width={280} height={24} />
+        }
 
+      {product ?
         <Typography gutterBottom variant="h6" component="h2">
           {product.title}
         </Typography>
+        :  <Skeleton variant="rect" animation="wave" width={280} height={32} style={{marginTop:"5px"}} />
+      }
 
+      {product ?
         <Typography gutterBottom variant="body2">
           {product.description.split("", 114).concat("...")}
         </Typography>
+        : <Skeleton variant="rect" animation="wave" width={280} height={60} style={{marginTop:"5px"}} />
+      }
       </CardContent>
 
       <CardActions className={classes.actions}>
+      {product ?
         <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
+        : <Skeleton variant="rect" animation="wave" width={90} height={18} />
+      }
 
+      {product ?
         <Button
           size="small"
           onClick={() => dispatch(addToCart(product.id))}
@@ -87,6 +101,8 @@ const Product: React.FC<IProduct> = ({ product }) => {
         >
           Add to Cart
         </Button>
+      : <Skeleton variant="rect" animation="wave" width={130} height={30} />
+      }
       </CardActions>
     </Card>
   );
