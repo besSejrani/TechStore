@@ -1,5 +1,8 @@
 import React from "react";
+
+// Next
 import Link from "next/link";
+import Image from "next/image";
 
 import { Drawer, Divider, Button, CardMedia } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,7 +33,13 @@ const SideDrawerCart: React.FC<any> = () => {
           return (
             <div key={item.id} className={classes.product}>
               <Link href={`/products/${item.id}`}>
-                <CardMedia className={classes.media} image={`../${item.image}`} title={item.title} />
+                <Image 
+                  width={110}
+                  height={100}
+                  className={classes.media}
+                  src={`/${item.image}`} 
+                  title={item.title}
+                />
               </Link>
 
               <div className={classes.information}>

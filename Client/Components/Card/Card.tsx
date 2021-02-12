@@ -50,8 +50,8 @@ const Product: React.FC<IProduct> = ({ product }) => {
       <CardActionArea className={classes.area}>
         <Link href={`/products/${product.id}`}>
           <Image
-            width={200}
-            height={200}
+            width={300}
+            height={250}
             className={classes.media}
             onClick={() => dispatch(setSingleProduct(product.id))}
             src={`/${product.image}`}
@@ -102,7 +102,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "465px",
+    height: "490px",
     marginRight: "20px",
     marginBottom: "20px",
   },
@@ -113,7 +113,7 @@ const useStyles = makeStyles({
   content: {
     padding: "20px",
   },
-  media: {},
+  media: { },
   actions: {
     padding: "0px 20px",
     display: "flex",

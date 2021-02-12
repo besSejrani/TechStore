@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
+
+// Next
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 // Redux
@@ -28,7 +31,13 @@ const SingleProduct = () => {
       <Container>
         <div className={classes.product}>
           <div>
-            <CardMedia className={classes.media} image={`../${selectProduct.image}`} title={selectProduct.title} />
+            <Image
+              width={300}
+              height={250}
+              className={classes.media}
+              src={`/${selectProduct.image}`}
+              title={selectProduct.title}
+            />
           </div>
           <Card className={classes.content}>
             <Typography variant="h5">
