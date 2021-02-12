@@ -2,83 +2,83 @@ export const items = [
   {
     sys: { id: 0 },
     fields: {
-      title: "google pixel - black",
+      title: "Compute Module 3+",
       price: 10,
-      company: "google",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: true,
-      image: { fields: { file: { url: "static/img/product-0.png" } } },
+      featured: false,
+      image: { fields: { file: { url: "static/images/computeModule3+/2.jpg" } } },
     },
   },
   {
     sys: { id: 1 },
 
     fields: {
-      title: "samsung s7 - white",
+      title: "Compute Module 4",
       price: 20,
-      company: "samsung",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
 
-      image: { fields: { file: { url: "static/img/product-1.png" } } },
+      image: { fields: { file: { url: "static/images/computeModule4/1.webp" } } },
     },
   },
   {
     sys: { id: 2 },
 
     fields: {
-      title: "htc 10 - black",
+      title: "Compute Module 4 IO Board",
       price: 30,
-      company: "htc",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
 
-      image: { fields: { file: { url: "static/img/product-2.png" } } },
+      image: { fields: { file: { url: "static/images/computeModule4IoBoard/1.webp" } } },
     },
   },
   {
     sys: { id: 3 },
 
     fields: {
-      title: "htc 10 - white",
+      title: "Raspberry Pi 3 Model A+",
       price: 15,
-      company: "htc",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
 
-      image: { fields: { file: { url: "static/img/product-3.png" } } },
+      image: { fields: { file: { url: "static/images/pi3ModelA+/1.webp" } } },
     },
   },
   {
     sys: { id: 4 },
 
     fields: {
-      title: "samsung s7 - black",
+      title: "Raspberry Pi 4 Model B",
       price: 45,
-      company: "google",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
+      featured: true,
 
-      image: { fields: { file: { url: "static/img/product-4.png" } } },
+      image: { fields: { file: { url: "static/images/pi4ModelB/1.jpg" } } },
     },
   },
   {
     sys: { id: 5 },
 
     fields: {
-      title: "samsung galaxy A8 - black",
+      title: "PI NoIR Camera V2",
       price: 55,
-      company: "samsung",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
+      featured: true,
 
-      image: { fields: { file: { url: "static/img/product-5.png" } } },
+      image: { fields: { file: { url: "static/images/piNoIrCameraV2/1.webp" } } },
     },
   },
 
@@ -86,96 +86,42 @@ export const items = [
     sys: { id: 6 },
 
     fields: {
-      title: "fuji X100s photo camera",
+      title: "Raspberry Pi Zero W",
       price: 90,
-      company: "fuji",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: true,
+      featured: false,
 
-      image: { fields: { file: { url: "static/img/product-6.png" } } },
+      image: { fields: { file: { url: "static/images/piZeroW/1.webp" } } },
     },
   },
   {
     sys: { id: 7 },
 
     fields: {
-      title: "canon Eos 30 photo camera",
+      title: "Raspberry Pi PoE Hat",
       price: 120,
-      company: "canon",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
 
-      image: { fields: { file: { url: "static/img/product-7.png" } } },
+      image: { fields: { file: { url: "static/images/poeHat/1.jpg" } } },
     },
   },
   {
     sys: { id: 8 },
 
     fields: {
-      title: "nikon D 3100 photo camera",
+      title: "Raspberry Pi Touch Display",
       price: 55,
-      company: "nikon",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
-
-      image: { fields: { file: { url: "static/img/product-8.png" } } },
-    },
-  },
-  {
-    sys: { id: 9 },
-
-    fields: {
-      title: "acer desktop computer",
-      price: 35,
-      company: "acer",
+      company: "Raspberry Foundation",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: true,
 
-      image: { fields: { file: { url: "static/img/product-9.png" } } },
-    },
-  },
-  {
-    sys: { id: 10 },
-
-    fields: {
-      title: "hp desktop computer",
-      price: 75,
-      company: "hp",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
-
-      image: { fields: { file: { url: "static/img/product-10.png" } } },
-    },
-  },
-  {
-    sys: { id: 11 },
-
-    fields: {
-      title: "lenovo desktop computer",
-      price: 110,
-      company: "lenovo",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
-      image: { fields: { file: { url: "static/img/product-11.png" } } },
-    },
-  },
-  {
-    sys: { id: 12 },
-
-    fields: {
-      title: "dell desktop computer",
-      price: 28,
-      company: "dell",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-      featured: false,
-      image: { fields: { file: { url: "static/img/product-12.png" } } },
+      image: { fields: { file: { url: "static/images/touchScreen/1.webp" } } },
     },
   },
 ];
