@@ -58,7 +58,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
             />
         </Link>
       </CardActionArea>
-      : <Skeleton variant="rect" width={320} height={273} />
+      : <Skeleton variant="rect" animation="wave" width={320} height={273} />
       }
       <CardContent className={classes.content}>
         <Typography gutterBottom variant="body1" color="secondary">
