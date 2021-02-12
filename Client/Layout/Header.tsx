@@ -41,7 +41,7 @@ const Header = () => {
             </Link>
             <Link href="/">
               <Typography variant="h6" className={classes.title}>
-                RaspberryShop
+                BlueberryShop
               </Typography>
             </Link>
 
