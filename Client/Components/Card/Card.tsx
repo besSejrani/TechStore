@@ -8,13 +8,12 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
-// Styles
+// Material-Ui
+import { IconButton } from "@material-ui/core";
+import { Skeleton, Rating} from '@material-ui/lab';
 import { withStyles } from "@material-ui/core/styles";
 
-import { IconButton } from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
-
-// Icon
+// Icons
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -23,10 +22,9 @@ import {
   Card,
   CardActionArea,
   CardActions,
-  CardMedia,
   CardContent,
   makeStyles,
-  Typography,
+  Typography
 } from "@material-ui/core";
 
 interface IProduct {
@@ -47,6 +45,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
 
   return (
     <Card className={classes.root}>
+      {product ?
       <CardActionArea className={classes.area}>
         <Link href={`/products/${product.id}`}>
           <Image
@@ -56,9 +55,11 @@ const Product: React.FC<IProduct> = ({ product }) => {
             onClick={() => dispatch(setSingleProduct(product.id))}
             src={`/${product.image}`}
             title={product.title}
-          />
+            />
         </Link>
       </CardActionArea>
+      : <Skeleton variant="rect" width={320} height={273} />
+      }
       <CardContent className={classes.content}>
         <Typography gutterBottom variant="body1" color="secondary">
           {product.price}.-

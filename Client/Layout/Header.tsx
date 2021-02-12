@@ -1,4 +1,6 @@
+// Next
 import Link from "next/link";
+import Image from "next/image"
 
 import {
   AppBar,
@@ -34,7 +36,9 @@ const Header = () => {
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon onClick={() => dispatch(sidebarToggle())} />
             </IconButton>
-
+            <Link href="/">
+              <Image width={40} height={40} src={"/raspberry.svg"} alt="Raspberry Pi Logo"/>
+            </Link>
             <Link href="/">
               <Typography variant="h6" className={classes.title}>
                 RaspberryShop

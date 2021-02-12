@@ -1,11 +1,15 @@
 import React from "react";
 
-// Reduxx
+// Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
 import Product from "../Components/Card/Card";
-import { Container, makeStyles } from "@material-ui/core";
+
+// Material-Ui
+import { Container } from "@material-ui/core";
+import { makeStyles, createStyles,Theme } from '@material-ui/core/styles';
+import { Pagination} from '@material-ui/lab';
 
 const Products = () => {
   const classes = useStyles();
@@ -18,6 +22,10 @@ const Products = () => {
           return <Product key={product.id} product={product} />;
         })}
       </section>
+
+      <div className={classes.pagination}>
+        <Pagination count={10} color="primary" />
+    </div>
     </Container>
   );
 };
@@ -25,11 +33,20 @@ const Products = () => {
 export default Products;
 
 // =================================================================
-
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    margin: "200px 0px 50px 0px",
-  },
-});
+const useStyles = makeStyles((theme:Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+      margin: "120px 0px 50px 0px",
+    },
+    pagination: {
+      '& > *': {
+        marginTop: theme.spacing(2),
+        margin: "50px 0px",
+        display:"flex",
+        justifyContent: "center"
+      },
+    },
+  }),
+);

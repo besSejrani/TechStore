@@ -38,15 +38,31 @@ const Checkout = () => {
 
   return (
     <Container>
-      <TableContainer component={Paper} className={classes.root}>
+      <TableContainer component={Paper} className={classes.root} elevation={2}>
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
 
             <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align="left">Qantity</TableCell>
-              <TableCell align="center">Unit</TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell>
+                <Typography variant="body1" color="secondary">
+                  Product
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+              <Typography variant="body1" color="secondary">
+                  Quantity
+                </Typography>
+              </TableCell>
+              <TableCell align="center">
+              <Typography variant="body1" color="secondary">
+                  Unit
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+              <Typography variant="body1" color="secondary">
+                  Price
+                </Typography>
+                </TableCell>
             </TableRow>
           </TableHead>
 
