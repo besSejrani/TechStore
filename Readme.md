@@ -1,5 +1,5 @@
 # Documentation
 
-[Github Pages](https://bessejrani.github.io/RaspberryShop/)
+[Github Pages](https://bessejrani.github.io/BlueberryShop/)
 
 # Design
