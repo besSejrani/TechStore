@@ -1,16 +1,21 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@material-ui/core";
-
-import HomeIcon from "@material-ui/icons/Home";
-import ShoppingIcon from "@material-ui/icons/ShoppingCart";
-import QueueIcon from "@material-ui/icons/Queue";
-
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarToggle } from "../Redux/product/productAction";
 import { IAppState } from "../Redux/rootReducer";
+
+// Material-Ui
+import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+//Icons
+import HomeIcon from "@material-ui/icons/Home";
+import ShoppingIcon from "@material-ui/icons/ShoppingCart";
+import QueueIcon from "@material-ui/icons/Queue";
+import DocumentationIcon from "@material-ui/icons/Description";
+import GithubIcon from "@material-ui/icons/GitHub";
 
 type Anchor = "left";
 
@@ -52,6 +57,28 @@ const SideDrawer: React.FC<any> = () => {
             <ListItemText primary="Checkout" />
           </ListItem>
         </Link>
+      </List>
+
+      <Divider />
+
+      <List subheader={<ListSubheader>Project</ListSubheader>}>
+        <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
+          <ListItem button>
+            <ListItemIcon>
+              <DocumentationIcon />
+            </ListItemIcon>
+            <ListItemText primary="Documentation" />
+          </ListItem>
+        </a>
+
+        <a href="https://github.com/besSejrani/BlueberryShop" target="_blank">
+          <ListItem button>
+            <ListItemIcon>
+              <GithubIcon />
+            </ListItemIcon>
+            <ListItemText primary="Github" />
+          </ListItem>
+        </a>
       </List>
 
       <Divider />
