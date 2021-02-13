@@ -1,3 +1,36 @@
-site_name: My Docs
+site_name: BlueBerryShop
+
+#Github Repository Header
+repo_name: BlueBerryShop
+repo_url: https://github.com/besSejrani/BlueberryShop
+
 theme:
+  # Use material styles
   name: material
+
+  # Use custom logo and favicon
+  logo: images/raspberry.svg
+  favicon: images/raspberry.png
+
+  # Github Icon Header
+  icon:
+    repo: fontawesome/brands/github
+
+  # Hide header
+  features:
+    - header.autohide
+
+  # Color palette
+  palette:
+    primary: black
+    secondary: blue
+
+#Extensions
+markdown_extensions:
+  - attr_list
+
+#Footer
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/besSejrani
