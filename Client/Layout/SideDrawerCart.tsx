@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 //Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart, increment, remove, decrement, clearCart } from "../Redux/product/productAction";
+import { sidebarCart, increment, remove, decrement, clearCart, setSingleProduct } from "../Redux/product/productAction";
 
 import { Typography } from "@material-ui/core";
 
@@ -33,11 +33,12 @@ const SideDrawerCart: React.FC<any> = () => {
           return (
             <div key={item.id} className={classes.product}>
               <Link href={`/products/${item.id}`}>
-                <Image 
+                <Image
                   width={110}
                   height={100}
                   className={classes.media}
-                  src={`/${item.image}`} 
+                  src={`/${item.image}`}
+                  onClick={() => dispatch(setSingleProduct(item.id))}
                   title={item.title}
                 />
               </Link>

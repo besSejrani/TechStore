@@ -10,22 +10,14 @@ import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
 // Material-Ui
 import { IconButton } from "@material-ui/core";
-import { Skeleton, Rating} from '@material-ui/lab';
+import { Skeleton, Rating } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
 
 // Icons
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  makeStyles,
-  Typography
-} from "@material-ui/core";
+import { Button, Card, CardActionArea, CardActions, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 interface IProduct {
   product: {
@@ -45,64 +37,64 @@ const Product: React.FC<IProduct> = ({ product }) => {
 
   return (
     <Card className={classes.root}>
-      {product ?
-      <CardActionArea className={classes.area}>
-        <Link href={`/products/${product.id}`}>
-          <Image
-            width={300}
-            height={250}
-            className={classes.media}
-            onClick={() => dispatch(setSingleProduct(product.id))}
-            src={`/${product.image}`}
-            title={product.title}
+      {product ? (
+        <CardActionArea className={classes.area}>
+          <Link href={`/products/${product.id}`}>
+            <Image
+              width={300}
+              height={250}
+              className={classes.media}
+              onClick={() => dispatch(setSingleProduct(product.id))}
+              src={`/${product.image}`}
+              title={product.title}
             />
-        </Link>
-      </CardActionArea>
-      : <Skeleton variant="rect" animation="wave" width={320} height={273} />
-      }
+          </Link>
+        </CardActionArea>
+      ) : (
+        <Skeleton variant="rect" animation="wave" width={320} height={273} />
+      )}
 
       <CardContent className={classes.content}>
-      {product ?
-        <Typography gutterBottom variant="body1" color="secondary">
-          {product.price}.-
-        </Typography>
-        : <Skeleton variant="rect" animation="wave" width={280} height={24} />
-        }
+        <div className={classes.titlePrice}>
+          <Typography gutterBottom variant="h6" component="h2" className={classes.title}>
+            {product.title}
+          </Typography>
 
-      {product ?
-        <Typography gutterBottom variant="h6" component="h2">
-          {product.title}
-        </Typography>
-        :  <Skeleton variant="rect" animation="wave" width={280} height={32} style={{marginTop:"5px"}} />
-      }
+          <Typography gutterBottom variant="h6" color="secondary" className={classes.price}>
+            {product.price}.-
+          </Typography>
+        </div>
 
-      {product ?
-        <Typography gutterBottom variant="body2">
-          {product.description.split("", 114).concat("...")}
-        </Typography>
-        : <Skeleton variant="rect" animation="wave" width={280} height={60} style={{marginTop:"5px"}} />
-      }
+        {product ? (
+          <Typography gutterBottom variant="body2">
+            {product.description.split("", 114).concat("...")}
+          </Typography>
+        ) : (
+          <Skeleton variant="rect" animation="wave" width={280} height={60} style={{ marginTop: "5px" }} />
+        )}
       </CardContent>
 
       <CardActions className={classes.actions}>
-      {product ?
-        <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
-        : <Skeleton variant="rect" animation="wave" width={90} height={18} />
-      }
+        {product ? (
+          <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
+        ) : (
+          <Skeleton variant="rect" animation="wave" width={90} height={18} />
+        )}
 
-      {product ?
-        <Button
-          size="small"
-          onClick={() => dispatch(addToCart(product.id))}
-          title="Add to cart"
-          color="secondary"
-          variant="outlined"
-          startIcon={<AddIcon fontSize={"small"} />}
-        >
-          Add to Cart
-        </Button>
-      : <Skeleton variant="rect" animation="wave" width={130} height={30} />
-      }
+        {product ? (
+          <Button
+            size="small"
+            onClick={() => dispatch(addToCart(product.id))}
+            title="Add to cart"
+            color="secondary"
+            variant="outlined"
+            startIcon={<AddIcon fontSize={"small"} />}
+          >
+            Add to Cart
+          </Button>
+        ) : (
+          <Skeleton variant="rect" animation="wave" width={130} height={30} />
+        )}
       </CardActions>
     </Card>
   );
@@ -119,18 +111,30 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "490px",
+    height: "465px",
     marginRight: "20px",
     marginBottom: "20px",
   },
   area: {
     display: "flex",
-    padding: "20px",
+    padding: "20px 20px 0px 20px",
   },
+  media: {},
   content: {
     padding: "20px",
   },
-  media: { },
+  titlePrice: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  title: {
+    width: "85%",
+    minHeight: "50px",
+    fontSize: "1.15rem",
+  },
+  price: {
+    fontSize: "1.15rem",
+  },
   actions: {
     padding: "0px 20px",
     display: "flex",
