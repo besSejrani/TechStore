@@ -56,19 +56,17 @@ const Product: React.FC<IProduct> = ({ product }) => {
 
       <CardContent className={classes.content}>
         <div className={classes.titlePrice}>
-          <Typography gutterBottom variant="h6" component="h2" className={classes.title}>
+          <Typography variant="h6" component="h2" className={classes.title}>
             {product.title}
           </Typography>
 
-          <Typography gutterBottom variant="h6" color="secondary" className={classes.price}>
+          <Typography variant="h6" color="secondary" className={classes.price}>
             {product.price}.-
           </Typography>
         </div>
 
         {product ? (
-          <Typography gutterBottom variant="body2">
-            {product.description.split("", 114).concat("...")}
-          </Typography>
+          <Typography variant="body2">{product.description.split("", 114).concat("...")}</Typography>
         ) : (
           <Skeleton variant="rect" animation="wave" width={280} height={60} style={{ marginTop: "5px" }} />
         )}
@@ -76,7 +74,12 @@ const Product: React.FC<IProduct> = ({ product }) => {
 
       <CardActions className={classes.actions}>
         {product ? (
-          <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
+          <div className={classes.rating}>
+            <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
+            <Typography variant="body2" className={classes.ratingReview}>
+              1600
+            </Typography>
+          </div>
         ) : (
           <Skeleton variant="rect" animation="wave" width={90} height={18} />
         )}
@@ -111,9 +114,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "465px",
-    marginRight: "20px",
-    marginBottom: "20px",
+    height: "450px",
   },
   area: {
     display: "flex",
@@ -128,12 +129,20 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
   },
   title: {
-    width: "85%",
+    width: "100%",
     minHeight: "50px",
-    fontSize: "1.15rem",
+    fontSize: "1.10rem",
   },
   price: {
-    fontSize: "1.15rem",
+    fontSize: "1.10rem",
+  },
+  rating: {
+    display: "flex",
+    alignItems: "center",
+  },
+  ratingReview: {
+    margin: "0px 0px 0px 3px",
+    fontSize: "0.85rem",
   },
   actions: {
     padding: "0px 20px",

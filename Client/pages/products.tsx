@@ -4,12 +4,13 @@ import React from "react";
 import { IAppState } from "../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
-import Product from "../Components/Card/Card";
+import Card from "../Components/Card/Card";
 
 // Material-Ui
-import { Container } from "@material-ui/core";
-import { makeStyles, createStyles,Theme } from '@material-ui/core/styles';
-import { Pagination} from '@material-ui/lab';
+import styled from "styled-components";
+import { Container, Box, Paper, TextField } from "@material-ui/core";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { Pagination } from "@material-ui/lab";
 
 const Products = () => {
   const classes = useStyles();
@@ -17,15 +18,26 @@ const Products = () => {
 
   return (
     <Container>
-      <section className={classes.root}>
-        {selectProducts.map((product) => {
-          return <Product key={product.id} product={product} />;
-        })}
-      </section>
+      <form className={classes.search} noValidate autoComplete="off">
+        <TextField fullWidth id="outlined-basic" label="Search Product" variant="outlined" />
+      </form>
+
+      <Box className={classes.products}>
+        <Category>
+          <Paper style={{ height: "450px" }} elevation={3}>
+            Category
+          </Paper>
+        </Category>
+        <GridProduct>
+          {selectProducts.map((product) => {
+            return <Card key={product.id} product={product} />;
+          })}
+        </GridProduct>
+      </Box>
 
       <div className={classes.pagination}>
         <Pagination count={10} color="primary" />
-    </div>
+      </div>
     </Container>
   );
 };
@@ -33,20 +45,41 @@ const Products = () => {
 export default Products;
 
 // =================================================================
-const useStyles = makeStyles((theme:Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    search: {
+      margin: "80px 0px 50px 0px",
+    },
+    products: {
+      height: "100%",
       display: "flex",
-      flexWrap: "wrap",
-      margin: "120px 0px 50px 0px",
+      margin: "70px 0px 50px 0px",
+      justifyContent: "start",
     },
     pagination: {
-      '& > *': {
+      "& > *": {
         marginTop: theme.spacing(2),
-        margin: "50px 0px",
-        display:"flex",
-        justifyContent: "center"
+        margin: "0px 0px 50px 14rem",
+        display: "flex",
+        justifyContent: "center",
       },
     },
-  }),
+  })
 );
+
+// =================================================================
+
+const GridProduct = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+`;
+
+const Category = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+  width: 200px;
+  height: 100%;
+  margin-right: 1.5rem;
+`;

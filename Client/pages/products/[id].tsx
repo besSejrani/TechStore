@@ -84,7 +84,7 @@ const useStyles = makeStyles({
   },
   product: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   media: {

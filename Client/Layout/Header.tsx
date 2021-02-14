@@ -1,6 +1,6 @@
 // Next
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 
 import {
   AppBar,
@@ -37,7 +37,7 @@ const Header = () => {
               <MenuIcon onClick={() => dispatch(sidebarToggle())} />
             </IconButton>
             <Link href="/">
-              <Image width={40} height={40} src={"/raspberry.svg"} alt="Raspberry Pi Logo"/>
+              <Image width={40} height={40} src={"/raspberry.svg"} alt="Raspberry Pi Logo" />
             </Link>
             <Link href="/">
               <Typography variant="h6" className={classes.title}>
@@ -67,6 +67,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      height: "64px",
+      position: "relative",
     },
     menuButton: {
       marginRight: theme.spacing(2),
