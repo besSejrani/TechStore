@@ -16,6 +16,8 @@ const Products = () => {
   const classes = useStyles();
   const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
 
+  console.log("test");
+
   return (
     <Container>
       <form className={classes.search} noValidate autoComplete="off">
