@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -41,7 +39,6 @@ const Checkout = () => {
       <TableContainer component={Paper} className={classes.root} elevation={2}>
         <Table className={classes.table} aria-label="spanning table">
           <TableHead>
-
             <TableRow>
               <TableCell>
                 <Typography variant="body1" color="secondary">
@@ -49,20 +46,20 @@ const Checkout = () => {
                 </Typography>
               </TableCell>
               <TableCell align="left">
-              <Typography variant="body1" color="secondary">
+                <Typography variant="body1" color="secondary">
                   Quantity
                 </Typography>
               </TableCell>
               <TableCell align="center">
-              <Typography variant="body1" color="secondary">
+                <Typography variant="body1" color="secondary">
                   Unit
                 </Typography>
               </TableCell>
               <TableCell align="right">
-              <Typography variant="body1" color="secondary">
+                <Typography variant="body1" color="secondary">
                   Price
                 </Typography>
-                </TableCell>
+              </TableCell>
             </TableRow>
           </TableHead>
 

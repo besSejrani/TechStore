@@ -7,8 +7,6 @@ import { setProducts, getItemCart } from "../Redux/product/productAction";
 // Data
 import { items } from "../Data/productData";
 
-
-
 // Components
 import Promotions from "../Components/Promotions/Promotions";
 
@@ -30,4 +28,3 @@ const Home: React.FC = () => {
 export default Home;
 
 // =================================================================
-

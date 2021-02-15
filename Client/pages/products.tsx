@@ -8,49 +8,50 @@ import { useSelector } from "react-redux";
 import Card from "../Components/Card/Card";
 
 // Material-Ui
-import { Container, Box, Paper, TextField, Slider, Typography, Checkbox,FormControlLabel, Select, MenuItem} from "@material-ui/core";
+import {
+  Container,
+  Box,
+  Paper,
+  TextField,
+  Slider,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
 import styled from "styled-components";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Skeleton, Rating, Pagination } from "@material-ui/lab";
 
 const Products = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number[]>([0, 1000]);
   const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
-
-  const handleChange = (event: any, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
 
   return (
     <Container>
-      <form  noValidate autoComplete="off">
+      <form noValidate autoComplete="off">
         <Box className={classes.search}>
           <TextField fullWidth id="outlined-basic" label="Search Product" variant="outlined" />
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value="Best Match"
-              variant="outlined"
-              >
-              <MenuItem value={"Best Match"}>Best Match</MenuItem>
-              <MenuItem value={"Ascending Price"}>Ascending Price</MenuItem>
-              <MenuItem value={"Descending Price"}>Descending Price</MenuItem>
-            </Select>
+          <Select labelId="demo-simple-select-label" id="demo-simple-select" value="Best Match" variant="outlined">
+            <MenuItem value={"Best Match"}>Best Match</MenuItem>
+            <MenuItem value={"Ascending Price"}>Ascending Price</MenuItem>
+            <MenuItem value={"Descending Price"}>Descending Price</MenuItem>
+          </Select>
         </Box>
       </form>
 
       <Box className={classes.products}>
         <Category>
-          <Paper style={{ height: "630px" }} elevation={3}>
-          <Box className={classes.filter}>
-            <Typography variant="h6" id="price-slider" gutterBottom>
-              Filter Products
-            </Typography>
-          </Box>
+          <Paper style={{ height: "635px" }} elevation={3}>
+            <Box className={classes.filter}>
+              <Typography variant="h6" id="price-slider" gutterBottom>
+                Product Filters
+              </Typography>
+            </Box>
 
-          <Box className={classes.filter}>
-              <Typography variant="body1" id="price-slider" gutterBottom>
+            <Box className={classes.filter}>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Categories
               </Typography>
 
@@ -70,7 +71,7 @@ const Products = () => {
             </Box>
 
             <Box className={classes.filter}>
-              <Typography variant="body1" id="price-slider" gutterBottom>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Shipping
               </Typography>
 
@@ -82,8 +83,8 @@ const Products = () => {
               />
             </Box>
 
-            <Box className={classes.filter}>       
-              <Typography variant="body1" id="price-slider" gutterBottom>
+            <Box className={classes.filter}>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Promotions
               </Typography>
               <FormControlLabel
@@ -95,7 +96,7 @@ const Products = () => {
             </Box>
 
             <Box className={classes.filter}>
-              <Typography variant="body1" id="price-slider" gutterBottom>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Stock
               </Typography>
 
@@ -108,30 +109,39 @@ const Products = () => {
             </Box>
 
             <Box className={classes.filter}>
-              <Typography variant="body1" id="price-slider" gutterBottom>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Rating
               </Typography>
-             
+
               <Box className={classes.filterRatings}>
-                <Rating value={4}  name="customized-color" defaultValue={2} precision={0.5}/>
+                <Rating value={4} name="customized-color" defaultValue={2} precision={0.5} />
               </Box>
             </Box>
 
-            <Box className={classes.filter2}>
-              <Typography id="price-slider" gutterBottom>
+            <Box className={classes.filter}>
+              <Typography variant="body2" id="price-slider" gutterBottom>
                 Price
               </Typography>
-              <Slider
-                value={value}
-                max={1000}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
+              <Box className={classes.price}>
+                <TextField
+                  variant="outlined"
+                  id="standard-basic"
+                  placeholder="Min"
+                  size="small"
+                  className={classes.priceInput}
                 />
+                <TextField
+                  variant="outlined"
+                  id="standard-basic"
+                  placeholder="Max"
+                  size="small"
+                  className={classes.priceInput}
+                />
+              </Box>
             </Box>
-
           </Paper>
         </Category>
+
         <GridProduct>
           {selectProducts.map((product) => {
             return <Card key={product.id} product={product} />;
@@ -153,7 +163,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
       margin: "80px 0px 50px 0px",
-      display: "flex"
+      display: "flex",
     },
     products: {
       height: "100%",
@@ -169,15 +179,20 @@ const useStyles = makeStyles((theme: Theme) =>
         justifyContent: "center",
       },
     },
-    filter:{
-      padding: "20px 20px 0px 20px"
+    filter: {
+      padding: "20px 20px 0px 20px",
     },
     filterRatings: {
       display: "flex",
+      margin: "10px 0px 0px 0px",
     },
-    filter2:{
-      padding: "20px 25px"
-    }
+    price: {
+      display: "flex",
+    },
+    priceInput: {
+      margin: "10px 10px 0px 0px",
+      padding: "0px 0px",
+    },
   })
 );
 
@@ -186,7 +201,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const GridProduct = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
 `;
 
 const Category = styled.div`
@@ -195,5 +210,5 @@ const Category = styled.div`
   top: 100px;
   width: 215px;
   height: 100%;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 `;

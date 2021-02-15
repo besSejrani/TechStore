@@ -119,7 +119,13 @@ const useStyles = makeStyles({
     display: "flex",
     padding: "20px 20px 0px 20px",
   },
-  media: {},
+  media: {
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+      transition: "0.3s",
+    },
+  },
   content: {
     padding: "20px",
   },
@@ -130,10 +136,10 @@ const useStyles = makeStyles({
   title: {
     width: "100%",
     minHeight: "45px",
-    fontSize: "1.10rem",
+    fontSize: "1.15rem",
   },
   price: {
-    fontSize: "1.10rem",
+    fontSize: "1.15rem",
   },
   rating: {
     display: "flex",
