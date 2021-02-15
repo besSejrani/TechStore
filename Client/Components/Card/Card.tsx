@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
 
 // Material-Ui
-import { IconButton } from "@material-ui/core";
 import { Skeleton, Rating } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -114,7 +113,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "450px",
+    height: "445px",
   },
   area: {
     display: "flex",
@@ -130,7 +129,7 @@ const useStyles = makeStyles({
   },
   title: {
     width: "100%",
-    minHeight: "50px",
+    minHeight: "45px",
     fontSize: "1.10rem",
   },
   price: {

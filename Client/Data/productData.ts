@@ -8,7 +8,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
-      image: { fields: { file: { url: "static/images/computeModule3+/2.jpg" } } },
+      image: { fields: { file: { url: "static/images/computeModule3+/1.webp" } } },
     },
   },
   {
@@ -64,7 +64,7 @@ export const items = [
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: true,
 
-      image: { fields: { file: { url: "static/images/pi4ModelB/1.jpg" } } },
+      image: { fields: { file: { url: "static/images/pi4ModelB/1.webp" } } },
     },
   },
   {
@@ -107,7 +107,7 @@ export const items = [
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
 
-      image: { fields: { file: { url: "static/images/poeHat/1.jpg" } } },
+      image: { fields: { file: { url: "static/images/poeHat/1.webp" } } },
     },
   },
   {
