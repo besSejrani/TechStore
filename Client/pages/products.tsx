@@ -193,7 +193,7 @@ const Category = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 100px;
-  width: 200px;
+  width: 215px;
   height: 100%;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 `;
