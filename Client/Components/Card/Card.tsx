@@ -13,7 +13,6 @@ import { Skeleton, Rating } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
 
 // Icons
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 
 import { Button, Card, CardActionArea, CardActions, CardContent, makeStyles, Typography } from "@material-ui/core";
@@ -24,7 +23,8 @@ interface IProduct {
     title: string;
     price: number;
     description: string;
-    image: any;
+    rating: number;
+    imageUrl: any;
     featured?: boolean;
     company?: string;
   };
@@ -32,6 +32,7 @@ interface IProduct {
 
 const Product: React.FC<IProduct> = ({ product }) => {
   const classes = useStyles();
+
   const dispatch = useDispatch();
 
   return (
@@ -44,7 +45,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
               height={250}
               className={classes.media}
               onClick={() => dispatch(setSingleProduct(product.id))}
-              src={`/${product.image}`}
+              src={`/${product.imageUrl}`}
               title={product.title}
             />
           </Link>
@@ -74,7 +75,14 @@ const Product: React.FC<IProduct> = ({ product }) => {
       <CardActions className={classes.actions}>
         {product ? (
           <div className={classes.rating}>
-            <StyledRating value={2} readOnly size="small" name="customized-color" defaultValue={2} precision={0.5} />
+            <StyledRating
+              value={product.rating}
+              readOnly
+              size="small"
+              name="customized-color"
+              defaultValue={2}
+              precision={0.5}
+            />
             <Typography variant="body2" className={classes.ratingReview}>
               1600
             </Typography>

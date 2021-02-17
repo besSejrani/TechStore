@@ -50,7 +50,7 @@ export default (state: ProductState = initialState, action: Action): ProductStat
     case ProductType.SET_PRODUCTS:
       let storeProducts = payload.map((item) => {
         const { id } = item.sys;
-        const image = item.fields.image.fields.file.url;
+        const image = item.url;
         const product = { id, ...item.fields, image };
         return product;
       });

@@ -11,7 +11,7 @@ const ProductFilter = () => {
 
   return (
     <Category>
-      <Paper style={{ height: "675px", borderRadius: "10px" }} elevation={3}>
+      <Paper style={{ height: "675px", borderRadius: "10px", maxWidth: "215px" }} elevation={3}>
         <Box className={classes.filter}>
           <Typography variant="h6" id="price-slider" gutterBottom>
             Product Filters
@@ -147,7 +147,7 @@ const Category = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 100px;
-  width: 215px;
+  max-width: 215px;
   height: 100%;
   margin-right: 1.5rem;
 `;
