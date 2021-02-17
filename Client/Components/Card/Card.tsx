@@ -114,15 +114,18 @@ const useStyles = makeStyles({
 
     width: "320px",
     height: "445px",
+
+    borderRadius: 10,
   },
   area: {
     display: "flex",
     padding: "20px 20px 0px 20px",
+    backgroundColor: "#fafafa",
   },
   media: {
     transition: "0.3s",
     "&:hover": {
-      transform: "scale(1.1)",
+      transform: "scale(1.05)",
       transition: "0.3s",
     },
   },
