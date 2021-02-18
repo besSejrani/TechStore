@@ -46,7 +46,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const selectProduct = useSelector((state: IAppState) => state.product.singleProduct);
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = selectProduct?.images?.length;
+  const maxSteps = selectProduct.images.length;
 
   useEffect(() => {
     dispatch(getSingleProduct());
