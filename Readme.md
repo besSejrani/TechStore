@@ -1,5 +1,5 @@
 
-<div align="center" style="margin-bottom:20px;">
+<div align="center" style="margin-bottom:25px;">
     <img src="./Client/static/images/githubBlueberry.svg" alt="BlueberryShop Logo" width="300px" >
 </div>
 
@@ -9,7 +9,7 @@
 </a>
 
 <a>
-    <img src="https://img.shields.io/badge/Github Actions-MkDocs-success" alt="BlueberryShop Logo">
+    <img src="https://img.shields.io/badge/Github Actions-Enabled-success" alt="BlueberryShop Logo">
 </a>
 </div>
 
