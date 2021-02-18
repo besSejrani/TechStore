@@ -8,6 +8,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 4,
       imageUrl: "static/images/computeModule3+/1.webp",
       images: [
@@ -28,6 +29,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 3,
       imageUrl: "static/images/computeModule4/1.webp",
       images: [
@@ -48,6 +50,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 3,
       imageUrl: "static/images/computeModule4IoBoard/1.webp",
       images: [
@@ -68,6 +71,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 5,
       imageUrl: "static/images/pi3ModelA+/1.webp",
       images: ["static/images/pi3ModelA+/1.webp", "static/images/pi3ModelA+/1.webp", "static/images/pi3ModelA+/1.webp"],
@@ -101,6 +105,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: true,
+      options: [],
       rating: 5,
       imageUrl: "static/images/piNoIrCameraV2/1.webp",
       images: [
@@ -122,6 +127,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 2,
       imageUrl: "static/images/piZeroW/1.webp",
       images: ["static/images/piZeroW/1.webp", "static/images/piZeroW/2.webp", "static/images/piZeroW/3.webp"],
@@ -138,6 +144,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: false,
+      options: [],
       rating: 3,
       imageUrl: "static/images/poeHat/1.webp",
       images: ["static/images/poeHat/1.webp", "static/images/poeHat/2.webp", "static/images/poeHat/2.webp"],
@@ -154,6 +161,7 @@ export const items = [
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
       featured: true,
+      options: [],
       rating: 4,
       imageUrl: "static/images/touchScreen/1.webp",
       images: [

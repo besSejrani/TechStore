@@ -133,7 +133,7 @@ const SingleProduct = () => {
             </Typography>
 
             <Typography variant="h6" color="secondary">
-              {selectProduct?.options?.map((option) => {
+              {selectProduct.options.map((option) => {
                 return <Button variant="outlined">{option}</Button>;
               })}
             </Typography>
