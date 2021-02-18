@@ -1,7 +1,9 @@
 
-<div align="center" style="margin-bottom:25px;">
+<div align="center">
     <img src="./Client/static/images/githubBlueberry.svg" alt="BlueberryShop Logo" width="300px" >
 </div>
+
+</br>
 
 <div align='center'>
 <a>
