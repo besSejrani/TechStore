@@ -37,7 +37,7 @@ const Header = () => {
               <MenuIcon onClick={() => dispatch(sidebarToggle())} />
             </IconButton>
             <Link href="/">
-              <Image width={40} height={40} src={"/raspberry.svg"} alt="Raspberry Pi Logo" />
+              <Image width={60} height={40} src={"/raspberry.svg"} alt="Raspberry Pi Logo" />
             </Link>
             <Link href="/">
               <Typography variant="h6" className={classes.title}>

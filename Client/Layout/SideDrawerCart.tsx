@@ -37,7 +37,7 @@ const SideDrawerCart: React.FC<any> = () => {
                   width={110}
                   height={100}
                   className={classes.media}
-                  src={`/${item.image}`}
+                  src={`/${item.imageUrl}`}
                   onClick={() => dispatch(setSingleProduct(item.id))}
                   title={item.title}
                 />

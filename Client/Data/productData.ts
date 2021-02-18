@@ -1,6 +1,6 @@
 export const items = [
   {
-    sys: { id: 0 },
+    id: 0,
     fields: {
       title: "Compute Module 3+",
       price: 10,
@@ -20,7 +20,7 @@ export const items = [
     },
   },
   {
-    sys: { id: 1 },
+    id: 1,
 
     fields: {
       title: "Compute Module 4",
@@ -41,7 +41,7 @@ export const items = [
     stock: 15,
   },
   {
-    sys: { id: 2 },
+    id: 2,
 
     fields: {
       title: "Compute Module 4 IO Board",
@@ -62,7 +62,7 @@ export const items = [
     },
   },
   {
-    sys: { id: 3 },
+    id: 3,
 
     fields: {
       title: "Raspberry Pi 3 Model A+",
@@ -79,7 +79,7 @@ export const items = [
     stock: 0,
   },
   {
-    sys: { id: 4 },
+    id: 4,
 
     fields: {
       title: "Raspberry Pi 4 Model B",
@@ -96,7 +96,7 @@ export const items = [
     stock: 100,
   },
   {
-    sys: { id: 5 },
+    id: 5,
 
     fields: {
       title: "PI NoIR Camera V2",
@@ -118,7 +118,7 @@ export const items = [
   },
 
   {
-    sys: { id: 6 },
+    id: 6,
 
     fields: {
       title: "Raspberry Pi Zero W",
@@ -135,7 +135,7 @@ export const items = [
     },
   },
   {
-    sys: { id: 7 },
+    id: 7,
 
     fields: {
       title: "Raspberry Pi PoE Hat",
@@ -152,7 +152,7 @@ export const items = [
     },
   },
   {
-    sys: { id: 8 },
+    id: 8,
 
     fields: {
       title: "Raspberry Pi Touch Display",
