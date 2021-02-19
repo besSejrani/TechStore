@@ -16,6 +16,7 @@
     "next": "^10.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^6.15.2",
     "react-redux": "^7.2.2",
     "react-swipeable-views": "^0.13.9",
     "redux": "^4.0.5",
@@ -24,6 +25,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@hookform/devtools": "^2.2.1",
     "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
