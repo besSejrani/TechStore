@@ -37,12 +37,11 @@ export const items = [
         "static/images/computeModule4/2.webp",
         "static/images/computeModule4/2.webp",
       ],
+      stock: 15,
     },
-    stock: 15,
   },
   {
     id: 2,
-
     fields: {
       title: "Compute Module 4 IO Board",
       price: 30,
@@ -63,7 +62,6 @@ export const items = [
   },
   {
     id: 3,
-
     fields: {
       title: "Raspberry Pi 3 Model A+",
       price: 15,
@@ -75,8 +73,8 @@ export const items = [
       rating: 5,
       imageUrl: "static/images/pi3ModelA+/1.webp",
       images: ["static/images/pi3ModelA+/1.webp", "static/images/pi3ModelA+/1.webp", "static/images/pi3ModelA+/1.webp"],
+      stock: 0,
     },
-    stock: 0,
   },
   {
     id: 4,
@@ -92,8 +90,8 @@ export const items = [
       rating: 1,
       imageUrl: "static/images/pi4ModelB/1.webp",
       images: ["static/images/pi4ModelB/1.webp", "static/images/pi4ModelB/2.webp", "static/images/pi4ModelB/3.webp"],
+      stock: 100,
     },
-    stock: 100,
   },
   {
     id: 5,

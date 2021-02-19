@@ -79,7 +79,7 @@ const SideDrawerCart: React.FC<any> = () => {
         </div>
 
         <Divider />
-        <Link href="/checkout">
+        <Link href="/checkout" passHref>
           <Button variant="contained" size="large" color="secondary" className={classes.checkout}>
             Checkout
           </Button>

@@ -24,18 +24,19 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Divider,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Skeleton, Rating, Pagination} from "@material-ui/lab";
+import { Skeleton, Rating, Pagination } from "@material-ui/lab";
 
 // Icons
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 
 // Libraries
 import SwipeableViews from "react-swipeable-views";
@@ -55,7 +56,7 @@ const SingleProduct = () => {
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  let maxSteps =  selectProduct.images.length;
+  let maxSteps = selectProduct.images.length;
 
   useEffect(() => {
     dispatch(getSingleProduct());
@@ -77,35 +78,59 @@ const SingleProduct = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  
   const reviews = [
     {
-      name: "hello",
+      name: "Mark",
       rating: 2,
-      review: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
     },
     {
-      name: "hello2",
+      name: "Sandra",
       rating: 3,
-      review: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
     },
     {
-      name: "hello3",
+      name: "Pietro",
       rating: 4,
-      review: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
-    }
-  ]
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+    },
+    {
+      name: "Hasan",
+      rating: 2,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+    },
+    {
+      name: "Ingrid",
+      rating: 3,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+    },
+    {
+      name: "Super",
+      rating: 4,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deserunt assumenda, exercitationem accusamus debitis repellat est ipsam, nostrum culpa id cum deleniti illo facilis rerum quisquam ipsum praesentium sunt! Eos.",
+    },
+  ];
 
   return (
     <Container component="section">
       <Link href="/products">
-        <IconButton style={{ marginTop: "50px" }}>
-          <ArrowBackIcon color="primary" />
-        </IconButton>
+        <Box className={classes.backButton}>
+          <IconButton>
+            <ArrowBackIcon color="primary" />
+          </IconButton>
+          <Typography variant="body1">Go Back</Typography>
+        </Box>
       </Link>
       <Box className={classes.root}>
         <Card style={{ borderRadius: "10px" }}>
           <AutoPlaySwipeableViews
+            interval={3500}
             axis={theme.direction === "rtl" ? "x-reverse" : "x"}
             index={activeStep}
             onChangeIndex={handleStepChange}
@@ -150,161 +175,155 @@ const SingleProduct = () => {
 
         <Box className={classes.product}>
           <Card className={classes.content}>
-            <Typography variant="h5">{selectProduct.title}</Typography>
+            <Box className={classes.productInfo}>
+              <Typography variant="h5">{selectProduct.title}</Typography>
 
-            <Typography variant="h6" color="secondary">
-              {selectProduct.price} CHF
+              <Typography variant="h6" color="secondary">
+                {selectProduct.price} CHF
+              </Typography>
+            </Box>
+
+            <Box className={classes.productRating}>
+              <Rating
+                value={selectProduct.rating}
+                readOnly
+                size="medium"
+                name="customized-color"
+                defaultValue={2}
+                precision={0.5}
+              />
+            </Box>
+
+            <Typography variant="h6" className={classes.productStock}>
+              Stock: {selectProduct.stock}
             </Typography>
 
-            <Typography variant="h6" color="secondary">
-            <Rating
-              value={selectProduct.rating}
-              readOnly
-              size="medium"
-              name="customized-color"
-              defaultValue={2}
-              precision={0.5}
-            />
-            </Typography>
-
-            <Typography variant="h6" color="secondary">
-              {selectProduct.stock}
-            </Typography>
-
-            <Typography variant="h6" color="secondary">
+            <Box>
               {selectProduct.options.map((option) => {
-                return <Button variant="outlined">{option}</Button>;
+                return (
+                  <Button variant="outlined" className={classes.productOptions}>
+                    {option}
+                  </Button>
+                );
               })}
-            </Typography>
+            </Box>
+            <Box className={classes.callToActions}>
+              <Button
+                variant="outlined"
+                color="primary"
+                fullWidth
+                onClick={() => dispatch(addToCart(selectProduct.id))}
+                style={{ marginTop: "10px" }}
+              >
+                Add to Cart
+              </Button>
 
-            <Button
-              variant="outlined"
-              color="primary"
-              fullWidth
-              onClick={() => dispatch(addToCart(selectProduct.id))}
-              style={{ marginTop: "10px" }}
-            >
-              Add to Cart
-            </Button>
-
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={() => dispatch(addToCart(selectProduct.id))}
-              style={{ marginTop: "10px" }}
-            >
-              Buy Now
-            </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={() => dispatch(addToCart(selectProduct.id))}
+                style={{ marginTop: "10px" }}
+              >
+                Buy Now
+              </Button>
+            </Box>
           </Card>
         </Box>
       </Box>
 
-
-      <Accordion  square  defaultExpanded={true} onChange={handleChange('panel1')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+      <Accordion square defaultExpanded={true} onChange={handleChange("panel1")}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
           <Typography variant="body1">Description</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-          {selectProduct.description}
-          </Typography>
+          <Typography>{selectProduct.description}</Typography>
         </AccordionDetails>
       </Accordion>
 
-      <Accordion onChange={handleChange('panel2')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+      <Accordion onChange={handleChange("panel2")}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
           <Typography variant="body1">Specifications</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-            maximus est, id dignissim quam.
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget maximus est, id dignissim
+            quam.
           </Typography>
         </AccordionDetails>
       </Accordion>
 
-      <Accordion  onChange={handleChange('panel3')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+      <Accordion onChange={handleChange("panel3")}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
           <Typography variant="body1">Returns & Waranty</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-            maximus est, id dignissim quam.
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget maximus est, id dignissim
+            quam.
           </Typography>
         </AccordionDetails>
       </Accordion>
 
-
       <Box className={classes.social}>
-        <Typography variant="h5">
-          Share On Social Media
-        </Typography>
-        
-        <IconButton><FacebookIcon /></IconButton>
-        <IconButton><TwitterIcon /></IconButton>
-        <IconButton><WhatsAppIcon /></IconButton>
+        <Typography variant="h5">Share On Social Media</Typography>
+
+        <IconButton>
+          <FacebookIcon fontSize="large" />
+        </IconButton>
+        <IconButton>
+          <TwitterIcon fontSize="large" />
+        </IconButton>
+        <IconButton>
+          <WhatsAppIcon fontSize="large" />
+        </IconButton>
       </Box>
 
       <Box className={classes.social}>
-        <Typography variant="h5">
-          Recommendations
-        </Typography>
+        <Typography variant="h5">Recommendations</Typography>
       </Box>
 
-  <Box className={classes.social}>
-        <Typography variant="h5">
-          Reviews
-        </Typography>
-        {reviews.map(review =>{
+      <Box className={classes.social}>
+        <Typography variant="h5">Reviews</Typography>
+        {reviews.map((review) => {
+          return (
+            <Box className={classes.review}>
+              <Box className={classes.reviewInfo}>
+                <Box style={{ margin: "0px 20px 0px 0px" }}>
+                  <Image
+                    width={50}
+                    height={50}
+                    className={classes.avatar}
+                    src={`/static/images/unknown.png`}
+                    title={"tes"}
+                    alt={"test"}
+                  />
+                </Box>
+                <Box>
+                  <Typography variant="body1">{review.name}</Typography>
 
-  return    <Box className={classes.review}>
+                  <Rating
+                    value={review.rating}
+                    readOnly
+                    size="small"
+                    name="customized-color"
+                    defaultValue={2}
+                    precision={0.5}
+                  />
+                </Box>
+              </Box>
 
-           <Image
-            width={50}
-            height={50}
-            className={classes.user}
-            src={`/static/images/unknown.png`}
-            title={"tes"}
-            alt={"test"}
-            />
-          <Typography variant="body1">
-            {review.name}
-          </Typography>
+              <Typography variant="body1">{review.review}</Typography>
 
-          <Rating
-            value={review.rating}
-            readOnly
-            size="small"
-            name="customized-color"
-            defaultValue={2}
-            precision={0.5}
-            />
-
-          <Typography variant="body1">
-            {review.review}
-          </Typography>
-          </Box>
+              <Divider style={{ marginTop: "10px" }} />
+            </Box>
+          );
         })}
-        </Box>
+      </Box>
 
-        <div className={classes.pagination}>
-          <Pagination count={10} color="primary" />
-        </div>
-
+      <div className={classes.pagination}>
+        <Pagination count={10} color="primary" />
+      </div>
     </Container>
   );
 };
@@ -320,10 +339,33 @@ const useStyles = makeStyles({
     gridGap: "2rem",
     margin: "10px 0px 100px 0px",
   },
+  backButton: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: "80px",
+    cursor: "pointer",
+  },
   product: {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+  },
+  productInfo: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: "4px 0px",
+  },
+  productRating: {
+    margin: "4px 0px",
+  },
+  productStock: {
+    margin: "4px 0px",
+  },
+  productOptions: {
+    margin: "4px 0px",
+  },
+  callToActions: {
+    margin: "20px 0px 0px 0px",
   },
   media: {
     height: "320px",
@@ -340,15 +382,20 @@ const useStyles = makeStyles({
     padding: "20px",
     borderRadius: "10px",
   },
-  social:{
-    margin: "50px 0px"
+  social: {
+    margin: "50px 0px",
   },
-  user:{
-    borderRadius: "99px"
+  review: {
+    margin: "30px 0px",
   },
-  review:{
-    margin: "30px 0px"
+  avatar: {
+    borderRadius: "99px",
   },
+  reviewInfo: {
+    display: "flex",
+    margin: "0px 0px 10px 0px",
+  },
+
   pagination: {
     "& > *": {
       marginTop: theme.spacing(2),

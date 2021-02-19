@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 // Material-Ui
 import { Container, Box, TextField, Select, MenuItem } from "@material-ui/core";
-import styled from "styled-components";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
 
@@ -33,11 +32,11 @@ const Products = () => {
 
       <Box className={classes.products}>
         <ProductFilter />
-        <GridProduct>
+        <Box className={classes.grid}>
           {selectProducts.map((product) => {
             return <Card key={product.id} product={product} />;
           })}
-        </GridProduct>
+        </Box>
       </Box>
 
       <div className={classes.pagination}>
@@ -52,6 +51,11 @@ export default Products;
 // =================================================================
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    grid: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gridGap: "1rem",
+    },
     search: {
       margin: "80px 0px 50px 0px",
       display: "flex",
@@ -72,20 +76,3 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
-// =================================================================
-
-const GridProduct = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1rem;
-`;
-
-const Category = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 100px;
-  width: 215px;
-  height: 100%;
-  margin-right: 1.5rem;
-`;

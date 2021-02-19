@@ -21,8 +21,7 @@
     "redux": "^4.0.5",
     "redux-multi": "^0.1.12",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.25",

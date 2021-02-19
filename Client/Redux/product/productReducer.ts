@@ -14,7 +14,6 @@ interface ProductState {
   filteredProducts: any[];
   featuredProducts: any[];
   singleProduct: any;
-  loading: boolean;
 }
 
 const initialState = {
@@ -29,7 +28,6 @@ const initialState = {
   filteredProducts: [],
   featuredProducts: [],
   singleProduct: {},
-  loading: true,
 };
 
 interface Action {
@@ -44,8 +42,12 @@ export default (state: ProductState = initialState, action: Action): ProductStat
     case ProductType.SIDE_BAR_TOGGLE:
       return { ...state, sidebarOpen: !state.sidebarOpen };
 
+    // =================================================================
+
     case ProductType.SIDE_CART_TOGGLE:
       return { ...state, cartOpen: !state.cartOpen };
+
+    // =================================================================
 
     case ProductType.SET_PRODUCTS:
       let storeProducts = payload.map((item) => {
@@ -62,8 +64,9 @@ export default (state: ProductState = initialState, action: Action): ProductStat
         storeProducts: storeProducts,
         filteredProducts: storeProducts,
         featuredProducts: featuredProducts,
-        loading: false,
       };
+
+    // =================================================================
 
     case ProductType.ADD_TO_CART:
       let tempCart = [...state.cart];
@@ -84,6 +87,8 @@ export default (state: ProductState = initialState, action: Action): ProductStat
       }
 
       return { ...state, cart: tempCart };
+
+    // =================================================================
 
     case ProductType.ADD_TOTALS:
       let subTotal: any = 0;
@@ -106,6 +111,8 @@ export default (state: ProductState = initialState, action: Action): ProductStat
         cartTotal: total as any,
       };
 
+    // =================================================================
+
     case ProductType.SET_ITEM_CART:
       let obj: any = {};
       let cartStringify;
@@ -121,6 +128,8 @@ export default (state: ProductState = initialState, action: Action): ProductStat
       return {
         ...state,
       };
+
+    // =================================================================
 
     case ProductType.GET_ITEM_CART:
       let cart: any = [];
@@ -156,11 +165,15 @@ export default (state: ProductState = initialState, action: Action): ProductStat
         cartTax: cart.cartTaxStringify,
       };
 
+    // =================================================================
+
     case ProductType.SET_SINGLE_PRODUCT:
       let product = state.storeProducts.find((item) => item.id === payload);
       localStorage.setItem("singleProduct", JSON.stringify(product));
 
-      return { ...state, singleProduct: { ...product }, loading: false };
+      return { ...state, singleProduct: { ...product } };
+
+    // =================================================================
 
     case ProductType.GET_SINGLE_PRODUCT:
       let singleProduct;
@@ -173,13 +186,17 @@ export default (state: ProductState = initialState, action: Action): ProductStat
         return singleProduct;
       }
 
-      return { ...state, singleProduct: { ...singleProduct }, loading: false };
+      return { ...state, singleProduct: { ...singleProduct } };
+
+    // =================================================================
 
     case ProductType.REMOVE:
       let removeCart = [...state.cart];
       removeCart = removeCart.filter((item) => item.id !== payload);
 
       return { ...state, cart: removeCart };
+
+    // =================================================================
 
     case ProductType.CLEAR:
       return { ...state, cart: [] };
@@ -188,6 +205,8 @@ export default (state: ProductState = initialState, action: Action): ProductStat
       let incCart = [...state.cart];
 
       return { ...state, ...incCart };
+
+    // =================================================================
 
     case ProductType.DECREMENT:
       let decCart = [...state.cart];
@@ -204,6 +223,8 @@ export default (state: ProductState = initialState, action: Action): ProductStat
       cartItem.total = cartItem.count * cartItem.price;
 
       return { ...state, cart: decCart };
+
+    // =================================================================
 
     default:
       return state;

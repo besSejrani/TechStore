@@ -4,13 +4,19 @@ export const sidebarToggle = () => {
   return { type: ProductType.SIDE_BAR_TOGGLE };
 };
 
+// =================================================================
+
 export const sidebarCart = () => {
   return { type: ProductType.SIDE_CART_TOGGLE };
 };
 
+// =================================================================
+
 export const setProducts = (products) => {
   return [{ type: ProductType.SET_PRODUCTS, payload: products }, { type: ProductType.GET_ITEM_CART }];
 };
+
+// =================================================================
 
 export const addToCart = (id) => {
   return [
@@ -21,21 +27,31 @@ export const addToCart = (id) => {
   ];
 };
 
+// =================================================================
+
 export const addTotals = () => {
   return { type: ProductType.ADD_TOTALS };
 };
+
+// =================================================================
 
 export const setSingleProduct = (id) => {
   return { type: ProductType.SET_SINGLE_PRODUCT, payload: id };
 };
 
+// =================================================================
+
 export const getSingleProduct = () => {
   return { type: ProductType.GET_SINGLE_PRODUCT };
 };
 
+// =================================================================
+
 export const getItemCart = () => {
   return { type: ProductType.GET_ITEM_CART };
 };
+
+// =================================================================
 
 export const increment = (id) => {
   return [
@@ -48,6 +64,8 @@ export const increment = (id) => {
   ];
 };
 
+// =================================================================
+
 export const decrement = (id) => {
   return [
     { type: ProductType.DECREMENT, payload: id },
@@ -58,6 +76,8 @@ export const decrement = (id) => {
   ];
 };
 
+// =================================================================
+
 export const remove = (id) => {
   return [
     { type: ProductType.REMOVE, payload: id },
@@ -67,6 +87,8 @@ export const remove = (id) => {
     { type: ProductType.GET_ITEM_CART },
   ];
 };
+
+// =================================================================
 
 export const clearCart = () => async () => {
   await localStorage.clear();

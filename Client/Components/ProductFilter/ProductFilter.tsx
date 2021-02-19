@@ -4,13 +4,12 @@ import React from "react";
 import { Box, Paper, TextField, Typography, Checkbox, FormControlLabel } from "@material-ui/core";
 import { Skeleton, Rating } from "@material-ui/lab";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import styled from "styled-components";
 
 const ProductFilter = () => {
   const classes = useStyles();
 
   return (
-    <Category>
+    <Box className={classes.category}>
       <Paper style={{ height: "675px", borderRadius: "10px", maxWidth: "215px" }} elevation={3}>
         <Box className={classes.filter}>
           <Typography variant="h6" id="price-slider" gutterBottom>
@@ -115,7 +114,7 @@ const ProductFilter = () => {
           </Box>
         </Box>
       </Paper>
-    </Category>
+    </Box>
   );
 };
 
@@ -124,6 +123,13 @@ export default ProductFilter;
 // =================================================================
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    category: {
+      position: "sticky",
+      top: "85px",
+      maxWidth: "215px",
+      height: "100%",
+      marginRight: "1.5rem",
+    },
     filter: {
       padding: "20px 20px 0px 20px",
     },
@@ -140,14 +146,3 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
-// =================================================================
-
-const Category = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 100px;
-  max-width: 215px;
-  height: 100%;
-  margin-right: 1.5rem;
-`;
