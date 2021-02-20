@@ -5,11 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Material-UI
-import { Box, Container, Typography, TextField, IconButton } from "@material-ui/core";
+import { Box, Container, Typography, TextField, IconButton, Divider } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Icons
-import GithubIcon from "@material-ui/icons/GitHub";
+// import GithubIcon from "@material-ui/icons/GitHub";
+// import DocumentationIcon from "@material-ui/icons/Description";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import YoutubeIcon from "@material-ui/icons/YouTube";
 
 const Footer = () => {
   const classes = useStyles();
@@ -32,17 +37,103 @@ const Footer = () => {
             id="outlined-basic"
             label="Email List"
             variant="outlined"
-            style={{ color: "white", border: "1px solid white" }}
+            style={{ color: "white", backgroundColor: "white", border: "1px solid white" }}
           />
         </Box>
+        <Divider style={{ backgroundColor: "#b8b8b8" }} />
+
+        <Box className={classes.footerContent}>
+          <Box>
+            <Typography variant="h6" style={{ color: "white", marginBottom: "20px" }}>
+              Category
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Products
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Accessories
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" style={{ color: "white", marginBottom: "20px" }}>
+              Links
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Products
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Accessories
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" style={{ color: "white", marginBottom: "20px" }}>
+              Company
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Careers
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Contact
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Legal
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              About
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" style={{ color: "white", marginBottom: "20px" }}>
+              Community
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Stories
+            </Typography>
+
+            <Typography variant="body1" style={{ color: "white" }}>
+              Support
+            </Typography>
+          </Box>
+        </Box>
+        <Divider style={{ backgroundColor: "#b8b8b8" }} />
         <Box className={classes.footerCredentials}>
           <Typography variant="body2" style={{ color: "white" }}>
             &copy; {new Date().getFullYear()} BlueberryShop. All rights reserved
           </Typography>
 
-          <IconButton>
-            <GithubIcon style={{ color: "white" }} />
-          </IconButton>
+          <Box>
+            {/* <IconButton>
+              <DocumentationIcon style={{ color: "white" }} />
+            </IconButton>
+
+            <IconButton>
+              <GithubIcon style={{ color: "white" }} />
+            </IconButton> */}
+            <IconButton>
+              <FacebookIcon style={{ color: "white" }} />
+            </IconButton>
+            <IconButton>
+              <InstagramIcon style={{ color: "white" }} />
+            </IconButton>
+            <IconButton>
+              <TwitterIcon style={{ color: "white" }} />
+            </IconButton>
+            <IconButton>
+              <YoutubeIcon style={{ color: "white" }} />
+            </IconButton>
+          </Box>
         </Box>
       </Container>
     </Box>
@@ -71,8 +162,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-
-      margin: "20px 0px",
+    },
+    footerContent: {
+      display: "flex",
+      justifyContent: "space-between",
+      margin: "35px 0px",
     },
     footerCredentials: {
       display: "flex",

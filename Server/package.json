@@ -1,13 +1,19 @@
 {
-  "name": "Server",
+  "name": "server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "client": "npm run dev --prefix ../Client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
-    "@types/node": "^14.14.30"
+    "@types/node": "^14.14.30",
+    "concurrently": "^5.3.0",
+    "prettier": "^2.2.1"
   }
 }

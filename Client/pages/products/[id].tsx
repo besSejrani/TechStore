@@ -179,7 +179,7 @@ const SingleProduct = () => {
               <Typography variant="h5">{selectProduct.title}</Typography>
 
               <Typography variant="h6" color="secondary">
-                {selectProduct.price} CHF
+                {selectProduct.price}.-
               </Typography>
             </Box>
 
