@@ -10,7 +10,7 @@ const ProductFilter = () => {
 
   return (
     <Box className={classes.category}>
-      <Paper style={{ height: "675px", borderRadius: "10px", maxWidth: "215px" }} elevation={3}>
+      <Paper style={{ height: "650px", borderRadius: "10px", maxWidth: "195px" }} elevation={3}>
         <Box className={classes.filter}>
           <Typography variant="h6" id="price-slider" gutterBottom>
             Product Filters
@@ -18,72 +18,78 @@ const ProductFilter = () => {
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Categories
           </Typography>
 
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="Raspberry Pi"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
 
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="Accessories"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
 
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="Subscriptions"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Shipping
           </Typography>
 
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="Free Shipping"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Promotions
           </Typography>
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="Sales"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Stock
           </Typography>
 
           <FormControlLabel
             value="end"
-            control={<Checkbox color="primary" disableRipple />}
+            control={<Checkbox color="primary" disableRipple size="small" />}
             label="In Stock"
             labelPlacement="end"
+            classes={{ label: classes.label }}
           />
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Rating
           </Typography>
 
@@ -93,7 +99,7 @@ const ProductFilter = () => {
         </Box>
 
         <Box className={classes.filter}>
-          <Typography variant="body2" id="price-slider" gutterBottom>
+          <Typography variant="body2" id="price-slider" gutterBottom style={{ fontWeight: 500 }}>
             Price
           </Typography>
           <Box className={classes.price}>
@@ -128,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) =>
       top: "85px",
       maxWidth: "215px",
       height: "100%",
-      marginRight: "1.5rem",
+      marginRight: "2.5rem",
     },
     filter: {
       padding: "20px 20px 0px 20px",
@@ -143,6 +149,9 @@ const useStyles = makeStyles((theme: Theme) =>
     priceInput: {
       margin: "10px 10px 0px 0px",
       padding: "0px 0px",
+    },
+    label: {
+      fontSize: "0.9rem",
     },
   })
 );

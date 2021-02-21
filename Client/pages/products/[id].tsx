@@ -192,6 +192,9 @@ const SingleProduct = () => {
                 defaultValue={2}
                 precision={0.5}
               />
+              <Typography variant="body1" style={{ fontSize: "1.07rem", marginLeft: "7px" }}>
+                {selectProduct.reviews.length}
+              </Typography>
             </Box>
 
             <Typography variant="h6" className={classes.productStock}>
@@ -356,6 +359,8 @@ const useStyles = makeStyles({
     margin: "4px 0px",
   },
   productRating: {
+    display: "flex",
+    alignItems: "center",
     margin: "4px 0px",
   },
   productStock: {

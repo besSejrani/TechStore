@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+// Next
+import { useRouter } from "next/router";
 
 // Redux
 import { IAppState } from "../Redux/rootReducer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts, getItemCart } from "../Redux/product/productAction";
 
 // Material-Ui
 import { Container, Box, TextField, Select, MenuItem } from "@material-ui/core";
@@ -13,9 +17,22 @@ import { Pagination } from "@material-ui/lab";
 import Card from "../Components/Card/Card";
 import ProductFilter from "../Components/ProductFilter/ProductFilter";
 
+// Data
+import { items } from "../Data/productData";
+
 const Products = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Prefetch the products page
+    dispatch(setProducts(items));
+    dispatch(getItemCart());
+    router.prefetch("/products");
+  }, []);
 
   return (
     <Container>
@@ -54,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
     grid: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr",
-      gridGap: "1rem",
+      gridGap: "1.5rem",
     },
     search: {
       margin: "80px 0px 50px 0px",
@@ -69,7 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
     pagination: {
       "& > *": {
         marginTop: theme.spacing(2),
-        margin: "0px 0px 50px 14rem",
+        margin: "0px 0px 50px 0rem",
         display: "flex",
         justifyContent: "center",
       },

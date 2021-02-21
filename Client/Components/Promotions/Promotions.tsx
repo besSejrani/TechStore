@@ -22,7 +22,7 @@ const Promotions = () => {
       </section>
 
       <div className="col text-center">
-        <Link href="/products">
+        <Link href="/products" passHref>
           <Button variant="outlined" className="main-link" style={{ marginTop: "30px" }}>
             Our products
           </Button>

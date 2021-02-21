@@ -110,7 +110,7 @@ const Footer = () => {
         <Divider style={{ backgroundColor: "#b8b8b8" }} />
         <Box className={classes.footerCredentials}>
           <Typography variant="body2" style={{ color: "white" }}>
-            &copy; {new Date().getFullYear()} BlueberryShop. All rights reserved
+            &copy; {new Date().getFullYear()}, all rights reserved.
           </Typography>
 
           <Box>

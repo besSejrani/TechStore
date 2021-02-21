@@ -24,6 +24,7 @@ interface IProduct {
     price: number;
     description: string;
     rating: number;
+    reviews: [];
     imageUrl: any;
     featured?: boolean;
     company?: string;
@@ -84,7 +85,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
               precision={0.5}
             />
             <Typography variant="body2" className={classes.ratingReview}>
-              1600
+              {product.reviews.length}
             </Typography>
           </div>
         ) : (
