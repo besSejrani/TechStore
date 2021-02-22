@@ -5,6 +5,9 @@ repo_name: BlueBerryShop
 repo_url: https://github.com/besSejrani/BlueberryShop
 
 theme:
+  #Language
+  language: en
+
   # Use material styles
   name: material
 
@@ -25,14 +28,22 @@ theme:
     primary: black
     secondary: blue
 
-#Extensions
+# Extensions
 markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
-#Footer
+# Footer
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/besSejrani
+
+# Javascript
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tables.js
