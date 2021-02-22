@@ -147,7 +147,7 @@ export default Footer;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "calc(5% + 60px)",
+      marginTop: "calc(1% + 60px)",
       bottom: 0,
 
       backgroundColor: "#212121",

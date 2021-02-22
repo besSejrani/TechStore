@@ -1,1 +1,1 @@
-import express from "express"
+import "./src/Express/index";

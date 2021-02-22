@@ -1,4 +1,3 @@
-
 <div align="center">
     <img src="./Client/static/images/githubBlueberry.svg" alt="BlueberryShop Logo" width="300px" >
 </div>
@@ -12,6 +11,14 @@
 
 <a>
     <img src="https://img.shields.io/badge/Github Actions-Enabled-success" alt="BlueberryShop Logo">
+</a>
+
+<a>
+    <img src="https://img.shields.io/badge/Vercel-Frontend-blue" alt="BlueberryShop Logo">
+</a>
+
+<a>
+    <img src="https://img.shields.io/badge/Heroku-API-blueviolet" alt="BlueberryShop Logo">
 </a>
 </div>
 

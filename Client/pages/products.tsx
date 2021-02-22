@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
     products: {
       height: "100%",
       display: "flex",
-      margin: "70px 0px 50px 0px",
+      margin: "70px 0px 80px 0px",
       justifyContent: "start",
     },
     pagination: {

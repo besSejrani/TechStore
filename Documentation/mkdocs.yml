@@ -28,6 +28,8 @@ theme:
 #Extensions
 markdown_extensions:
   - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
 
 #Footer
 extra:
