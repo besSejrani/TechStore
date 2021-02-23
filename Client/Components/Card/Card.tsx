@@ -40,7 +40,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
     <Card className={classes.root}>
       {product ? (
         <CardActionArea className={classes.area}>
-          <Link href={`/products/${product.id}`}>
+          <Link href="/products/[id]" as={`/products/${product.id}`}>
             <Image
               width={300}
               height={250}

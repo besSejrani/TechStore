@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
 // Redux
-import { IAppState } from "../Redux/rootReducer";
+import { IAppState } from "../../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts, getItemCart } from "../Redux/product/productAction";
+import { setProducts, getItemCart } from "../../Redux/product/productAction";
 
 // Material-Ui
 import { Container, Box, TextField, Select, MenuItem } from "@material-ui/core";
@@ -14,11 +14,11 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
 
 // Components
-import Card from "../Components/Card/Card";
-import ProductFilter from "../Components/ProductFilter/ProductFilter";
+import Card from "../../Components/Card/Card";
+import ProductFilter from "../../Components/ProductFilter/ProductFilter";
 
 // Data
-import { items } from "../Data/productData";
+import { items } from "../../Data/productData";
 
 const Products = () => {
   const classes = useStyles();
