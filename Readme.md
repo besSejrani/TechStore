@@ -6,7 +6,7 @@
 
 <div align='center'>
 <a>
-    <img src="https://img.shields.io/badge/Documentation-MkDocs-success" alt="BlueberryShop Logo">
+    <img src="https://img.shields.io/badge/MkDocs-Enabled-success" alt="BlueberryShop Logo">
 </a>
 
 <a>
