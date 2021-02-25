@@ -7,5 +7,6 @@
 - [ ] Enhance search experience with autocomplete feature.
 - [ ] Apple like product presentation.
 - [ ] Add Progressive Web Application capabilities to the site.
+- [ ] Add fallback to WebP images with the Intersection Observer API.
 
 <hr/>
