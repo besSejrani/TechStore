@@ -59,13 +59,6 @@ const register = () => {
         </form>
       </Card>
 
-      <Typography variant="h1" color="primary">
-        aa {process.env.NEXT_PUBLIC_DEVELOPMENT_SERVER}
-      </Typography>
-      <Typography variant="h1" color="primary">
-        aa {process.env.NEXT_PUBLIC_PRODUCTION_SERVER}
-      </Typography>
-
       <DevTool control={control} />
     </Box>
   );
