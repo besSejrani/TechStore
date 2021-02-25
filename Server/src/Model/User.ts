@@ -1,11 +1,14 @@
-import "dotenv/config";
-import { Message } from "./Message";
-import { IsEmail } from "class-validator";
-
+// Database
 import { prop as Property, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
+
+// GraphQL
 import { Field, ObjectType } from "type-graphql";
 
+// Validation
+import { IsEmail } from "class-validator";
+
+// Hash
 import bcrypt from "bcryptjs";
 
 // ========================================================================================================
@@ -16,7 +19,7 @@ export class User {
   readonly _id: ObjectId;
 
   @Field()
-  @Property({ required: [true, "Please provide a username"], unique: true, trim: true, minlength: 2, maxlength: 20 })
+  @Property({ required: [true, "Please provide a username"], unique: true, trim: true, minlength: 3, maxlength: 20 })
   username: string;
 
   @Field()
@@ -41,9 +44,6 @@ export class User {
 
   @Property()
   profileImageUrl?: string;
-
-  @Property({ ref: Message, type: ObjectId })
-  messages?: Message[];
 
   @Property({ default: Date.now() })
   createdAt?: Date;

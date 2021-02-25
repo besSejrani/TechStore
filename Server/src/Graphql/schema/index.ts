@@ -1,10 +1,10 @@
 import { GraphQLSchema } from "graphql";
 import { buildSchema } from "type-graphql";
-// import { ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 import path from "path";
 
-// import { ObjectIdScalar } from "../types/ObjectId.scalar";
-// import { TypegooseMiddleware } from "../../middlewares/typegoose";
+import { ObjectIdScalar } from "../types/ObjectId.scalar";
+import { TypegooseMiddleware } from "../../Middleware/typegoose";
 
 // build TypeGraphQL executable schema
 export default async function createSchema(): Promise<GraphQLSchema> {
@@ -13,9 +13,9 @@ export default async function createSchema(): Promise<GraphQLSchema> {
     resolvers: [__dirname + "/../resolvers/**/*.ts"],
     emitSchemaFile: path.resolve(__dirname, "schema.gql"),
     // // 2. use document converting middleware
-    // globalMiddlewares: [TypegooseMiddleware],
+    globalMiddlewares: [TypegooseMiddleware],
     // // 3. use ObjectId scalar mapping
-    // scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
+    scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
     validate: false,
   });
   return schema;
