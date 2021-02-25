@@ -12,9 +12,9 @@ export default async function createSchema(): Promise<GraphQLSchema> {
     // 1. add all typescript resolvers
     resolvers: [__dirname + "/../resolvers/**/*.ts"],
     emitSchemaFile: path.resolve(__dirname, "schema.gql"),
-    // // 2. use document converting middleware
+    // 2. use document converting middleware
     globalMiddlewares: [TypegooseMiddleware],
-    // // 3. use ObjectId scalar mapping
+    // 3. use ObjectId scalar mapping
     scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
     validate: false,
   });

@@ -1,12 +1,13 @@
-// import { Resolver, Query, Arg } from "type-graphql";
-// import { User, UserModel } from "../../../Model/User";
+// GraphQL
+import { Resolver, Query, Arg } from "type-graphql";
 
-// @Resolver()
-// export class UserResolver {
-//   @Query(() => User, { nullable: true })
-//   async getUser(@Arg("userId", () => String) userId: string): Promise<string> {
-//     const user = await UserModel.findById(userId);
+// Database
+import { User, UserModel } from "../../../Model/User";
 
-//     return user;
-//   }
-// }
+@Resolver()
+export class UserResolver {
+  @Query(() => User, { nullable: true })
+  async getUser(@Arg("userId", () => String) userId: string): Promise<User | null> {
+    return await UserModel.findById(userId);
+  }
+}

@@ -1,7 +1,13 @@
+// Configuration
 import "dotenv/config";
+
+//Authentication & Authorization
 import jwt from "jsonwebtoken";
+
+// Database
 import { UserModel as User } from "../Model/User";
 
+// GraphQL
 import { MiddlewareFn } from "type-graphql";
 import { MyContext } from "../Graphql/types/MyContext";
 
@@ -22,6 +28,5 @@ export const authentication: MiddlewareFn<MyContext> = async ({ context }, next)
     return next();
   } catch (error) {
     console.log("error:", error.message);
-    // context.res.status(500).json({ message: "Server error" });
   }
 };

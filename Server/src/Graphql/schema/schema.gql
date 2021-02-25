@@ -3,6 +3,37 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Mutation {
+  signin(input: SigninInput!): UserResponse!
+  signup(input: SignupInput!): UserResponse!
+}
+
+"""Mongo object id scalar type"""
+scalar ObjectId
+
 type Query {
-  hello: String!
+  getUser(userId: String!): User
+}
+
+input SigninInput {
+  email: String!
+  password: String!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+type User {
+  _id: ObjectId!
+  email: String!
+  role: String!
+  username: String!
+}
+
+type UserResponse {
+  token: String
+  user: User
 }
