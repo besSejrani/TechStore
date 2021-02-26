@@ -2,6 +2,7 @@
 
 ## Feature Idea
 
+- [ ] Add CI/CD pipeline.
 - [ ] Add/Replace MongoDB with Neo4j and build a recommendation system.
 - [ ] Add cross selling capabilities to the store.
 - [ ] Enhance search experience with autocomplete feature.

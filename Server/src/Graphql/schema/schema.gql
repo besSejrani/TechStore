@@ -3,6 +3,16 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input ChangedPasswordInput {
+  password: String!
+  token: String!
+}
+
+input ChangedProfileInput {
+  email: String!
+  username: String!
+}
+
 type Mutation {
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
