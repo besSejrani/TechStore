@@ -44,7 +44,7 @@ const register = () => {
 
   return (
     <Box className={classes.root}>
-      {/* <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
+      <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
         <Typography variant="h5">Sign In</Typography>
         <form className={classes.form} onSubmit={handleSubmit((d) => console.log(d))}>
           <TextField type="email" name="emailSignIn" id="outlined-basic" label="Email" inputRef={register} />
@@ -58,12 +58,14 @@ const register = () => {
         <Button variant="contained" color="secondary" startIcon={<TwitterIcon />}>
           Twitter
         </Button>
-        <Button variant="contained" color="primary" startIcon={<GithubIcon />}>
-          Github
-        </Button>
-      </Card> */}
+        <a href="http://localhost:4000/auth/github">
+          <Button variant="contained" color="primary" startIcon={<GithubIcon />}>
+            Github
+          </Button>
+        </a>
+      </Card>
 
-      <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
+      {/* <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
         <Typography variant="h5">Sign Up</Typography>
         <form className={classes.form} onSubmit={handleSubmit(onSubmitSignup)}>
           <TextField
@@ -109,7 +111,7 @@ const register = () => {
             Submit
           </Button>
         </form>
-      </Card>
+      </Card> */}
 
       <DevTool control={control} />
     </Box>

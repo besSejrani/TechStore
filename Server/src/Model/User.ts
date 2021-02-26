@@ -18,6 +18,9 @@ export class User {
   @Field()
   readonly _id: ObjectId;
 
+  @Property()
+  githubId?: string;
+
   @Field()
   @Property({ required: [true, "Please provide a username"], unique: true, trim: true, minlength: 3, maxlength: 20 })
   username: string;

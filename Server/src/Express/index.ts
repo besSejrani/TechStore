@@ -12,7 +12,10 @@ import { ApolloServer } from "apollo-server-express";
 // GraphQL API
 import createSchema from "../Graphql/schema";
 
-// ========================================================================================================
+// Oauth2
+import passport from "passport";
+import githubAuth from "../Routes/githubOauth";
+import githubService from "../Services/passportGithub";
 
 // CORS Configuration
 const corsOptions = {
@@ -20,13 +23,20 @@ const corsOptions = {
   credentials: true,
 };
 
+// ========================================================================================================
+
 const main = async () => {
   try {
-    await mongo();
-
     const app = express();
-
     app.use(express.json());
+
+    await mongo();
+    await githubService();
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    app.use(githubAuth);
 
     const schema = await createSchema();
 
