@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // React-Hook-Form
 import { useForm } from "react-hook-form";
@@ -12,6 +12,9 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GithubIcon from "@material-ui/icons/GitHub";
 
+// Apollo
+import { useSignupMutation } from "../Graphql/index";
+
 const register = () => {
   const classes = useStyles();
 
@@ -19,9 +22,29 @@ const register = () => {
     mode: "onChange",
   });
 
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [signUp] = useSignupMutation();
+
+  const onSubmitSignup = async (form) => {
+    if (password !== confirmPassword) {
+      await alert("passwords don't match");
+      return;
+    }
+
+    console.log(form);
+
+    await signUp({
+      variables: { email: form.email, password: form.password, username: form.username },
+    });
+  };
+
   return (
     <Box className={classes.root}>
-      <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
+      {/* <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
         <Typography variant="h5">Sign In</Typography>
         <form className={classes.form} onSubmit={handleSubmit((d) => console.log(d))}>
           <TextField type="email" name="emailSignIn" id="outlined-basic" label="Email" inputRef={register} />
@@ -38,20 +61,49 @@ const register = () => {
         <Button variant="contained" color="primary" startIcon={<GithubIcon />}>
           Github
         </Button>
-      </Card>
+      </Card> */}
 
       <Card style={{ width: "400px", padding: "20px", borderRadius: "10px" }}>
         <Typography variant="h5">Sign Up</Typography>
-        <form className={classes.form} onSubmit={handleSubmit((d) => console.log(d))}>
-          <TextField type="text" name="username" id="outlined-basic" label="Username" inputRef={register} />
-          <TextField type="email" name="emailSignUp" id="outlined-basic" label="Email" inputRef={register} />
-          <TextField type="password" name="passwordSignUp" id="outlined-basic" label="Password" inputRef={register} />
+        <form className={classes.form} onSubmit={handleSubmit(onSubmitSignup)}>
+          <TextField
+            type="text"
+            name="username"
+            id="outlined-basic"
+            label="Username"
+            inputRef={register}
+            value={username}
+            onChange={(text) => setUsername(text.target.value)}
+          />
+
+          <TextField
+            type="email"
+            name="email"
+            id="outlined-basic"
+            label="Email"
+            inputRef={register}
+            value={email}
+            onChange={(text) => setEmail(text.target.value)}
+          />
+
           <TextField
             type="password"
-            name="confirm password"
+            name="password"
+            id="outlined-basic"
+            label="Password"
+            inputRef={register}
+            value={password}
+            onChange={(text) => setPassword(text.target.value)}
+          />
+
+          <TextField
+            type="password"
+            name="confirmPassword"
             id="outlined-basic"
             label="Confirm Password"
             inputRef={register}
+            value={confirmPassword}
+            onChange={(text) => setConfirmPassword(text.target.value)}
           />
           <Button style={{ marginTop: "20px" }} type="submit" variant="outlined" color="secondary">
             Submit

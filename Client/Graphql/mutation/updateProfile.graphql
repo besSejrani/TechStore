@@ -1,0 +1,8 @@
+mutation UpdateProfile($username: String!, $email: String!) {
+  updateProfile(data: { username: $username, email: $email }) {
+    username
+    _id
+    email
+    role
+  }
+}
