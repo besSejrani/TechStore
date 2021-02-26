@@ -16,6 +16,8 @@ import createSchema from "../Graphql/schema";
 import passport from "passport";
 import githubAuth from "../Routes/githubOauth";
 import githubService from "../Services/passportGithub";
+import googleAuth from "../Routes/googleOauth";
+import googleService from "../Services/passportGoogle";
 
 // CORS Configuration
 const corsOptions = {
@@ -32,11 +34,13 @@ const main = async () => {
 
     await mongo();
     await githubService();
+    await googleService();
 
     app.use(passport.initialize());
     app.use(passport.session());
 
     app.use(githubAuth);
+    app.use(googleAuth);
 
     const schema = await createSchema();
 

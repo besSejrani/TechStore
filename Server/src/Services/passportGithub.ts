@@ -40,16 +40,20 @@ const githubOAuth = async () => {
             _json: { id, name, avatar_url, email },
           } = await profile;
 
-          const user = await new UserModel({
-            githubId: id,
-            username: name,
-            profileImageUrl: avatar_url,
-            email,
-            password: `${uuid()}`,
-            confirmed: true,
-            role: "user",
-          });
-          await user.save();
+          const user = await UserModel.findOne({ githubId: id });
+
+          if (!user) {
+            const user = await new UserModel({
+              githubId: id,
+              username: name,
+              profileImageUrl: avatar_url,
+              email,
+              password: `${uuid()}`,
+              confirmed: true,
+              role: "user",
+            });
+            await user.save();
+          }
 
           return done(null, user);
         } catch (error) {

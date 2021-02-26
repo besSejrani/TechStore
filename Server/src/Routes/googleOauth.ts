@@ -1,6 +1,25 @@
-// app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] }));
+// Express
+import express from "express";
+const router = express.Router();
 
-// app.get("/auth/github/callback", passport.authenticate("github", { failureRedirect: "/login" }), function (req, res) {
-//   // Successful authentication, redirect home.
-//   res.redirect("/");
-// });
+// Oauth
+import passport from "passport";
+
+// ========================================================================================================
+
+router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+router.get("/auth/google/callback", passport.authenticate("google"), (_req, res) => {
+  res.redirect("http://localhost:3000");
+});
+
+router.get("/api/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+router.get("/api/current_user", (req, res) => {
+  res.send(req.user);
+});
+
+export default router;

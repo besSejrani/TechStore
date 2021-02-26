@@ -1,59 +1,68 @@
-// // Configuration
-// import "dotenv/config";
+// Configuration
+import "dotenv/config";
 
-// // Database
-// import { UserModel } from "../Model/User";
+// Random
+import { v4 as uuid } from "uuid";
 
-// // OAuth2
-// import passport from "passport";
-// import { Strategy } from "passport-google-oauth20";
+// Database
+import { UserModel } from "../Model/User";
 
-// // ========================================================================================================
+// OAuth2
+import passport from "passport";
+import { Strategy } from "passport-google-oauth20";
 
-// const google0Auth = () => {
-//   passport.serializeUser((user, done) => {
-//     done(null, user.id);
-//   });
+// ========================================================================================================
 
-//   passport.deserializeUser(async (id, done) => {
-//     try {
-//       const user = await UserModel.findById(id);
-//       done(null, user);
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   });
+const googleOAuth = () => {
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
 
-//   passport.use(
-//     new Strategy(
-//       {
-//         clientID: `${process.env.GOOGLE_ID}`,
-//         clientSecret: `${process.env.GOOGLE_SECRET}`,
-//         callbackURL: "/auth/google/callback",
-//         proxy: true,
-//       },
-//       async (accessToken, refreshToken, profile, done) => {
-//         const { id } = profile;
-//         try {
-//           const user = await UserModel.findOne({
-//             googleId: id,
-//           });
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await UserModel.findById(id);
+      done(null, user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  });
 
-//           if (!user) {
-//             const user = await new UserModel({
-//               googleId: id,
-//             });
-//             await user.save();
-//             done(null, user);
-//           }
+  passport.use(
+    new Strategy(
+      {
+        clientID: `${process.env.GOOGLE_ID}`,
+        clientSecret: `${process.env.GOOGLE_SECRET}`,
+        callbackURL: "http://localhost:4000/auth/google/callback",
+        proxy: true,
+      },
+      async (_accessToken, _refreshToken, profile, done: any) => {
+        try {
+          const {
+            _json: { sub, name, picture, email },
+          } = await profile;
 
-//           done(null, user);
-//         } catch (error) {
-//           console.log(error.message);
-//         }
-//       }
-//     )
-//   );
-// };
+          const user = await UserModel.findOne({ googleId: sub });
 
-// export default google0Auth;
+          if (!user) {
+            const user = await new UserModel({
+              googleId: sub,
+              username: name,
+              profileImageUrl: picture,
+              email,
+              password: `${uuid()}`,
+              confirmed: true,
+              role: "user",
+            });
+            await user.save();
+
+            return done(null, user);
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+    )
+  );
+};
+
+export default googleOAuth;

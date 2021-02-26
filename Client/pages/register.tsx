@@ -9,6 +9,7 @@ import { Card, Box, TextField, Button, Typography, Divider } from "@material-ui/
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 // Icons
+import GoogleIcon from "@material-ui/icons/Apple";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GithubIcon from "@material-ui/icons/GitHub";
 
@@ -54,10 +55,16 @@ const register = () => {
           </Button>
         </form>
         <Divider />
+        <a href="http://localhost:4000/auth/google">
+          <Button variant="contained" color="primary" startIcon={<GoogleIcon />}>
+            Google
+          </Button>
+        </a>
 
         <Button variant="contained" color="secondary" startIcon={<TwitterIcon />}>
           Twitter
         </Button>
+
         <a href="http://localhost:4000/auth/github">
           <Button variant="contained" color="primary" startIcon={<GithubIcon />}>
             Github

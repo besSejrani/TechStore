@@ -19,6 +19,9 @@ export class User {
   readonly _id: ObjectId;
 
   @Property()
+  googleId?: string;
+
+  @Property()
   githubId?: string;
 
   @Field()
