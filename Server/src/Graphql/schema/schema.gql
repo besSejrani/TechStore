@@ -14,14 +14,19 @@ input ChangedProfileInput {
 }
 
 type Mutation {
+  changePassword(input: ChangedPasswordInput!): User
+  confirmUser(token: String!): Boolean!
+  forgotPassword(email: String!): Boolean!
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
+  updateProfile(data: ChangedProfileInput!): User
 }
 
 """Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
+  getCurrentUser: User
   getUser(userId: String!): User
 }
 

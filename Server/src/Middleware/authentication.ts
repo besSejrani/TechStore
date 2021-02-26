@@ -11,6 +11,8 @@ import { UserModel as User } from "../Model/User";
 import { MiddlewareFn } from "type-graphql";
 import { MyContext } from "../Graphql/types/MyContext";
 
+// ========================================================================================================
+
 export const authentication: MiddlewareFn<MyContext> = async ({ context }, next) => {
   try {
     const authorization = context.req.headers["authorization"];

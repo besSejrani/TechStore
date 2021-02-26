@@ -12,6 +12,10 @@ import jwt from "jsonwebtoken";
 // Response
 import { UserResponse } from "../user/types/UserResponse";
 
+// Email
+import { SendEmail } from "../../../Email/sendEmail";
+import { createConfirmationUrl } from "../../../Email/createConfirmationUrl";
+
 // ========================================================================================================
 
 @Resolver()
@@ -36,6 +40,7 @@ export class SignupResolver {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET as string);
+    await SendEmail(email, await createConfirmationUrl(newUser.id));
 
     return { user: newUser, token };
   }
