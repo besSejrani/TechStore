@@ -12,7 +12,7 @@ import Signup from "../SignUp/SignUp";
 
 const SigninSignup = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
 
   const [isSignIn, setIsSignIn] = useState(true);
 
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) =>
     card: {
       position: "relative",
       width: "1100px",
-      height: 478,
+      height: 520,
       borderRadius: "10px",
     },
     tabsContainer: {
