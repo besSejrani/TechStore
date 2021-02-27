@@ -28,6 +28,11 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/register.js"
+    ],
+    "/validation/email": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/validation/email.js"
     ]
   },
   "ampFirstPages": []

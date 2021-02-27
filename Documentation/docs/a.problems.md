@@ -6,7 +6,7 @@ The forgot password functionnality relies on a specific TTL value to be executed
 
 To resolve this issue, Redis will be used instead. Redis feels just to be the right tool for the right job. Heroku offers a free tier, it's plenty enough.
 
-!!! failure "TTL example in Typegoose"
+=== "Typegoose"
 
 ```javascript
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // Next
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 // React-Hook-Form
 import { useForm } from "react-hook-form";
@@ -35,6 +36,8 @@ const SignIn = () => {
     criteriaMode: "all",
   });
 
+  const router = useRouter();
+
   const [signUp] = useSignupMutation();
 
   const onSubmit = async (form) => {
@@ -47,10 +50,7 @@ const SignIn = () => {
       variables: { email: form.email, password: form.password, username: form.username },
     });
 
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    router.push("/validation/email");
   };
 
   return (
