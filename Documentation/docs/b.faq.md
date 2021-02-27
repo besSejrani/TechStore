@@ -4,52 +4,100 @@
 
 ## Typescript
 
-### Why did you choose Typescript
+!!! note "Why did you choose Typescript"
 
-### Aren't tests sufficient ?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
+
+!!! note "Aren't tests sufficient ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## Next.js
 
-### Isn't React sufficient ?
+!!! note "Isn't React sufficient ?"
 
-### What are the benefits of Next ?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
+
+!!! note "What are the benefits of Next ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## Apollo Client
 
-### Why did you choose Apollo over Redux ?
+!!! note "Why did you choose Apollo over Redux ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## Node
 
-### Why did you choose Node ?
+!!! note "Why did you choose Node ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## GraphQL
 
-### Why did you choose GraphQL over REST
+!!! note "Why did you choose GraphQL over REST"
 
-### Can GraphQL request be cached ?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
-### Is GraphQL secure ?
+!!! note "Can GraphQL request be cached ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
+
+!!! note "Is GraphQL secure ?"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## Json Web Tokens
 
-### Why do you not use sessions ?
+!!! note "Why Do not use sessions"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
 
 ## MongoDB
 
-### Why do you create a NOSQL schema ?
+!!! note "Why do you create a NOSQL schema ?"
 
-### Benefits of MongoDB
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
+
+!!! note "Benefits of MongoDB"
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.
 
 <hr/>
