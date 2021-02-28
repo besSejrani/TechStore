@@ -17,6 +17,7 @@ import {
   useScrollTrigger,
   Slide,
   Box,
+  Hidden,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -28,7 +29,9 @@ import SearchIcon from "@material-ui/icons/Search";
 // Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart, sidebarToggle } from "../Redux/product/productAction";
+import { sidebarCart, sidebarToggle } from "../Redux/ui/uiAction";
+
+// ========================================================================================================
 
 interface Props {
   window?: () => Window;
@@ -59,15 +62,17 @@ const Header = () => {
           <Container>
             <Toolbar disableGutters style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={() => dispatch(sidebarToggle())}
-                >
-                  <MenuIcon />
-                </IconButton>
+                <Hidden smUp>
+                  <IconButton
+                    edge="start"
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={() => dispatch(sidebarToggle())}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Hidden>
 
                 <Link href="/">
                   <Box
@@ -84,6 +89,19 @@ const Header = () => {
                     </Typography>
                   </Box>
                 </Link>
+
+                <Hidden smDown>
+                  <Link href="/products">
+                    <Typography variant="body1" className={classes.link}>
+                      products
+                    </Typography>
+                  </Link>
+                  <Link href="/blog">
+                    <Typography variant="body1" className={classes.link}>
+                      Blog
+                    </Typography>
+                  </Link>
+                </Hidden>
               </Box>
 
               <Box>
@@ -126,6 +144,13 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       textDecoration: "none",
       color: "white",
+      marginRight: "20px",
+    },
+    link: {
+      cursor: "pointer",
+      marginLeft: "15px",
+      fontWeight: 500,
+      textTransform: "capitalize",
     },
   })
 );

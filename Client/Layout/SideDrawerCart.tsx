@@ -10,9 +10,12 @@ import { makeStyles } from "@material-ui/core/styles";
 //Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart, increment, remove, decrement, clearCart, setSingleProduct } from "../Redux/product/productAction";
+import { sidebarCart } from "../Redux/ui/uiAction";
+import { increment, remove, decrement, clearCart, setSingleProduct } from "../Redux/product/productAction";
 
 import { Typography } from "@material-ui/core";
+
+// ========================================================================================================
 
 type Anchor = "right";
 
@@ -20,11 +23,11 @@ const SideDrawerCart: React.FC<any> = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const selectCartOpen = useSelector((state: IAppState) => state.product.cartOpen);
+  const selectCartOpen = useSelector((state: IAppState) => state.ui.cartOpen);
   const selectCart = useSelector((state: IAppState) => state.product.cart);
   const selectCartTotal = useSelector((state: IAppState) => state.product.cartTotal);
 
-  const isSideDrawerOpen = useSelector((state: IAppState) => state.product.sidebarOpen);
+  const isSideDrawerOpen = useSelector((state: IAppState) => state.ui.sidebarOpen);
 
   const list = (anchor: Anchor) => (
     <div className={classes.list}>

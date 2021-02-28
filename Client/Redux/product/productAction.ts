@@ -1,17 +1,5 @@
 import { ProductType } from "./productType";
 
-export const sidebarToggle = () => {
-  return { type: ProductType.SIDE_BAR_TOGGLE };
-};
-
-// =================================================================
-
-export const sidebarCart = () => {
-  return { type: ProductType.SIDE_CART_TOGGLE };
-};
-
-// =================================================================
-
 export const setProducts = (products) => {
   return [{ type: ProductType.SET_PRODUCTS, payload: products }, { type: ProductType.GET_ITEM_CART }];
 };

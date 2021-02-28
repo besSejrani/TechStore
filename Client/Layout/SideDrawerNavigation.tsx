@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { sidebarToggle } from "../Redux/product/productAction";
 import { IAppState } from "../Redux/rootReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { sidebarToggle } from "../Redux/ui/uiAction";
 
 // Material-Ui
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@material-ui/core";
@@ -17,6 +17,8 @@ import QueueIcon from "@material-ui/icons/Queue";
 import DocumentationIcon from "@material-ui/icons/Description";
 import GithubIcon from "@material-ui/icons/GitHub";
 
+// ========================================================================================================
+
 type Anchor = "left";
 
 const SideDrawer: React.FC<any> = () => {
@@ -26,7 +28,7 @@ const SideDrawer: React.FC<any> = () => {
   let defferedPrompt: any = useRef(null);
   const dispatch = useDispatch();
 
-  const isSideDrawerOpen = useSelector((state: IAppState) => state.product.sidebarOpen);
+  const isSideDrawerOpen = useSelector((state: IAppState) => state.ui.sidebarOpen);
 
   const list = (anchor: Anchor) => (
     <div className={classes.list}>

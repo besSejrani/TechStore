@@ -3,8 +3,6 @@
 import { ProductType } from "./productType";
 
 interface ProductState {
-  sidebarOpen: boolean;
-  cartOpen: boolean;
   cartItems: number;
   cart: any[];
   cartSubTotal: number;
@@ -17,8 +15,6 @@ interface ProductState {
 }
 
 const initialState = {
-  sidebarOpen: false,
-  cartOpen: false,
   cartItems: 0,
   cart: [],
   cartSubTotal: 0,
@@ -39,16 +35,6 @@ export default (state: ProductState = initialState, action: Action): ProductStat
   const { payload, type } = action;
 
   switch (type) {
-    case ProductType.SIDE_BAR_TOGGLE:
-      return { ...state, sidebarOpen: !state.sidebarOpen };
-
-    // =================================================================
-
-    case ProductType.SIDE_CART_TOGGLE:
-      return { ...state, cartOpen: !state.cartOpen };
-
-    // =================================================================
-
     case ProductType.SET_PRODUCTS:
       let storeProducts = payload.map((item) => {
         const { id } = item;

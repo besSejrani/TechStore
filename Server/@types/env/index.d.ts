@@ -18,5 +18,9 @@ declare namespace NodeJS {
 
     GOOGLE_ID: string;
     GOOGLE_SECRET: string;
+
+    TWITTER_API_KEY: string;
+    TWITTER_API_SECRET_KEY: string;
+    TWITTER_BEARER_TOKEN: string;
   }
 }
