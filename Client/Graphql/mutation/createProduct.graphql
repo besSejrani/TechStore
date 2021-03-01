@@ -1,0 +1,10 @@
+mutation CreateProduct($picture: Upload!, $name: String!, $price: Float!, $description: String!, $stock: Float!) {
+  createProduct(picture: $picture, input: { name: $name, price: $price, description: $description, stock: $stock }) {
+    _id
+    name
+    price
+    description
+    stock
+    promotion
+  }
+}

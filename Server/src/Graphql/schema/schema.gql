@@ -13,9 +13,17 @@ input ChangedProfileInput {
   username: String!
 }
 
+input CreateProductInput {
+  description: String!
+  name: String!
+  price: Float!
+  stock: Float!
+}
+
 type Mutation {
   changePassword(input: ChangedPasswordInput!): User
   confirmUser(token: String!): Boolean!
+  createProduct(picture: Upload!): Boolean!
   forgotPassword(email: String!): Boolean!
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
@@ -40,6 +48,9 @@ input SignupInput {
   password: String!
   username: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   _id: ObjectId!

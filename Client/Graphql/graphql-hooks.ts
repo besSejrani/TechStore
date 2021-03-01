@@ -13,6 +13,8 @@ export type Scalars = {
   Float: number;
   /** Mongo object id scalar type */
   ObjectId: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 export type User = {
@@ -30,6 +32,19 @@ export type UserResponse = {
   token?: Maybe<Scalars['String']>;
 };
 
+export type Product = {
+  __typename?: 'Product';
+  _id: Scalars['ObjectId'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  description: Scalars['String'];
+  stock: Scalars['Float'];
+  promotion: Scalars['Boolean'];
+  productImageUrl: Scalars['String'];
+  productImages: Array<Scalars['String']>;
+  options: Array<Scalars['String']>;
+};
+
 export type SigninInput = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -39,6 +54,13 @@ export type SignupInput = {
   username: Scalars['String'];
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type CreateProductInput = {
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  description: Scalars['String'];
+  stock: Scalars['Float'];
 };
 
 export type ChangedPasswordInput = {
@@ -66,6 +88,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   signin: UserResponse;
   signup: UserResponse;
+  createProduct?: Maybe<Product>;
   changePassword?: Maybe<User>;
   confirmUser: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
@@ -80,6 +103,12 @@ export type MutationSigninArgs = {
 
 export type MutationSignupArgs = {
   input: SignupInput;
+};
+
+
+export type MutationCreateProductArgs = {
+  input: CreateProductInput;
+  picture: Scalars['Upload'];
 };
 
 
@@ -101,6 +130,7 @@ export type MutationForgotPasswordArgs = {
 export type MutationUpdateProfileArgs = {
   data: ChangedProfileInput;
 };
+
 
 export type ChangePasswordMutationVariables = Exact<{
   token: Scalars['String'];
@@ -124,6 +154,23 @@ export type ConfirmUserMutationVariables = Exact<{
 export type ConfirmUserMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'confirmUser'>
+);
+
+export type CreateProductMutationVariables = Exact<{
+  picture: Scalars['Upload'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  description: Scalars['String'];
+  stock: Scalars['Float'];
+}>;
+
+
+export type CreateProductMutation = (
+  { __typename?: 'Mutation' }
+  & { createProduct?: Maybe<(
+    { __typename?: 'Product' }
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion'>
+  )> }
 );
 
 export type ForgotPasswordMutationVariables = Exact<{
@@ -277,6 +324,50 @@ export function useConfirmUserMutation(baseOptions?: Apollo.MutationHookOptions<
 export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMutation>;
 export type ConfirmUserMutationResult = Apollo.MutationResult<ConfirmUserMutation>;
 export type ConfirmUserMutationOptions = Apollo.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export const CreateProductDocument = gql`
+    mutation CreateProduct($picture: Upload!, $name: String!, $price: Float!, $description: String!, $stock: Float!) {
+  createProduct(
+    picture: $picture
+    input: {name: $name, price: $price, description: $description, stock: $stock}
+  ) {
+    _id
+    name
+    price
+    description
+    stock
+    promotion
+  }
+}
+    `;
+export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutation, CreateProductMutationVariables>;
+
+/**
+ * __useCreateProductMutation__
+ *
+ * To run a mutation, you first call `useCreateProductMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProductMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProductMutation, { data, loading, error }] = useCreateProductMutation({
+ *   variables: {
+ *      picture: // value for 'picture'
+ *      name: // value for 'name'
+ *      price: // value for 'price'
+ *      description: // value for 'description'
+ *      stock: // value for 'stock'
+ *   },
+ * });
+ */
+export function useCreateProductMutation(baseOptions?: Apollo.MutationHookOptions<CreateProductMutation, CreateProductMutationVariables>) {
+        return Apollo.useMutation<CreateProductMutation, CreateProductMutationVariables>(CreateProductDocument, baseOptions);
+      }
+export type CreateProductMutationHookResult = ReturnType<typeof useCreateProductMutation>;
+export type CreateProductMutationResult = Apollo.MutationResult<CreateProductMutation>;
+export type CreateProductMutationOptions = Apollo.BaseMutationOptions<CreateProductMutation, CreateProductMutationVariables>;
 export const ForgotPasswordDocument = gql`
     mutation ForgotPassword($email: String!) {
   forgotPassword(email: $email)

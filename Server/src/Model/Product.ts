@@ -35,20 +35,20 @@ export class Product {
   stock: number;
 
   @Field()
-  @Property()
+  @Property({ default: false })
   promotion?: boolean;
 
   @Field()
   @Property()
   productImageUrl?: string;
 
-  @Field()
+  @Field(() => [String])
   @Property()
-  productImages?: string[];
+  productImages?: String[];
 
-  @Field()
+  @Field(() => [String])
   @Property()
-  options?: string[];
+  options?: String[];
 
   @Property({ default: Date.now() })
   createdAt?: Date;

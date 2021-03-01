@@ -5,6 +5,7 @@ import Link from "next/link";
 
 // Material-UI
 import {
+  Box,
   Drawer,
   Toolbar,
   List,
@@ -18,13 +19,12 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
 //Icons
-import HomeIcon from "@material-ui/icons/Home";
-
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import GroupIcon from "@material-ui/icons/Group";
 import MailIcon from "@material-ui/icons/Mail";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
+import SubjectIcon from "@material-ui/icons/Subject";
 
 // ========================================================================================================
 
@@ -36,13 +36,14 @@ const adminSideDrawer = () => {
   const [customerExpand, setCustomerExpand] = useState(false);
   const [productExpand, setProductExpand] = useState(false);
   const [orderExpand, setOrderExpand] = useState(false);
+  const [articleExpand, setArticleExpand] = useState(false);
 
   const handleExpandClick = (setExpanded, expand) => {
     setExpanded(!expand);
   };
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -72,7 +73,7 @@ const adminSideDrawer = () => {
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
-              <ListItemText primary="Customers" />
+              <ListItemText primary="Users" />
               <ExpandMoreIcon
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: customerExpand,
@@ -81,10 +82,10 @@ const adminSideDrawer = () => {
             </ListItem>
 
             <Collapse in={customerExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/customers">
+              <Link href="/admin/users">
                 <ListItem button>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Customers" />
+                  <ListItemText primary="List Users" />
                 </ListItem>
               </Link>
             </Collapse>
@@ -142,9 +143,36 @@ const adminSideDrawer = () => {
               </Link>
             </Collapse>
           </List>
+
+          <List subheader={<ListSubheader>Blog</ListSubheader>}>
+            <ListItem
+              button
+              onClick={() => handleExpandClick(setArticleExpand, articleExpand)}
+              aria-expanded={articleExpand}
+            >
+              <ListItemIcon>
+                <SubjectIcon />
+              </ListItemIcon>
+              <ListItemText primary="Articles" />
+              <ExpandMoreIcon
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: articleExpand,
+                })}
+              />
+            </ListItem>
+
+            <Collapse in={articleExpand} timeout="auto" unmountOnExit>
+              <Link href="/admin/articles/">
+                <ListItem button>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary="List Articles" />
+                </ListItem>
+              </Link>
+            </Collapse>
+          </List>
         </div>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
@@ -156,10 +184,13 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      position: "relative",
+      width: 240,
     },
 
     drawer: {
       width: drawerWidth,
+      position: "fixed",
       flexShrink: 0,
     },
     drawerPaper: {

@@ -21,7 +21,7 @@ import googleService from "../Services/passportGoogle";
 
 // CORS Configuration
 const corsOptions = {
-  origin: `http://localhost:3000`,
+  origin: `*`,
   credentials: true,
 };
 
@@ -31,6 +31,7 @@ const main = async () => {
   try {
     const app = express();
     app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
     await mongo();
     await githubService();
@@ -43,11 +44,14 @@ const main = async () => {
     app.use(googleAuth);
 
     const schema = await createSchema();
-
     const apolloServer = new ApolloServer({
       schema,
       context: ({ req, res }) => ({ req, res }),
       introspection: true,
+      uploads: {
+        maxFileSize: 10000000, // 10 MB
+        maxFiles: 20,
+      },
       playground: {
         settings: {
           "request.credentials": "include",

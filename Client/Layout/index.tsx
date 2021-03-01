@@ -27,7 +27,7 @@ const index = ({ children }) => {
       {selectIsAdmin ? (
         <>
           <AdminHeader />
-          {children}
+          <div style={{ margin: "90px 20px 0px 260px " }}>{children}</div>
           <AdminSideBar />
         </>
       ) : (
