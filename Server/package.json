@@ -10,7 +10,7 @@
     "server": "ts-node-dev --respawn index.ts",
     "client": "npm run dev --prefix ../Client",
     "documentation": "cd ../Documentation && mkdocs serve",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \" npm run documentation\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.8",

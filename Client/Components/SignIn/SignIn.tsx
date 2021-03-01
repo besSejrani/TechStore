@@ -71,7 +71,7 @@ const SignIn = () => {
 
             <Box className={classes.socialbuttons}>
               <a href="http://localhost:4000/auth/google">
-                <Button variant="outlined" color="primary" startIcon={<GoogleIcon />}>
+                <Button variant="contained" style={{backgroundColor: "white"}} startIcon={<GoogleIcon />}>
                   Google
                 </Button>
               </a>
