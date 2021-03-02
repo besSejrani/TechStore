@@ -71,7 +71,7 @@ const SignIn = () => {
 
             <Box className={classes.socialbuttons}>
               <a href="http://localhost:4000/auth/google">
-                <Button variant="contained" style={{backgroundColor: "white"}} startIcon={<GoogleIcon />}>
+                <Button variant="contained" style={{ backgroundColor: "white" }} startIcon={<GoogleIcon />}>
                   Google
                 </Button>
               </a>
@@ -81,7 +81,7 @@ const SignIn = () => {
                   Github
                 </Button>
               </a>
-              <a href="#">
+              <a href="http://localhost:4000/auth/twitter">
                 <Button variant="contained" color="secondary" startIcon={<TwitterIcon />}>
                   Twitter
                 </Button>

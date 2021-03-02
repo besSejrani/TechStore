@@ -2,6 +2,9 @@ import React from "react";
 // Layout
 import Layout from "../Layout/index";
 
+//Styles
+import "../App/index.css";
+
 // Redux
 import { Provider } from "react-redux";
 import { store } from "../Redux/store";

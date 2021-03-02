@@ -25,6 +25,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import MailIcon from "@material-ui/icons/Mail";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
 import SubjectIcon from "@material-ui/icons/Subject";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 // ========================================================================================================
 
@@ -169,6 +170,17 @@ const adminSideDrawer = () => {
                 </ListItem>
               </Link>
             </Collapse>
+          </List>
+
+          <List subheader={<ListSubheader>Documentation</ListSubheader>}>
+            <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
+              <ListItem button>
+                <ListItemIcon>
+                  <DescriptionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Documentation" />
+              </ListItem>
+            </a>
           </List>
         </div>
       </Drawer>

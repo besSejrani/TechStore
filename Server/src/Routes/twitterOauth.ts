@@ -7,11 +7,18 @@ import passport from "passport";
 
 // ========================================================================================================
 
-router.get("/auth/github", passport.authenticate("github", { scope: ["profile", "email"] }));
+router.get("/auth/twitter", passport.authenticate("twitter", { scope: ["profile", "email"] }));
 
-router.get("/auth/github/callback", passport.authenticate("github"), (_req, res) => {
-  res.redirect("http://localhost:3000");
-});
+router.get(
+  "/auth/twitter/callback",
+  passport.authenticate("twitter", {
+    successRedirect: "http://localhost:3000",
+    failureRedirect: "http://localhost:3000/products",
+  }),
+  (_req, res) => {
+    res.redirect("http://localhost:3000");
+  }
+);
 
 router.get("/api/logout", (req, res) => {
   req.logout();
