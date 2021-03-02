@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./Client/static/images/githubBlueberry.svg" alt="BlueberryShop Logo" width="300px" >
+    <img src="./Client/static/images/projectLogo.png" alt="BlueberryShop Logo" width="300px" >
 </div>
 
 </br>
