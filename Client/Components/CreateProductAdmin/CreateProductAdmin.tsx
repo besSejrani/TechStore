@@ -84,9 +84,9 @@ const CreateProductAdmin = () => {
 
   const renderForm = () => {
     if (cardDetails) {
-      return <PreviewProductCard product={product} />;
-    } else {
       return <PreviewProduct product={product} />;
+    } else {
+      return <PreviewProductCard product={product} />;
     }
   };
 
@@ -180,13 +180,8 @@ const CreateProductAdmin = () => {
             onChange={handleChange}
             aria-label="disabled tabs example"
           >
-            <Tab label="Card" className={classes.tab} disabled={cardDetails} onClick={() => setcardDetails(true)} />
-            <Tab
-              label="Details"
-              className={classes.tab}
-              disabled={!cardDetails}
-              onClick={() => setcardDetails(false)}
-            />
+            <Tab label="Details" className={classes.tab} disabled={cardDetails} onClick={() => setcardDetails(true)} />
+            <Tab label="Card" className={classes.tab} disabled={!cardDetails} onClick={() => setcardDetails(false)} />
           </Tabs>
         </Box>
       </Card>
@@ -212,7 +207,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       width: "1100px",
-      height: 550,
+      height: 600,
       borderRadius: "10px",
     },
 

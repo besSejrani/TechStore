@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     content: {
-      margin: "50px 0px",
+      margin: "50px 0px 0px 0px",
     },
     item: {
       display: "flex",
