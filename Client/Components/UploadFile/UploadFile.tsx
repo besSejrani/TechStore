@@ -46,7 +46,7 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
   return (
     <div>
       <Box className={classes.content}>
-        <Button variant="outlined" onClick={openFileUpload}>
+        <Button variant="contained" style={{ backgroundColor: "white", marginBottom: "20px" }} onClick={openFileUpload}>
           {name}
         </Button>
         <Box>
@@ -54,11 +54,6 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
             return <img className={classes.image} src={`${file}`} />;
           })}
         </Box>
-
-        {/* {file.files ? (
-
-          <Box style={{ width: 50, height: 50, backgroundColor: "red" }}></Box>
-        )} */}
       </Box>
 
       <DropzoneDialog

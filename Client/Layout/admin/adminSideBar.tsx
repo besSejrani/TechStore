@@ -68,31 +68,6 @@ const adminSideDrawer = () => {
           <List subheader={<ListSubheader>Management</ListSubheader>}>
             <ListItem
               button
-              onClick={() => handleExpandClick(setCustomerExpand, customerExpand)}
-              aria-expanded={customerExpand}
-            >
-              <ListItemIcon>
-                <GroupIcon />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-              <ExpandMoreIcon
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: customerExpand,
-                })}
-              />
-            </ListItem>
-
-            <Collapse in={customerExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/users">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Users" />
-                </ListItem>
-              </Link>
-            </Collapse>
-
-            <ListItem
-              button
               onClick={() => handleExpandClick(setProductExpand, productExpand)}
               aria-expanded={productExpand}
             >
@@ -119,6 +94,31 @@ const adminSideDrawer = () => {
                 <ListItem button>
                   <ListItemIcon></ListItemIcon>
                   <ListItemText primary="Create Product" />
+                </ListItem>
+              </Link>
+            </Collapse>
+
+            <ListItem
+              button
+              onClick={() => handleExpandClick(setCustomerExpand, customerExpand)}
+              aria-expanded={customerExpand}
+            >
+              <ListItemIcon>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary="Users" />
+              <ExpandMoreIcon
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: customerExpand,
+                })}
+              />
+            </ListItem>
+
+            <Collapse in={customerExpand} timeout="auto" unmountOnExit>
+              <Link href="/admin/users">
+                <ListItem button>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary="List Users" />
                 </ListItem>
               </Link>
             </Collapse>

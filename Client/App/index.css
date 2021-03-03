@@ -1,8 +1,47 @@
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+}
+
+#root {
+  height: calc(100% - 6rem);
 }
 
 a {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgb(230, 230, 230);
+  box-shadow: rgb(0 0 0 / 30%) 0px 0px 6px inset;
+}
+
+/* ======================================================================================================== */
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* ======================================================================================================== */
+
+.active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  transform: scale(1);
+}
+
+/* ======================================================================================================== */

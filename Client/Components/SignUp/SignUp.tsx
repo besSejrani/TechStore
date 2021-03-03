@@ -12,6 +12,9 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Card, Box, TextField, Button, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
+// Components
+import InputForm from "../InputForm/InputForm";
+
 // Apollo
 import { useSignupMutation } from "../../Graphql";
 
@@ -74,7 +77,7 @@ const SignIn = () => {
           </Box>
 
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-            <TextField
+            <InputForm
               type="text"
               name="username"
               id="signupUsername"
@@ -85,15 +88,11 @@ const SignIn = () => {
                 maxLength: { value: 20, message: "Your username should contain maximum 20 characters" },
               })}
               value={username}
-              onChange={(text) => setUsername(text.target.value)}
+              onChange={setUsername}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="username" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
-            <TextField
+            <InputForm
               type="email"
               name="email"
               id="signupEmail"
@@ -103,15 +102,11 @@ const SignIn = () => {
                 minLength: { value: 8, message: "Your email should contain minimum 8 characters" },
               })}
               value={email}
-              onChange={(text) => setEmail(text.target.value)}
+              onChange={setEmail}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="email" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
-            <TextField
+            <InputForm
               type="password"
               name="password"
               id="signupPassword"
@@ -121,15 +116,11 @@ const SignIn = () => {
                 minLength: { value: 8, message: "Your password should contain minimum 8 characters" },
               })}
               value={password}
-              onChange={(text) => setPassword(text.target.value)}
+              onChange={setPassword}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="password" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
-            <TextField
+            <InputForm
               type="password"
               name="confirmPassword"
               id="signupConfirmPassword"
@@ -139,13 +130,9 @@ const SignIn = () => {
                 minLength: { value: 8, message: "Your confirm password should contain minimum 8 characters" },
               })}
               value={confirmPassword}
-              onChange={(text) => setConfirmPassword(text.target.value)}
+              onChange={setConfirmPassword}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="confirmPassword" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
             <Box className={classes.actionButtons}>
               <Button type="submit" variant="outlined" color="secondary">

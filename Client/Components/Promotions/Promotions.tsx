@@ -5,9 +5,13 @@ import Link from "next/link";
 import { IAppState } from "../../Redux/rootReducer";
 import { useSelector } from "react-redux";
 
-import Card from "../Card/Card";
-
+//Material-UI
 import { Button, Container, makeStyles } from "@material-ui/core";
+
+// Components
+import Card from "../ProductCard/ProductCard";
+
+// ========================================================================================================
 
 const Promotions = () => {
   const classes = useStyles();

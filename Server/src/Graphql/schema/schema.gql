@@ -23,7 +23,7 @@ input CreateProductInput {
 type Mutation {
   changePassword(input: ChangedPasswordInput!): User
   confirmUser(token: String!): Boolean!
-  createProduct(picture: Upload!): Boolean!
+  createProduct(input: CreateProductInput!): Product!
   forgotPassword(email: String!): Boolean!
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
@@ -32,6 +32,18 @@ type Mutation {
 
 """Mongo object id scalar type"""
 scalar ObjectId
+
+type Product {
+  _id: ObjectId!
+  description: String!
+  name: String!
+  options: [String!]!
+  price: Float!
+  productImageUrl: String!
+  productImages: [String!]!
+  promotion: Boolean!
+  stock: Float!
+}
 
 type Query {
   getCurrentUser: User
@@ -48,9 +60,6 @@ input SignupInput {
   password: String!
   username: String!
 }
-
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
 
 type User {
   _id: ObjectId!

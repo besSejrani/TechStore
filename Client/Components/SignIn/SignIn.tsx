@@ -6,11 +6,13 @@ import Image from "next/image";
 
 // React-Hook-Form
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 // Material-UI
-import { Card, Box, TextField, Button, Typography } from "@material-ui/core";
+import { Card, Box, Button, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+
+// Components
+import InputForm from "../InputForm/InputForm";
 
 // Icons
 import GoogleIcon from "@material-ui/icons/Apple";
@@ -90,7 +92,7 @@ const SignIn = () => {
           </Box>
 
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-            <TextField
+            <InputForm
               type="email"
               name="email"
               id="signinEmail"
@@ -100,15 +102,11 @@ const SignIn = () => {
                 minLength: { value: 8, message: "Your email should contain minimum 8 characters" },
               })}
               value={email}
-              onChange={(text) => setEmail(text.target.value)}
+              onChange={setEmail}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="email" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
-            <TextField
+            <InputForm
               type="password"
               name="password"
               id="signinPassword"
@@ -118,13 +116,9 @@ const SignIn = () => {
                 minLength: { value: 8, message: "Your password should contain minimum 8 characters" },
               })}
               value={password}
-              onChange={(text) => setPassword(text.target.value)}
+              onChange={setPassword}
+              errors={errors}
             />
-            <ErrorMessage errors={errors} name="password" as={<Typography variant="body2" />}>
-              {({ messages }) =>
-                messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)
-              }
-            </ErrorMessage>
 
             <Box className={classes.actionButtons}>
               <Button type="submit" variant="outlined" color="secondary">

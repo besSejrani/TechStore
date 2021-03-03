@@ -14,11 +14,13 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
 
 // Components
-import Card from "../../Components/Card/Card";
+import Card from "../../Components/ProductCard/ProductCard";
 import ProductFilter from "../../Components/ProductFilter/ProductFilter";
 
 // Data
 import { items } from "../../Data/productData";
+
+// ========================================================================================================
 
 const Products = () => {
   const classes = useStyles();

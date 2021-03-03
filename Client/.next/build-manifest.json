@@ -29,10 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/admin/users": [
+    "/admin/products/create-product": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/admin/users.js"
+      "static/chunks/pages/admin/products/create-product.js"
     ]
   },
   "ampFirstPages": []

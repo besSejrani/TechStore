@@ -1,30 +1,26 @@
 import React from "react";
 
 // Next
-import Link from "next/link";
 import Image from "next/image";
 
-// Redux
-import { useDispatch } from "react-redux";
-import { addToCart, setSingleProduct } from "../../Redux/product/productAction";
-
 // Material-Ui
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, makeStyles, Typography } from "@material-ui/core";
 import { Skeleton, Rating } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
 
 // Icons
 import AddIcon from "@material-ui/icons/Add";
 
-import { Button, Card, CardActionArea, CardActions, CardContent, makeStyles, Typography } from "@material-ui/core";
+// ========================================================================================================
 
 interface IProduct {
   product: {
-    id: string;
+    id: number;
     title: string;
     price: number;
     description: string;
     rating: number;
-    reviews: [];
+    reviews: string[];
     imageUrl: any;
     featured?: boolean;
     company?: string;
@@ -34,22 +30,17 @@ interface IProduct {
 const Product: React.FC<IProduct> = ({ product }) => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-
   return (
     <Card className={classes.root}>
       {product ? (
         <CardActionArea className={classes.area}>
-          <Link href="/products/[id]" as={`/products/${product.id}`}>
-            <Image
-              width={300}
-              height={250}
-              className={classes.media}
-              onClick={() => dispatch(setSingleProduct(product.id))}
-              src={`/${product.imageUrl}`}
-              title={product.title}
-            />
-          </Link>
+          <Image
+            width={300}
+            height={250}
+            className={classes.media}
+            src={`/${product.imageUrl}`}
+            title={product.title}
+          />
         </CardActionArea>
       ) : (
         <Skeleton variant="rect" animation="wave" width={320} height={273} />
@@ -67,7 +58,9 @@ const Product: React.FC<IProduct> = ({ product }) => {
         </div>
 
         {product ? (
-          <Typography variant="body2">{product.description.split("", 114).concat("...")}</Typography>
+          <Box style={{ maxWidth: 280, height: "60px", wordWrap: "break-word" }}>
+            <Typography variant="body2">{product?.description.split("", 110).concat("...")}</Typography>
+          </Box>
         ) : (
           <Skeleton variant="rect" animation="wave" width={280} height={60} style={{ marginTop: "5px" }} />
         )}
@@ -95,7 +88,6 @@ const Product: React.FC<IProduct> = ({ product }) => {
         {product ? (
           <Button
             size="small"
-            onClick={() => dispatch(addToCart(product.id))}
             title="Add to cart"
             color="secondary"
             variant="outlined"
@@ -140,6 +132,7 @@ const useStyles = makeStyles({
   },
   content: {
     padding: "20px",
+    width: "280px",
   },
   titlePrice: {
     display: "flex",

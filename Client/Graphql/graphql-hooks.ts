@@ -13,8 +13,6 @@ export type Scalars = {
   Float: number;
   /** Mongo object id scalar type */
   ObjectId: any;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
 };
 
 export type User = {
@@ -88,7 +86,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   signin: UserResponse;
   signup: UserResponse;
-  createProduct?: Maybe<Product>;
+  createProduct: Product;
   changePassword?: Maybe<User>;
   confirmUser: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
@@ -108,7 +106,6 @@ export type MutationSignupArgs = {
 
 export type MutationCreateProductArgs = {
   input: CreateProductInput;
-  picture: Scalars['Upload'];
 };
 
 
@@ -130,7 +127,6 @@ export type MutationForgotPasswordArgs = {
 export type MutationUpdateProfileArgs = {
   data: ChangedProfileInput;
 };
-
 
 export type ChangePasswordMutationVariables = Exact<{
   token: Scalars['String'];
@@ -157,7 +153,6 @@ export type ConfirmUserMutation = (
 );
 
 export type CreateProductMutationVariables = Exact<{
-  picture: Scalars['Upload'];
   name: Scalars['String'];
   price: Scalars['Float'];
   description: Scalars['String'];
@@ -167,10 +162,10 @@ export type CreateProductMutationVariables = Exact<{
 
 export type CreateProductMutation = (
   { __typename?: 'Mutation' }
-  & { createProduct?: Maybe<(
+  & { createProduct: (
     { __typename?: 'Product' }
     & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion'>
-  )> }
+  ) }
 );
 
 export type ForgotPasswordMutationVariables = Exact<{
@@ -325,9 +320,8 @@ export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMuta
 export type ConfirmUserMutationResult = Apollo.MutationResult<ConfirmUserMutation>;
 export type ConfirmUserMutationOptions = Apollo.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
 export const CreateProductDocument = gql`
-    mutation CreateProduct($picture: Upload!, $name: String!, $price: Float!, $description: String!, $stock: Float!) {
+    mutation CreateProduct($name: String!, $price: Float!, $description: String!, $stock: Float!) {
   createProduct(
-    picture: $picture
     input: {name: $name, price: $price, description: $description, stock: $stock}
   ) {
     _id
@@ -354,7 +348,6 @@ export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutat
  * @example
  * const [createProductMutation, { data, loading, error }] = useCreateProductMutation({
  *   variables: {
- *      picture: // value for 'picture'
  *      name: // value for 'name'
  *      price: // value for 'price'
  *      description: // value for 'description'
