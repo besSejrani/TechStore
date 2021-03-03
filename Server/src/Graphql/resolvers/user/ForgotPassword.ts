@@ -29,7 +29,7 @@ export class ForgotPasswordResolver {
     const token = uuid();
     redis.set(forgotPaswordPrefix + token, `${user._id}`, "ex", 60 * 60 * 0.1);
 
-    await SendEmail(email, `http://localhost:3000/user/change-password/${token}`);
+    await SendEmail(email, `http://localhost:3000/validation/password/change/${token}`);
 
     return true;
   }

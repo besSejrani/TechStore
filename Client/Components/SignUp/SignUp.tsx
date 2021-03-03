@@ -6,10 +6,9 @@ import { useRouter } from "next/router";
 
 // React-Hook-Form
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 // Material-UI
-import { Card, Box, TextField, Button, Typography } from "@material-ui/core";
+import { Card, Box, Button, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 // Components
@@ -62,7 +61,8 @@ const SignIn = () => {
         <Image
           width={700}
           height={520}
-          src={"/static/Water24.png"}
+          className={classes.media}
+          src={"/static/Water24.webp"}
           // title={product.title}
         />
 
@@ -158,7 +158,13 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
 
+    media: {
+      width: "69%",
+      height: "100%",
+    },
+
     content: {
+      width: "31%",
       display: "flex",
       flexDirection: "column",
       padding: "20px 30px",

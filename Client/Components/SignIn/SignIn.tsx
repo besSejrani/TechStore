@@ -20,7 +20,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import GithubIcon from "@material-ui/icons/GitHub";
 
 // Apollo
-import { useSigninMutation, GetUserDocument, SigninDocument} from "../../Graphql/index";
+import { useSigninMutation, GetUserDocument, SigninDocument } from "../../Graphql/index";
 
 // ========================================================================================================
 
@@ -44,32 +44,30 @@ const SignIn = () => {
   const onSubmit = async (form) => {
     const { data } = await signIn({
       variables: { email: form.email, password: form.password },
-      update (cache, {data}){
-        const newUser = data.signin
+      update(cache, { data }) {
+        const newUser = data.signin;
 
-try {
-  
-  const existingUser = cache.readQuery({
-    query: GetUserDocument,
-    variables:{userId: "603eecfe6efd288fc85f576f"}
-  })
-  
-  const isAuth = {isAuth:true}
-    
-      cache.writeQuery({
-        query: GetUserDocument,
-        data:{
-          getUser:{
-            existingUser,
-            ...newUser,
-          }
+        try {
+          const existingUser = cache.readQuery({
+            query: GetUserDocument,
+            variables: { userId: "603eecfe6efd288fc85f576f" },
+          });
+
+          const isAuth = { isAuth: true };
+
+          cache.writeQuery({
+            query: GetUserDocument,
+            data: {
+              getUser: {
+                existingUser,
+                ...newUser,
+              },
+            },
+          });
+        } catch (error) {
+          console.log(error);
         }
-      })
-    } catch (error) {
-    console.log(error) 
-    }
-
-      }
+      },
     });
 
     localStorage.setItem("token", data?.signin.token!);
@@ -82,9 +80,10 @@ try {
     <Box>
       <Card elevation={0} className={classes.signin}>
         <Image
+          className={classes.media}
           width={790}
           height={520}
-          src={"/static/Sand2.png"}
+          src={"/static/Sand2.webp"}
           // title={product.title}
         />
 
@@ -151,7 +150,7 @@ try {
                 Signin
               </Button>
 
-              <Link href="/reset-password">
+              <Link href="/validation/password">
                 <Typography variant="body2" style={{ cursor: "pointer" }}>
                   Forgot Password ?
                 </Typography>
@@ -172,11 +171,17 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     signin: {
       display: "flex",
-      height: 520,
+      height: "520px",
       justifyContent: "space-between",
     },
 
+    media: {
+      width: "65%",
+      height: "100%",
+    },
+
     content: {
+      width: "35%",
       flexDirection: "column",
       padding: "20px 30px",
     },

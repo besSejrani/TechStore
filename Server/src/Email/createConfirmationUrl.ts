@@ -6,5 +6,5 @@ export const createConfirmationUrl = async (userId: number) => {
   const token = uuid();
   redis.set(confirmUserPrefix + token, userId, "ex", 60 * 60 * 24);
 
-  return `http://localhost:3000/user/confirm/${token}`;
+  return `http://localhost:3000/validation/email/confirm/${token}`;
 };
