@@ -20,7 +20,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import GithubIcon from "@material-ui/icons/GitHub";
 
 // Apollo
-import { useSigninMutation } from "../../Graphql/index";
+import { useSigninMutation, GetUserDocument, SigninDocument} from "../../Graphql/index";
 
 // ========================================================================================================
 
@@ -44,6 +44,32 @@ const SignIn = () => {
   const onSubmit = async (form) => {
     const { data } = await signIn({
       variables: { email: form.email, password: form.password },
+      update (cache, {data}){
+        const newUser = data.signin
+
+try {
+  
+  const existingUser = cache.readQuery({
+    query: GetUserDocument,
+    variables:{userId: "603eecfe6efd288fc85f576f"}
+  })
+  
+  const isAuth = {isAuth:true}
+    
+      cache.writeQuery({
+        query: GetUserDocument,
+        data:{
+          getUser:{
+            existingUser,
+            ...newUser,
+          }
+        }
+      })
+    } catch (error) {
+    console.log(error) 
+    }
+
+      }
     });
 
     localStorage.setItem("token", data?.signin.token!);

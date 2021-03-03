@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate": "graphql-codegen"
+    "generate:dev": "graphql-codegen -r dotenv/config --config ./codegen.yaml",
+    "generate:prod": "graphql-codegen -r dotenv/config --config ./codegenProd.yaml"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
