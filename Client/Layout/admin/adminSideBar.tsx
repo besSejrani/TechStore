@@ -14,6 +14,7 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  Divider,
 } from "@material-ui/core";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -65,7 +66,8 @@ const adminSideDrawer = () => {
             </Link>
           </List>
 
-          <List subheader={<ListSubheader>Management</ListSubheader>}>
+          <Divider />
+          <List subheader={<ListSubheader>Products</ListSubheader>}>
             <ListItem
               button
               onClick={() => handleExpandClick(setProductExpand, productExpand)}
@@ -97,7 +99,10 @@ const adminSideDrawer = () => {
                 </ListItem>
               </Link>
             </Collapse>
+          </List>
+          <Divider />
 
+          <List subheader={<ListSubheader>Management</ListSubheader>}>
             <ListItem
               button
               onClick={() => handleExpandClick(setCustomerExpand, customerExpand)}
@@ -145,6 +150,8 @@ const adminSideDrawer = () => {
             </Collapse>
           </List>
 
+          <Divider />
+
           <List subheader={<ListSubheader>Blog</ListSubheader>}>
             <ListItem
               button
@@ -172,6 +179,8 @@ const adminSideDrawer = () => {
             </Collapse>
           </List>
 
+          <Divider />
+
           <List subheader={<ListSubheader>Documentation</ListSubheader>}>
             <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
               <ListItem button>
@@ -182,6 +191,7 @@ const adminSideDrawer = () => {
               </ListItem>
             </a>
           </List>
+          <Divider />
         </div>
       </Drawer>
     </Box>
