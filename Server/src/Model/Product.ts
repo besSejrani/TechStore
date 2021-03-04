@@ -38,15 +38,15 @@ export class Product {
   @Property({ default: false })
   promotion?: boolean;
 
-  @Field()
+  // @Field()
   @Property()
   productImageUrl?: string;
 
-  @Field(() => [String])
+  // @Field(() => [String])
   @Property()
   productImages?: String[];
 
-  @Field(() => [String])
+  // @Field(() => [String])
   @Property()
   options?: String[];
 

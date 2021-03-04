@@ -37,16 +37,14 @@ type Product {
   _id: ObjectId!
   description: String!
   name: String!
-  options: [String!]!
   price: Float!
-  productImageUrl: String!
-  productImages: [String!]!
   promotion: Boolean!
   stock: Float!
 }
 
 type Query {
   getCurrentUser: User
+  getProducts: [Product!]
   getUser(userId: String!): User
 }
 
