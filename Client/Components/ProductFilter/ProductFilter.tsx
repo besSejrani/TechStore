@@ -105,14 +105,14 @@ const ProductFilter = () => {
           <Box className={classes.price}>
             <TextField
               variant="outlined"
-              id="standard-basic"
+              id="minimumPrice"
               placeholder="Min"
               size="small"
               className={classes.priceInput}
             />
             <TextField
               variant="outlined"
-              id="standard-basic"
+              id="maximumPrice"
               placeholder="Max"
               size="small"
               className={classes.priceInput}

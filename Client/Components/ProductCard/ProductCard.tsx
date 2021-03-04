@@ -18,48 +18,49 @@ import AddIcon from "@material-ui/icons/Add";
 
 // ========================================================================================================
 
-interface IProduct {
+type IProduct = {
   product: {
-    id: number;
-    title: string;
+    _id: string;
+    name: string;
     price: number;
     description: string;
-    rating: number;
-    reviews: string[];
-    imageUrl: any;
-    featured?: boolean;
-    company?: string;
+    stock: number;
+    promotion: boolean;
+    // rating?: number;
+    // reviews?: string[];
+    // imageUrl?: any;
+    // company?: string;
   };
-}
+};
 
-const Product: React.FC<IProduct> = ({ product }) => {
+const Product: React.FC<IProduct> = ({ product }, loading: boolean) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
 
   return (
     <Card className={classes.root}>
-      {product ? (
+      {loading ? (
         <CardActionArea className={classes.area}>
-          <Link href="/products/[id]" as={`/products/${product.id}`}>
+          <Link href="/products/[id]" as={`/products/${product._id}`}>
             <Image
               width={300}
               height={250}
               className={classes.media}
-              onClick={() => dispatch(setSingleProduct(product.id))}
-              src={`/${product.imageUrl}`}
-              title={product.title}
+              onClick={() => dispatch(setSingleProduct(product._id))}
+              src={`/static/images/unknownProduct.png`}
+              title={product.name}
             />
           </Link>
         </CardActionArea>
       ) : (
-        <Skeleton variant="rect" animation="wave" width={320} height={273} />
+        <Skeleton variant="rect" animation="wave" width={320} height={253} />
       )}
 
       <CardContent className={classes.content}>
         <div className={classes.titlePrice}>
           <Typography variant="h6" component="h2" className={classes.title}>
-            {product.title}
+            {product.name}
           </Typography>
 
           <Typography variant="h6" color="secondary" className={classes.price}>
@@ -67,7 +68,7 @@ const Product: React.FC<IProduct> = ({ product }) => {
           </Typography>
         </div>
 
-        {product ? (
+        {loading ? (
           <Box style={{ maxWidth: 280, height: "60px", wordWrap: "break-word" }}>
             <Typography variant="body2">{product?.description.split("", 110).concat("...")}</Typography>
           </Box>
@@ -77,28 +78,29 @@ const Product: React.FC<IProduct> = ({ product }) => {
       </CardContent>
 
       <CardActions className={classes.actions}>
-        {product ? (
+        {loading ? (
           <div className={classes.rating}>
             <StyledRating
-              value={product.rating}
+              // value={product.rating}
+              value={5}
               readOnly
               size="small"
               name="customized-color"
               defaultValue={2}
               precision={0.5}
             />
-            <Typography variant="body2" className={classes.ratingReview}>
+            {/* <Typography variant="body2" className={classes.ratingReview}>
               {product.reviews.length}
-            </Typography>
+            </Typography> */}
           </div>
         ) : (
           <Skeleton variant="rect" animation="wave" width={90} height={18} />
         )}
 
-        {product ? (
+        {loading ? (
           <Button
             size="small"
-            onClick={() => dispatch(addToCart(product.id))}
+            onClick={() => dispatch(addToCart(product._id))}
             title="Add to cart"
             color="secondary"
             variant="outlined"

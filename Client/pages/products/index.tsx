@@ -8,13 +8,16 @@ import { IAppState } from "../../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts, getItemCart } from "../../Redux/product/productAction";
 
+// Apollo
+import { useGetProductsQuery } from "../../Graphql/index";
+
 // Material-Ui
 import { Container, Box, TextField, Select, MenuItem } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
 
 // Components
-import Card from "../../Components/ProductCard/ProductCard";
+import ProductCard from "../../Components/ProductCard/ProductCard";
 import ProductFilter from "../../Components/ProductFilter/ProductFilter";
 
 // Data
@@ -25,9 +28,13 @@ import { items } from "../../Data/productData";
 const Products = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
+  // const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
 
   const router = useRouter();
+
+  const { loading, data } = useGetProductsQuery();
+
+  console.log(loading);
 
   useEffect(() => {
     // Prefetch the products page
@@ -52,8 +59,8 @@ const Products = () => {
       <Box className={classes.products}>
         <ProductFilter />
         <Box className={classes.grid}>
-          {selectProducts.map((product) => {
-            return <Card key={product.id} product={product} />;
+          {data?.getProducts.map((product) => {
+            return <ProductCard key={product._id} product={product} loading={loading} />;
           })}
         </Box>
       </Box>
