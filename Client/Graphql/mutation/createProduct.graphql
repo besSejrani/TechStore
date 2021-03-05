@@ -1,5 +1,21 @@
-mutation CreateProduct($name: String!, $price: Float!, $description: String!, $stock: Float!, $promotion: Boolean!, $status: Status!) {
-  createProduct(input: { name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion, status: $status}) {
+mutation CreateProduct(
+  $name: String!
+  $price: Float!
+  $description: String!
+  $stock: Float!
+  $promotion: Boolean!
+  $status: Status!
+) {
+  createProduct(
+    input: {
+      name: $name
+      price: $price
+      description: $description
+      stock: $stock
+      promotion: $promotion
+      status: $status
+    }
+  ) {
     _id
     name
     price

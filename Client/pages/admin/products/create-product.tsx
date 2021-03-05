@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 
+// Next
+import { useRouter } from "next/router";
+
 // React-Hook-Form
 import { useForm } from "react-hook-form";
 
 // Material-UI
-import { Button, Box, Card, Typography, Tabs, Tab,RadioGroup, Radio, FormControl,FormLabel, FormControlLabel,Checkbox} from "@material-ui/core";
+import {
+  Button,
+  Box,
+  Card,
+  Typography,
+  Tabs,
+  Tab,
+  RadioGroup,
+  Radio,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  Checkbox,
+} from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Components
@@ -35,10 +51,11 @@ const CreateProductAdmin = () => {
   const [productStock, setProductStock] = useState<number>(0);
   const [productPromotion, setProductPromotion] = useState(true);
 
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setProductPromotion( !productPromotion );
+    setProductPromotion(!productPromotion);
   };
+
+  const router = useRouter();
 
   const { register, errors, handleSubmit } = useForm<FormValues>({
     criteriaMode: "all",
@@ -48,13 +65,9 @@ const CreateProductAdmin = () => {
 
   const [cardDetails, setcardDetails] = useState(true);
 
-
   const [createProduct] = useCreateProductMutation();
 
   const onSubmit = async (form) => {
-
-    console.log("form", form)
-
     await createProduct({
       variables: {
         name: form.productName,
@@ -62,14 +75,11 @@ const CreateProductAdmin = () => {
         description: form.productDescription,
         stock: parseInt(form.productStock),
         promotion: form.productPromotion,
-        status: form.productStatus
+        status: form.productStatus,
       },
     });
 
-    setProductName("");
-    setProductPrice(0);
-    setProductDescription("");
-    setProductStock(0);
+    await router.push("/admin/products");
   };
 
   const product = {
@@ -174,38 +184,42 @@ const CreateProductAdmin = () => {
             />
 
             <FormControlLabel
-              
-             
-              control={<Checkbox color="primary"  inputRef={register()} onChange={handleChange} name="productPromotion"   id="productPromotion" disableRipple checked={productPromotion} />}
+              control={
+                <Checkbox
+                  color="primary"
+                  inputRef={register()}
+                  onChange={handleChange}
+                  name="productPromotion"
+                  id="productPromotion"
+                  disableRipple
+                  checked={productPromotion}
+                />
+              }
               label="Promotion"
             />
 
-<FormControl component="fieldset">
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Status</FormLabel>
+              <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                <FormControlLabel
+                  control={<Radio color="secondary" value="DRAFT" name="productStatus" inputRef={register()} />}
+                  label="Draft"
+                  labelPlacement="end"
+                />
 
-      <FormLabel component="legend">Status</FormLabel>
-      <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                <FormControlLabel
+                  control={<Radio color="secondary" value="PUBLISHED" name="productStatus" inputRef={register()} />}
+                  label="Published"
+                  labelPlacement="end"
+                />
 
-          <FormControlLabel
-            control={<Radio color="secondary" value="DRAFT" name="productStatus" inputRef={register()}/>}
-            label="Draft"
-            labelPlacement="end"
-          />
-
-          <FormControlLabel
-            control={<Radio color="secondary" value="PUBLISHED" name="productStatus" inputRef={register()}/>}
-            label="Published"
-            labelPlacement="end"
-          />
-
-          <FormControlLabel
-            control={<Radio color="secondary" value="ARCHIVED" name="productStatus" inputRef={register()}/>}
-            label="Archived"
-            labelPlacement="end"
-          />
-
-          </RadioGroup>
-          </FormControl>
-      
+                <FormControlLabel
+                  control={<Radio color="secondary" value="ARCHIVED" name="productStatus" inputRef={register()} />}
+                  label="Archived"
+                  labelPlacement="end"
+                />
+              </RadioGroup>
+            </FormControl>
 
             <Box style={{ flexDirection: "row", marginTop: "25px" }}>
               <Button variant="contained" color="secondary" type="submit">

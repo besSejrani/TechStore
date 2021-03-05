@@ -27,6 +27,7 @@ type Mutation {
   confirmUser(token: String!): Boolean!
   createProduct(input: CreateProductInput!): Product!
   deleteProduct(productId: String!): Boolean!
+  deleteUser(userId: String!): Boolean!
   forgotPassword(email: String!): Boolean!
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
@@ -52,6 +53,7 @@ type Query {
   getProduct(productId: String!): Product
   getProducts: [Product!]
   getUser(userId: String!): User
+  getUsers: [User!]
 }
 
 input SigninInput {
@@ -78,11 +80,13 @@ input UpdateProductInput {
   name: String
   price: Float
   promotion: Boolean
+  status: Status
   stock: Float
 }
 
 type User {
   _id: ObjectId!
+  confirmed: Boolean!
   email: String!
   role: String!
   username: String!

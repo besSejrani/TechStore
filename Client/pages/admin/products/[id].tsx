@@ -7,7 +7,20 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 // Material-UI
-import { Button, Box, Card, Typography,FormControlLabel, Checkbox, Tabs, Tab } from "@material-ui/core";
+import {
+  Button,
+  Box,
+  Card,
+  Typography,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Checkbox,
+  Tabs,
+  Tab,
+} from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Components
@@ -41,9 +54,16 @@ const ModifyProductAdmin = ({ query }) => {
   const [productDescription, setProductDescription] = useState(data?.getProduct.description);
   const [productStock, setProductStock] = useState<number>(data?.getProduct.stock);
   const [productPromotion, setProductPromotion] = useState<boolean>(data?.getProduct.promotion);
+  const [productStatus, setProductStatus] = useState<string>(data?.getProduct.status);
+
+  console.log(productStatus);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setProductPromotion( !productPromotion );
+    setProductPromotion(!productPromotion);
+  };
+
+  const handleChangeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProductStatus((event.target as HTMLInputElement).value);
   };
 
   const { register, errors, handleSubmit } = useForm<FormValues>({
@@ -53,7 +73,6 @@ const ModifyProductAdmin = ({ query }) => {
   const [value, setValue] = React.useState(0);
   const [cardDetails, setcardDetails] = useState(true);
 
-
   const onSubmit = async (form) => {
     await updateProduct({
       variables: {
@@ -62,7 +81,8 @@ const ModifyProductAdmin = ({ query }) => {
         price: parseFloat(form.productPrice),
         description: form.productDescription,
         stock: parseInt(form.productStock),
-        promotion: form.productPromotion
+        promotion: form.productPromotion,
+        status: form.productStatus,
       },
     });
 
@@ -170,11 +190,70 @@ const ModifyProductAdmin = ({ query }) => {
               errors={errors}
             />
 
-
             <FormControlLabel
-              control={<Checkbox color="primary"  inputRef={register()} onChange={handleChange} name="productPromotion"   id="productPromotion" disableRipple checked={productPromotion} />}
+              control={
+                <Checkbox
+                  color="primary"
+                  inputRef={register()}
+                  onChange={handleChange}
+                  name="productPromotion"
+                  id="productPromotion"
+                  disableRipple
+                  checked={productPromotion}
+                />
+              }
               label="Promotion"
             />
+
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Status</FormLabel>
+              <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                <FormControlLabel
+                  control={
+                    <Radio
+                      color="secondary"
+                      checked={productStatus === "DRAFT"}
+                      value="DRAFT"
+                      name="productStatus"
+                      onChange={handleChangeRadio}
+                      inputRef={register()}
+                    />
+                  }
+                  label="Draft"
+                  labelPlacement="end"
+                />
+
+                <FormControlLabel
+                  control={
+                    <Radio
+                      color="secondary"
+                      checked={productStatus === "PUBLISHED"}
+                      value="PUBLISHED"
+                      name="productStatus"
+                      onChange={handleChangeRadio}
+                      inputRef={register()}
+                    />
+                  }
+                  label="Published"
+                  labelPlacement="end"
+                />
+
+                <FormControlLabel
+                  control={
+                    <Radio
+                      color="secondary"
+                      checked={productStatus === "ARCHIVED"}
+                      value="ARCHIVED"
+                      name="productStatus"
+                      onChange={handleChangeRadio}
+                      inputRef={register()}
+                    />
+                  }
+                  label="Archived"
+                  labelPlacement="end"
+                />
+              </RadioGroup>
+            </FormControl>
 
             <Box style={{ flexDirection: "row", marginTop: "25px" }}>
               <Button variant="contained" color="secondary" type="submit">

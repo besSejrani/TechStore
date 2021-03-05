@@ -54,8 +54,6 @@ const index = () => {
 
   if (loading) return <div>loading...</div>;
 
-  
-
   const columns = [
     { field: "name", headerName: "Name", flex: 1 },
     { field: "price", headerName: "Price", flex: 0.4 },
@@ -77,7 +75,7 @@ const index = () => {
           size="small"
           style={{ marginLeft: 16, borderRadius: 20 }}
         >
-          Draft
+          {params.value}
         </Button>
       ),
     },

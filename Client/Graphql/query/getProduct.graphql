@@ -6,5 +6,6 @@ query GetProduct($productId: String!) {
     description
     stock
     promotion
+    status
   }
 }

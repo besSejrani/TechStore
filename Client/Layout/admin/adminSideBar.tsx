@@ -35,7 +35,6 @@ const drawerWidth = 240;
 const adminSideDrawer = () => {
   const classes = useStyles();
 
-  const [customerExpand, setCustomerExpand] = useState(false);
   const [orderExpand, setOrderExpand] = useState(false);
   const [articleExpand, setArticleExpand] = useState(false);
 
@@ -79,30 +78,14 @@ const adminSideDrawer = () => {
           <Divider />
 
           <List subheader={<ListSubheader>Management</ListSubheader>}>
-            <ListItem
-              button
-              onClick={() => handleExpandClick(setCustomerExpand, customerExpand)}
-              aria-expanded={customerExpand}
-            >
-              <ListItemIcon>
-                <GroupIcon />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-              <ExpandMoreIcon
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: customerExpand,
-                })}
-              />
-            </ListItem>
-
-            <Collapse in={customerExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/users">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Users" />
-                </ListItem>
-              </Link>
-            </Collapse>
+            <Link href="/admin/users">
+              <ListItem button>
+                <ListItemIcon>
+                  <GroupIcon />
+                </ListItemIcon>
+                <ListItemText primary="Users" />
+              </ListItem>
+            </Link>
 
             <ListItem button onClick={() => handleExpandClick(setOrderExpand, orderExpand)} aria-expanded={orderExpand}>
               <ListItemIcon>

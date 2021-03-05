@@ -1,7 +1,22 @@
-mutation UpdateProduct($productId: String!, $name: String, $price: Float, $description: String, $stock: Float, $promotion: Boolean) {
+mutation UpdateProduct(
+  $productId: String!
+  $name: String
+  $price: Float
+  $description: String
+  $stock: Float
+  $promotion: Boolean
+  $status: Status
+) {
   updateProduct(
     productId: $productId
-    input: { name: $name, price: $price, description: $description, stock: $stock, promotion:$promotion }
+    input: {
+      name: $name
+      price: $price
+      description: $description
+      stock: $stock
+      promotion: $promotion
+      status: $status
+    }
   ) {
     _id
     name

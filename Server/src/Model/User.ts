@@ -45,6 +45,7 @@ export class User {
   @Property({ enum: ["user", "dev", "designer", "admin"], default: "user" })
   role: string;
 
+  @Field()
   @Property({ default: false })
   confirmed: boolean;
 

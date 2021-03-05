@@ -21,6 +21,7 @@ export type User = {
   username: Scalars['String'];
   email: Scalars['String'];
   role: Scalars['String'];
+  confirmed: Scalars['Boolean'];
 };
 
 
@@ -75,6 +76,7 @@ export type UpdateProductInput = {
   description?: Maybe<Scalars['String']>;
   stock?: Maybe<Scalars['Float']>;
   promotion?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<Status>;
 };
 
 export type ChangedPasswordInput = {
@@ -93,6 +95,7 @@ export type Query = {
   getProducts?: Maybe<Array<Product>>;
   getCurrentUser?: Maybe<User>;
   getUser?: Maybe<User>;
+  getUsers?: Maybe<Array<User>>;
 };
 
 
@@ -114,6 +117,7 @@ export type Mutation = {
   updateProduct: Product;
   changePassword?: Maybe<User>;
   confirmUser: Scalars['Boolean'];
+  deleteUser: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
   updateProfile?: Maybe<User>;
 };
@@ -152,6 +156,11 @@ export type MutationChangePasswordArgs = {
 
 export type MutationConfirmUserArgs = {
   token: Scalars['String'];
+};
+
+
+export type MutationDeleteUserArgs = {
+  userId: Scalars['String'];
 };
 
 
@@ -216,6 +225,16 @@ export type DeleteProductMutation = (
   & Pick<Mutation, 'deleteProduct'>
 );
 
+export type DeleteUserMutationVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type DeleteUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteUser'>
+);
+
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
 }>;
@@ -270,6 +289,7 @@ export type UpdateProductMutationVariables = Exact<{
   description?: Maybe<Scalars['String']>;
   stock?: Maybe<Scalars['Float']>;
   promotion?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<Status>;
 }>;
 
 
@@ -315,7 +335,7 @@ export type GetProductQuery = (
   { __typename?: 'Query' }
   & { getProduct?: Maybe<(
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
   )> }
 );
 
@@ -341,6 +361,17 @@ export type GetUserQuery = (
     { __typename?: 'User' }
     & Pick<User, '_id' | 'username' | 'email'>
   )> }
+);
+
+export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUsersQuery = (
+  { __typename?: 'Query' }
+  & { getUsers?: Maybe<Array<(
+    { __typename?: 'User' }
+    & Pick<User, '_id' | 'username' | 'email' | 'role' | 'confirmed'>
+  )>> }
 );
 
 
@@ -484,6 +515,36 @@ export function useDeleteProductMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteProductMutationHookResult = ReturnType<typeof useDeleteProductMutation>;
 export type DeleteProductMutationResult = Apollo.MutationResult<DeleteProductMutation>;
 export type DeleteProductMutationOptions = Apollo.BaseMutationOptions<DeleteProductMutation, DeleteProductMutationVariables>;
+export const DeleteUserDocument = gql`
+    mutation DeleteUser($userId: String!) {
+  deleteUser(userId: $userId)
+}
+    `;
+export type DeleteUserMutationFn = Apollo.MutationFunction<DeleteUserMutation, DeleteUserMutationVariables>;
+
+/**
+ * __useDeleteUserMutation__
+ *
+ * To run a mutation, you first call `useDeleteUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteUserMutation, { data, loading, error }] = useDeleteUserMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useDeleteUserMutation(baseOptions?: Apollo.MutationHookOptions<DeleteUserMutation, DeleteUserMutationVariables>) {
+        return Apollo.useMutation<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, baseOptions);
+      }
+export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>;
+export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>;
+export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>;
 export const ForgotPasswordDocument = gql`
     mutation ForgotPassword($email: String!) {
   forgotPassword(email: $email)
@@ -590,10 +651,10 @@ export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
 export const UpdateProductDocument = gql`
-    mutation UpdateProduct($productId: String!, $name: String, $price: Float, $description: String, $stock: Float, $promotion: Boolean) {
+    mutation UpdateProduct($productId: String!, $name: String, $price: Float, $description: String, $stock: Float, $promotion: Boolean, $status: Status) {
   updateProduct(
     productId: $productId
-    input: {name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion}
+    input: {name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion, status: $status}
   ) {
     _id
     name
@@ -625,6 +686,7 @@ export type UpdateProductMutationFn = Apollo.MutationFunction<UpdateProductMutat
  *      description: // value for 'description'
  *      stock: // value for 'stock'
  *      promotion: // value for 'promotion'
+ *      status: // value for 'status'
  *   },
  * });
  */
@@ -714,6 +776,7 @@ export const GetProductDocument = gql`
     description
     stock
     promotion
+    status
   }
 }
     `;
@@ -816,3 +879,39 @@ export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
 export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
 export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export const GetUsersDocument = gql`
+    query GetUsers {
+  getUsers {
+    _id
+    username
+    email
+    role
+    confirmed
+  }
+}
+    `;
+
+/**
+ * __useGetUsersQuery__
+ *
+ * To run a query within a React component, call `useGetUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUsersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+        return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
+      }
+export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+          return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
+        }
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
+export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;

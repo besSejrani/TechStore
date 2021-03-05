@@ -11,17 +11,25 @@ import { Button, Container, makeStyles } from "@material-ui/core";
 // Components
 import Card from "../ProductCard/ProductCard";
 
+import { useGetProductsQuery } from "../../Graphql/index";
+
 // ========================================================================================================
 
 const Promotions = () => {
   const classes = useStyles();
   const selectFeature = useSelector((state: IAppState) => state.product.featuredProducts);
 
+  const { data, loading } = useGetProductsQuery();
+
+  if (loading) return <div>loading ...</div>;
+
   return (
     <Container>
       <section className={classes.root}>
-        {selectFeature.map((product) => {
-          return <Card key={product.id} product={product} />;
+        {data?.getProducts.map((product) => {
+          if (product.status === "PUBLISHED") {
+            return <Card key={product._id} product={product} />;
+          }
         })}
       </section>
 

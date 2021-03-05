@@ -1,5 +1,6 @@
 //GraphQL
 import { InputType, Field } from "type-graphql";
+import { Status } from "./statusEnum";
 
 // ========================================================================================================
 
@@ -17,6 +18,9 @@ export class UpdateProductInput {
   @Field({ nullable: true })
   stock?: number;
 
-  @Field({nullable:true})
+  @Field({ nullable: true })
   promotion?: boolean;
+
+  @Field(() => Status, { nullable: true })
+  status: Status;
 }
