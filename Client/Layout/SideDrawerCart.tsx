@@ -4,7 +4,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { Drawer, Divider, Button, CardMedia } from "@material-ui/core";
+// Material-UI
+import { Drawer, Divider, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 //Redux

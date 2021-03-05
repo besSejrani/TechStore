@@ -14,25 +14,28 @@ export class Product {
 
   @Field()
   @Property({
-    required: [true, "Please provide a product name"],
+    // required: [true, "Please provide a product name"],
     unique: true,
     trim: true,
     minlength: 2,
     maxlength: 20,
   })
-  name: string;
+  name?: string;
 
   @Field()
-  @Property({ required: [true, "Please provide a product price"] })
+  @Property()
+  // { required: [true, "Please provide a product price"] }
   price: number;
 
   @Field()
-  @Property({ required: [true, "Please provide a product description"], trim: true, minlength: 20, maxlength: 250 })
-  description: string;
+  @Property()
+  // { required: [true, "Please provide a product description"], trim: true, minlength: 20, maxlength: 250 }
+  description?: string;
 
-  @Field()
-  @Property({ required: [true, "Please provide a product stock"] })
-  stock: number;
+  @Field({ nullable: true })
+  @Property()
+  // { required: [true, "Please provide a product stock"] }
+  stock?: number;
 
   @Field()
   @Property({ default: false })

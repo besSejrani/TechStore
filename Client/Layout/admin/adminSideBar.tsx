@@ -36,7 +36,6 @@ const adminSideDrawer = () => {
   const classes = useStyles();
 
   const [customerExpand, setCustomerExpand] = useState(false);
-  const [productExpand, setProductExpand] = useState(false);
   const [orderExpand, setOrderExpand] = useState(false);
   const [articleExpand, setArticleExpand] = useState(false);
 
@@ -68,37 +67,14 @@ const adminSideDrawer = () => {
 
           <Divider />
           <List subheader={<ListSubheader>Products</ListSubheader>}>
-            <ListItem
-              button
-              onClick={() => handleExpandClick(setProductExpand, productExpand)}
-              aria-expanded={productExpand}
-            >
-              <ListItemIcon>
-                <FormatListNumberedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Products" />
-              <ExpandMoreIcon
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: productExpand,
-                })}
-              />
-            </ListItem>
-
-            <Collapse in={productExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/products/">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Products" />
-                </ListItem>
-              </Link>
-
-              <Link href="/admin/products/create-product">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="Create Product" />
-                </ListItem>
-              </Link>
-            </Collapse>
+            <Link href="/admin/products/">
+              <ListItem button>
+                <ListItemIcon>
+                  <FormatListNumberedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Products" />
+              </ListItem>
+            </Link>
           </List>
           <Divider />
 

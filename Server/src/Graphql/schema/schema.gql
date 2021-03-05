@@ -24,9 +24,11 @@ type Mutation {
   changePassword(input: ChangedPasswordInput!): User
   confirmUser(token: String!): Boolean!
   createProduct(input: CreateProductInput!): Product!
+  deleteProduct(productId: String!): Boolean!
   forgotPassword(email: String!): Boolean!
   signin(input: SigninInput!): UserResponse!
   signup(input: SignupInput!): UserResponse!
+  updateProduct(input: UpdateProductInput!, productId: String!): Product!
   updateProfile(data: ChangedProfileInput!): User
 }
 
@@ -39,11 +41,12 @@ type Product {
   name: String!
   price: Float!
   promotion: Boolean!
-  stock: Float!
+  stock: Float
 }
 
 type Query {
   getCurrentUser: User
+  getProduct(productId: String!): Product
   getProducts: [Product!]
   getUser(userId: String!): User
 }
@@ -57,6 +60,13 @@ input SignupInput {
   email: String!
   password: String!
   username: String!
+}
+
+input UpdateProductInput {
+  description: String
+  name: String
+  price: Float
+  stock: Float
 }
 
 type User {

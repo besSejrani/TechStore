@@ -9,12 +9,12 @@ import { Box, Container, Typography, TextField, IconButton, Divider } from "@mat
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Icons
-// import GithubIcon from "@material-ui/icons/GitHub";
-// import DocumentationIcon from "@material-ui/icons/Description";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import YoutubeIcon from "@material-ui/icons/YouTube";
+
+// ========================================================================================================
 
 const Footer = () => {
   const classes = useStyles();
@@ -114,13 +114,6 @@ const Footer = () => {
           </Typography>
 
           <Box>
-            {/* <IconButton>
-              <DocumentationIcon style={{ color: "white" }} />
-            </IconButton>
-
-            <IconButton>
-              <GithubIcon style={{ color: "white" }} />
-            </IconButton> */}
             <IconButton>
               <FacebookIcon style={{ color: "white" }} />
             </IconButton>
