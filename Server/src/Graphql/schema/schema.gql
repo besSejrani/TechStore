@@ -17,6 +17,8 @@ input CreateProductInput {
   description: String!
   name: String!
   price: Float!
+  promotion: Boolean!
+  status: Status!
   stock: Float!
 }
 
@@ -41,7 +43,8 @@ type Product {
   name: String!
   price: Float!
   promotion: Boolean!
-  stock: Float
+  status: String!
+  stock: Float!
 }
 
 type Query {
@@ -62,10 +65,19 @@ input SignupInput {
   username: String!
 }
 
+"""Status product enum"""
+enum Status {
+  """The other left"""
+  ARCHIVED
+  DRAFT
+  PUBLISHED
+}
+
 input UpdateProductInput {
   description: String
   name: String
   price: Float
+  promotion: Boolean
   stock: Float
 }
 

@@ -1,5 +1,6 @@
 //GraphQL
 import { InputType, Field } from "type-graphql";
+import {Status} from "./statusEnum"
 
 // ========================================================================================================
 
@@ -16,4 +17,10 @@ export class CreateProductInput {
 
   @Field()
   stock: number;
+
+  @Field()
+  promotion: boolean;
+
+  @Field(()=> Status)
+  status: Status
 }

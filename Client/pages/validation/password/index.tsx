@@ -30,7 +30,6 @@ const SignIn = () => {
   const classes = useStyles();
 
   const [email, setEmail] = useState("");
-  const [confirmEmail, setconfirmEmail] = useState("");
 
   const { register, errors, handleSubmit } = useForm<FormValues>({
     criteriaMode: "all",
@@ -41,10 +40,6 @@ const SignIn = () => {
   const [signUp] = useForgotPasswordMutation();
 
   const onSubmit = async (form) => {
-    if (email !== confirmEmail) {
-      await alert("passwords don't match");
-      return;
-    }
 
     const { data } = await signUp({
       variables: { email: form.email },
@@ -91,19 +86,6 @@ const SignIn = () => {
                   errors={errors}
                 />
 
-                <InputForm
-                  type="email"
-                  name="confirmEmail"
-                  id="confirmEMail"
-                  label="Confirm Email"
-                  inputRef={register({
-                    required: "This field is required",
-                    minLength: { value: 8, message: "Your confirm email should contain minimum 8 characters" },
-                  })}
-                  value={confirmEmail}
-                  onChange={setconfirmEmail}
-                  errors={errors}
-                />
                 <Box className={classes.actionButtons}>
                   <Button type="submit" variant="outlined" color="secondary">
                     Reset Password

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 // Material-UI
-import { Button, Box, Card, Typography, Tabs, Tab } from "@material-ui/core";
+import { Button, Box, Card, Typography,FormControlLabel, Checkbox, Tabs, Tab } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Components
@@ -40,6 +40,11 @@ const ModifyProductAdmin = ({ query }) => {
   const [productPrice, setProductPrice] = useState<number>(data?.getProduct.price);
   const [productDescription, setProductDescription] = useState(data?.getProduct.description);
   const [productStock, setProductStock] = useState<number>(data?.getProduct.stock);
+  const [productPromotion, setProductPromotion] = useState<boolean>(data?.getProduct.promotion);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProductPromotion( !productPromotion );
+  };
 
   const { register, errors, handleSubmit } = useForm<FormValues>({
     criteriaMode: "all",
@@ -47,9 +52,7 @@ const ModifyProductAdmin = ({ query }) => {
 
   const [value, setValue] = React.useState(0);
   const [cardDetails, setcardDetails] = useState(true);
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+
 
   const onSubmit = async (form) => {
     await updateProduct({
@@ -59,6 +62,7 @@ const ModifyProductAdmin = ({ query }) => {
         price: parseFloat(form.productPrice),
         description: form.productDescription,
         stock: parseInt(form.productStock),
+        promotion: form.productPromotion
       },
     });
 
@@ -164,6 +168,12 @@ const ModifyProductAdmin = ({ query }) => {
               value={productStock}
               onChange={setProductStock}
               errors={errors}
+            />
+
+
+            <FormControlLabel
+              control={<Checkbox color="primary"  inputRef={register()} onChange={handleChange} name="productPromotion"   id="productPromotion" disableRipple checked={productPromotion} />}
+              label="Promotion"
             />
 
             <Box style={{ flexDirection: "row", marginTop: "25px" }}>

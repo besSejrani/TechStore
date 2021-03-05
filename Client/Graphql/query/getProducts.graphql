@@ -6,5 +6,6 @@ query GetProducts {
     description
     stock
     promotion
+    status
   }
 }

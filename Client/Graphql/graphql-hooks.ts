@@ -36,8 +36,9 @@ export type Product = {
   name: Scalars['String'];
   price: Scalars['Float'];
   description: Scalars['String'];
-  stock?: Maybe<Scalars['Float']>;
+  stock: Scalars['Float'];
   promotion: Scalars['Boolean'];
+  status: Scalars['String'];
 };
 
 export type SigninInput = {
@@ -56,13 +57,24 @@ export type CreateProductInput = {
   price: Scalars['Float'];
   description: Scalars['String'];
   stock: Scalars['Float'];
+  promotion: Scalars['Boolean'];
+  status: Status;
 };
+
+/** Status product enum */
+export enum Status {
+  Draft = 'DRAFT',
+  Published = 'PUBLISHED',
+  /** The other left */
+  Archived = 'ARCHIVED'
+}
 
 export type UpdateProductInput = {
   name?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
   description?: Maybe<Scalars['String']>;
   stock?: Maybe<Scalars['Float']>;
+  promotion?: Maybe<Scalars['Boolean']>;
 };
 
 export type ChangedPasswordInput = {
@@ -181,6 +193,8 @@ export type CreateProductMutationVariables = Exact<{
   price: Scalars['Float'];
   description: Scalars['String'];
   stock: Scalars['Float'];
+  promotion: Scalars['Boolean'];
+  status: Status;
 }>;
 
 
@@ -188,7 +202,7 @@ export type CreateProductMutation = (
   { __typename?: 'Mutation' }
   & { createProduct: (
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
   ) }
 );
 
@@ -255,6 +269,7 @@ export type UpdateProductMutationVariables = Exact<{
   price?: Maybe<Scalars['Float']>;
   description?: Maybe<Scalars['String']>;
   stock?: Maybe<Scalars['Float']>;
+  promotion?: Maybe<Scalars['Boolean']>;
 }>;
 
 
@@ -311,7 +326,7 @@ export type GetProductsQuery = (
   { __typename?: 'Query' }
   & { getProducts?: Maybe<Array<(
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
   )>> }
 );
 
@@ -395,9 +410,9 @@ export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMuta
 export type ConfirmUserMutationResult = Apollo.MutationResult<ConfirmUserMutation>;
 export type ConfirmUserMutationOptions = Apollo.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
 export const CreateProductDocument = gql`
-    mutation CreateProduct($name: String!, $price: Float!, $description: String!, $stock: Float!) {
+    mutation CreateProduct($name: String!, $price: Float!, $description: String!, $stock: Float!, $promotion: Boolean!, $status: Status!) {
   createProduct(
-    input: {name: $name, price: $price, description: $description, stock: $stock}
+    input: {name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion, status: $status}
   ) {
     _id
     name
@@ -405,6 +420,7 @@ export const CreateProductDocument = gql`
     description
     stock
     promotion
+    status
   }
 }
     `;
@@ -427,6 +443,8 @@ export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutat
  *      price: // value for 'price'
  *      description: // value for 'description'
  *      stock: // value for 'stock'
+ *      promotion: // value for 'promotion'
+ *      status: // value for 'status'
  *   },
  * });
  */
@@ -572,10 +590,10 @@ export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
 export const UpdateProductDocument = gql`
-    mutation UpdateProduct($productId: String!, $name: String, $price: Float, $description: String, $stock: Float) {
+    mutation UpdateProduct($productId: String!, $name: String, $price: Float, $description: String, $stock: Float, $promotion: Boolean) {
   updateProduct(
     productId: $productId
-    input: {name: $name, price: $price, description: $description, stock: $stock}
+    input: {name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion}
   ) {
     _id
     name
@@ -606,6 +624,7 @@ export type UpdateProductMutationFn = Apollo.MutationFunction<UpdateProductMutat
  *      price: // value for 'price'
  *      description: // value for 'description'
  *      stock: // value for 'stock'
+ *      promotion: // value for 'promotion'
  *   },
  * });
  */
@@ -733,6 +752,7 @@ export const GetProductsDocument = gql`
     description
     stock
     promotion
+    status
   }
 }
     `;

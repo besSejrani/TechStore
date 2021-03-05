@@ -16,4 +16,7 @@ export class UpdateProductInput {
 
   @Field({ nullable: true })
   stock?: number;
+
+  @Field({nullable:true})
+  promotion?: boolean;
 }

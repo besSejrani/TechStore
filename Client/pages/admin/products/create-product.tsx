@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // Material-UI
-import { Button, Box, Card, Typography, Tabs, Tab } from "@material-ui/core";
+import { Button, Box, Card, Typography, Tabs, Tab,RadioGroup, Radio, FormControl,FormLabel, FormControlLabel,Checkbox} from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // Components
@@ -23,6 +23,7 @@ type FormValues = {
   productPrice: number;
   productDescription: string;
   productStock: number;
+  productPromotion: boolean;
 };
 
 const CreateProductAdmin = () => {
@@ -32,6 +33,12 @@ const CreateProductAdmin = () => {
   const [productPrice, setProductPrice] = useState<number>(0);
   const [productDescription, setProductDescription] = useState("");
   const [productStock, setProductStock] = useState<number>(0);
+  const [productPromotion, setProductPromotion] = useState(true);
+
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProductPromotion( !productPromotion );
+  };
 
   const { register, errors, handleSubmit } = useForm<FormValues>({
     criteriaMode: "all",
@@ -41,19 +48,21 @@ const CreateProductAdmin = () => {
 
   const [cardDetails, setcardDetails] = useState(true);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
 
   const [createProduct] = useCreateProductMutation();
 
   const onSubmit = async (form) => {
+
+    console.log("form", form)
+
     await createProduct({
       variables: {
         name: form.productName,
         price: parseFloat(form.productPrice),
         description: form.productDescription,
         stock: parseInt(form.productStock),
+        promotion: form.productPromotion,
+        status: form.productStatus
       },
     });
 
@@ -163,6 +172,40 @@ const CreateProductAdmin = () => {
               onChange={setProductStock}
               errors={errors}
             />
+
+            <FormControlLabel
+              
+             
+              control={<Checkbox color="primary"  inputRef={register()} onChange={handleChange} name="productPromotion"   id="productPromotion" disableRipple checked={productPromotion} />}
+              label="Promotion"
+            />
+
+<FormControl component="fieldset">
+
+      <FormLabel component="legend">Status</FormLabel>
+      <RadioGroup row aria-label="position" name="position" defaultValue="top">
+
+          <FormControlLabel
+            control={<Radio color="secondary" value="DRAFT" name="productStatus" inputRef={register()}/>}
+            label="Draft"
+            labelPlacement="end"
+          />
+
+          <FormControlLabel
+            control={<Radio color="secondary" value="PUBLISHED" name="productStatus" inputRef={register()}/>}
+            label="Published"
+            labelPlacement="end"
+          />
+
+          <FormControlLabel
+            control={<Radio color="secondary" value="ARCHIVED" name="productStatus" inputRef={register()}/>}
+            label="Archived"
+            labelPlacement="end"
+          />
+
+          </RadioGroup>
+          </FormControl>
+      
 
             <Box style={{ flexDirection: "row", marginTop: "25px" }}>
               <Button variant="contained" color="secondary" type="submit">

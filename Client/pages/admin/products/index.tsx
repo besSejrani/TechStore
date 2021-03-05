@@ -54,6 +54,8 @@ const index = () => {
 
   if (loading) return <div>loading...</div>;
 
+  
+
   const columns = [
     { field: "name", headerName: "Name", flex: 1 },
     { field: "price", headerName: "Price", flex: 0.4 },
@@ -105,7 +107,7 @@ const index = () => {
       price: product.price,
       stock: product.stock,
       promotion: product.promotion,
-      status: "",
+      status: product.status,
       actions: "",
     };
   });
