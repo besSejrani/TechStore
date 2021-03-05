@@ -20,6 +20,10 @@
 <a>
     <img src="https://img.shields.io/badge/Heroku-API-blueviolet" alt="BlueberryShop Logo">
 </a>
+
+<a>
+    <img src="https://img.shields.io/badge/Cypress-Enabled-success" alt="BlueberryShop Logo">
+</a>
 </div>
 
 # Documentation
