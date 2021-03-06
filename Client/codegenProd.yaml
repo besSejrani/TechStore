@@ -1,6 +1,6 @@
 overwrite: true
 schema: ${NEXT_PUBLIC_PRODUCTION_SERVER}
-documents: "./Graphql/**/*.graphql"
+documents: "./Graphql/**/**/*.graphql"
 # watch: true
 generates:
   Graphql/graphql-hooks.ts:

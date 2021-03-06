@@ -89,7 +89,6 @@ const PreviewProduct = ({ product }) => {
 
         <Box className={classes.item}>
           <Typography variant="h6" style={{ fontSize: "1.2rem" }}>
-            {" "}
             Price
           </Typography>
           <Typography variant="body1"> {product.price}.-</Typography>
@@ -97,11 +96,9 @@ const PreviewProduct = ({ product }) => {
 
         <Box className={classes.item}>
           <Typography variant="h6" style={{ fontSize: "1.2rem" }}>
-            {" "}
             Description
           </Typography>
           <Typography className={classes.description} variant="body1">
-            {" "}
             {product.description}
           </Typography>
         </Box>

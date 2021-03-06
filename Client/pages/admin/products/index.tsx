@@ -116,7 +116,7 @@ const index = () => {
         <Box className={classes.header}>
           <Breadcrumbs aria-label="breadcrumb">
             <MaterialLink color="inherit" href="/">
-              Dashboard
+              Administration
             </MaterialLink>
             <MaterialLink color="inherit" href="/getting-started/installation/">
               Management

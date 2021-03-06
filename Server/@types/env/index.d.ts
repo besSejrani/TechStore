@@ -22,5 +22,9 @@ declare namespace NodeJS {
     TWITTER_API_KEY: string;
     TWITTER_API_SECRET_KEY: string;
     TWITTER_BEARER_TOKEN: string;
+
+    AMAZON_S3_BUCKET: string;
+    AMAZON_KEY_ID: string;
+    AMAZON_SECRET_ACCESS_KEY: string;
   }
 }

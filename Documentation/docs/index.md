@@ -20,7 +20,7 @@
 
 ## AWS
 
-- [ ] Upload images on S3
+- [x] Upload images on S3
 
 <hr/>
 

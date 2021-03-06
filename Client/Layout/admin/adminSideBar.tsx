@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Next
 import Link from "next/link";
@@ -13,14 +13,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Collapse,
   Divider,
 } from "@material-ui/core";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
 //Icons
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import GroupIcon from "@material-ui/icons/Group";
 import MailIcon from "@material-ui/icons/Mail";
@@ -32,15 +30,8 @@ import DescriptionIcon from "@material-ui/icons/Description";
 
 const drawerWidth = 240;
 
-const adminSideDrawer = () => {
+const AdminSideDrawer = () => {
   const classes = useStyles();
-
-  const [orderExpand, setOrderExpand] = useState(false);
-  const [articleExpand, setArticleExpand] = useState(false);
-
-  const handleExpandClick = (setExpanded, expand) => {
-    setExpanded(!expand);
-  };
 
   return (
     <Box className={classes.root}>
@@ -86,56 +77,27 @@ const adminSideDrawer = () => {
                 <ListItemText primary="Users" />
               </ListItem>
             </Link>
-
-            <ListItem button onClick={() => handleExpandClick(setOrderExpand, orderExpand)} aria-expanded={orderExpand}>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Orders" />
-              <ExpandMoreIcon
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: orderExpand,
-                })}
-              />
-            </ListItem>
-
-            <Collapse in={orderExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/orders">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Orders" />
-                </ListItem>
-              </Link>
-            </Collapse>
+            <Link href="/admin/orders">
+              <ListItem button>
+                <ListItemIcon>
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Orders" />
+              </ListItem>
+            </Link>
           </List>
 
           <Divider />
 
           <List subheader={<ListSubheader>Blog</ListSubheader>}>
-            <ListItem
-              button
-              onClick={() => handleExpandClick(setArticleExpand, articleExpand)}
-              aria-expanded={articleExpand}
-            >
-              <ListItemIcon>
-                <SubjectIcon />
-              </ListItemIcon>
-              <ListItemText primary="Articles" />
-              <ExpandMoreIcon
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: articleExpand,
-                })}
-              />
-            </ListItem>
-
-            <Collapse in={articleExpand} timeout="auto" unmountOnExit>
-              <Link href="/admin/articles/">
-                <ListItem button>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary="List Articles" />
-                </ListItem>
-              </Link>
-            </Collapse>
+            <Link href="/admin/articles/">
+              <ListItem button>
+                <ListItemIcon>
+                  <SubjectIcon />
+                </ListItemIcon>
+                <ListItemText primary="Articles" />
+              </ListItem>
+            </Link>
           </List>
 
           <Divider />
@@ -157,7 +119,7 @@ const adminSideDrawer = () => {
   );
 };
 
-export default adminSideDrawer;
+export default AdminSideDrawer;
 
 // ========================================================================================================
 

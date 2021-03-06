@@ -23,6 +23,7 @@ input CreateProductInput {
 }
 
 type Mutation {
+  addProfilePicture(picture: Upload!): Boolean!
   changePassword(input: ChangedPasswordInput!): User
   confirmUser(token: String!): Boolean!
   createProduct(input: CreateProductInput!): Product!
@@ -83,6 +84,9 @@ input UpdateProductInput {
   status: Status
   stock: Float
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   _id: ObjectId!
