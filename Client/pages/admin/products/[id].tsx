@@ -18,8 +18,6 @@ import {
   RadioGroup,
   Radio,
   Checkbox,
-  Tabs,
-  Tab,
 } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
@@ -27,7 +25,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import InputForm from "../../../Components/InputForm/InputForm";
 import UploadFile from "../../../Components/UploadFile/UploadFile";
 import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
-import PreviewProductCard from "../../../Components/PreviewProductCard/PreviewProductCard";
 
 // Apollo
 import { useUpdateProductMutation, useGetProductQuery } from "../../../Graphql/index";
@@ -70,9 +67,6 @@ const ModifyProductAdmin = ({ query }) => {
     criteriaMode: "all",
   });
 
-  const [value, setValue] = React.useState(0);
-  const [cardDetails, setcardDetails] = useState(true);
-
   const onSubmit = async (form) => {
     await updateProduct({
       variables: {
@@ -108,18 +102,13 @@ const ModifyProductAdmin = ({ query }) => {
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
 
-  const renderForm = () => {
-    if (cardDetails) {
-      return <PreviewProduct product={product} />;
-    } else {
-      return <PreviewProductCard product={product} />;
-    }
-  };
-
   return (
     <Box className={classes.root}>
       <Card elevation={1} className={classes.card}>
-        <Box className={classes.preview}>{renderForm()}</Box>
+        <Box className={classes.preview}>
+          <PreviewProduct product={product} />
+        </Box>
+
         <Box className={classes.content}>
           <Box>
             <Typography variant="h4" style={{ fontSize: "1.85rem" }}>
@@ -262,19 +251,6 @@ const ModifyProductAdmin = ({ query }) => {
             </Box>
           </form>
         </Box>
-        <Box className={classes.tabsContainer}>
-          <Tabs
-            className={classes.tabs}
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-          >
-            <Tab label="Details" className={classes.tab} disabled={cardDetails} onClick={() => setcardDetails(true)} />
-            <Tab label="Card" className={classes.tab} disabled={!cardDetails} onClick={() => setcardDetails(false)} />
-          </Tabs>
-        </Box>
       </Card>
     </Box>
   );
@@ -323,22 +299,6 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       margin: "45px 0px 0px 0px",
-    },
-    tabsContainer: {
-      position: "absolute",
-      bottom: "0px",
-      right: "0px",
-      display: "flex",
-      width: "100%",
-      justifyContent: "flex-end",
-    },
-    tabs: {
-      width: "50%",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    tab: {
-      width: "50%",
     },
   })
 );

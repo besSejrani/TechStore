@@ -1,23 +1,19 @@
 import React from "react";
 import Link from "next/link";
 
-// Redux
-import { IAppState } from "../../Redux/rootReducer";
-import { useSelector } from "react-redux";
-
 //Material-UI
 import { Button, Container, makeStyles } from "@material-ui/core";
 
 // Components
 import Card from "../ProductCard/ProductCard";
 
+// Apollo
 import { useGetProductsQuery } from "../../Graphql/index";
 
 // ========================================================================================================
 
 const Promotions = () => {
   const classes = useStyles();
-  const selectFeature = useSelector((state: IAppState) => state.product.featuredProducts);
 
   const { data, loading } = useGetProductsQuery();
 

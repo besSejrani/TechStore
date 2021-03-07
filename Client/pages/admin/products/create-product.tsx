@@ -12,8 +12,6 @@ import {
   Box,
   Card,
   Typography,
-  Tabs,
-  Tab,
   RadioGroup,
   Radio,
   FormControl,
@@ -27,10 +25,9 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import InputForm from "../../../Components/InputForm/InputForm";
 import UploadFile from "../../../Components/UploadFile/UploadFile";
 import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
-import PreviewProductCard from "../../../Components/PreviewProductCard/PreviewProductCard";
 
 // Apollo
-import { useCreateProductMutation } from "../../../Graphql/index";
+import { useCreateProductMutation, GetProductsDocument } from "../../../Graphql/index";
 
 // ========================================================================================================
 
@@ -49,7 +46,7 @@ const CreateProductAdmin = () => {
   const [productPrice, setProductPrice] = useState<number>(0);
   const [productDescription, setProductDescription] = useState("");
   const [productStock, setProductStock] = useState<number>(0);
-  const [productPromotion, setProductPromotion] = useState(true);
+  const [productPromotion, setProductPromotion] = useState<boolean>(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProductPromotion(!productPromotion);
@@ -60,10 +57,6 @@ const CreateProductAdmin = () => {
   const { register, errors, handleSubmit } = useForm<FormValues>({
     criteriaMode: "all",
   });
-
-  const [value, setValue] = React.useState(0);
-
-  const [cardDetails, setcardDetails] = useState(true);
 
   const [createProduct] = useCreateProductMutation();
 
@@ -76,6 +69,20 @@ const CreateProductAdmin = () => {
         stock: parseInt(form.productStock),
         promotion: form.productPromotion,
         status: form.productStatus,
+      },
+      update(cache, { data }) {
+        const newProduct = data?.createProduct;
+
+        const products = cache.readQuery({
+          query: GetProductsDocument,
+        });
+
+        cache.writeQuery({
+          query: GetProductsDocument,
+          data: {
+            getProducts: [...products?.getProducts, product],
+          },
+        });
       },
     });
 
@@ -101,18 +108,13 @@ const CreateProductAdmin = () => {
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
 
-  const renderForm = () => {
-    if (cardDetails) {
-      return <PreviewProduct product={product} />;
-    } else {
-      return <PreviewProductCard product={product} />;
-    }
-  };
-
   return (
     <Box className={classes.root}>
       <Card elevation={1} className={classes.card}>
-        <Box className={classes.preview}>{renderForm()}</Box>
+        <Box className={classes.preview}>
+          <PreviewProduct product={product} />
+        </Box>
+
         <Box className={classes.content}>
           <Box>
             <Typography variant="h4" style={{ fontSize: "1.85rem" }}>
@@ -228,19 +230,6 @@ const CreateProductAdmin = () => {
             </Box>
           </form>
         </Box>
-        <Box className={classes.tabsContainer}>
-          <Tabs
-            className={classes.tabs}
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-          >
-            <Tab label="Details" className={classes.tab} disabled={cardDetails} onClick={() => setcardDetails(true)} />
-            <Tab label="Card" className={classes.tab} disabled={!cardDetails} onClick={() => setcardDetails(false)} />
-          </Tabs>
-        </Box>
       </Card>
     </Box>
   );
@@ -285,22 +274,6 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       margin: "45px 0px 0px 0px",
-    },
-    tabsContainer: {
-      position: "absolute",
-      bottom: "0px",
-      right: "0px",
-      display: "flex",
-      width: "100%",
-      justifyContent: "flex-end",
-    },
-    tabs: {
-      width: "50%",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    tab: {
-      width: "50%",
     },
   })
 );

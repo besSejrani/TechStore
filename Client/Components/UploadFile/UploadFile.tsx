@@ -32,11 +32,9 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
 
   const saveFileUpload = (files) => {
     setFile((prevState) => ({ ...prevState, open: false, files }));
-    console.log(files);
+
     setMediaPreview(window.URL.createObjectURL(files[0]));
     setMultipleMediaPreview(files.map((file) => window.URL.createObjectURL(file)));
-
-    console.log(multipleMediaPreview);
   };
 
   const openFileUpload = () => {

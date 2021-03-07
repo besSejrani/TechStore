@@ -1,5 +1,6 @@
 import React from "react";
 
+// Material-UI
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,6 +14,8 @@ import { Container, Typography } from "@material-ui/core";
 // Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useSelector } from "react-redux";
+
+// ========================================================================================================
 
 const Checkout = () => {
   const classes = useStyles();

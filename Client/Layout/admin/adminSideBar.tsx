@@ -4,19 +4,8 @@ import React from "react";
 import Link from "next/link";
 
 // Material-UI
-import {
-  Box,
-  Drawer,
-  Toolbar,
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-} from "@material-ui/core";
+import { Box, Drawer, Toolbar, List, ListSubheader, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 
 //Icons
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
@@ -44,7 +33,7 @@ const AdminSideDrawer = () => {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-          <List subheader={<ListSubheader>Dashboards</ListSubheader>}>
+          <List subheader={<ListSubheader>Management</ListSubheader>}>
             <Link href="/admin/dashboards/">
               <ListItem button>
                 <ListItemIcon>
@@ -53,10 +42,7 @@ const AdminSideDrawer = () => {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-          </List>
 
-          <Divider />
-          <List subheader={<ListSubheader>Products</ListSubheader>}>
             <Link href="/admin/products/">
               <ListItem button>
                 <ListItemIcon>
@@ -65,10 +51,7 @@ const AdminSideDrawer = () => {
                 <ListItemText primary="Products" />
               </ListItem>
             </Link>
-          </List>
-          <Divider />
 
-          <List subheader={<ListSubheader>Management</ListSubheader>}>
             <Link href="/admin/users">
               <ListItem button>
                 <ListItemIcon>
@@ -77,6 +60,7 @@ const AdminSideDrawer = () => {
                 <ListItemText primary="Users" />
               </ListItem>
             </Link>
+
             <Link href="/admin/orders">
               <ListItem button>
                 <ListItemIcon>
@@ -87,32 +71,23 @@ const AdminSideDrawer = () => {
             </Link>
           </List>
 
-          <Divider />
+          <Link href="/admin/articles/">
+            <ListItem button>
+              <ListItemIcon>
+                <SubjectIcon />
+              </ListItemIcon>
+              <ListItemText primary="Articles" />
+            </ListItem>
+          </Link>
 
-          <List subheader={<ListSubheader>Blog</ListSubheader>}>
-            <Link href="/admin/articles/">
-              <ListItem button>
-                <ListItemIcon>
-                  <SubjectIcon />
-                </ListItemIcon>
-                <ListItemText primary="Articles" />
-              </ListItem>
-            </Link>
-          </List>
-
-          <Divider />
-
-          <List subheader={<ListSubheader>Documentation</ListSubheader>}>
-            <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
-              <ListItem button>
-                <ListItemIcon>
-                  <DescriptionIcon />
-                </ListItemIcon>
-                <ListItemText primary="Documentation" />
-              </ListItem>
-            </a>
-          </List>
-          <Divider />
+          <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
+            <ListItem button>
+              <ListItemIcon>
+                <DescriptionIcon />
+              </ListItemIcon>
+              <ListItemText primary="Documentation" />
+            </ListItem>
+          </a>
         </div>
       </Drawer>
     </Box>
@@ -141,16 +116,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerContainer: {
       overflow: "auto",
-    },
-    expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: "rotate(180deg)",
     },
   })
 );

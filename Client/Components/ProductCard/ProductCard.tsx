@@ -42,7 +42,7 @@ const Product: React.FC<IProduct> = ({ product }, loading: boolean) => {
     <Card className={classes.root}>
       {loading ? (
         <CardActionArea className={classes.area}>
-          <Link href="/products/[id]" as={`/products/${product._id}`}>
+          <Link href="/products/[id]" as={`/products/${product._id}`} passHref>
             <Image
               width={300}
               height={250}

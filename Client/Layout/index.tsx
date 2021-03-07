@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 
 // ========================================================================================================
 
-const index = ({ children }) => {
+const Layout = ({ children }) => {
   const selectIsAdmin = useSelector((state: IAppState) => state.ui.isAdmin);
 
   return (
@@ -45,6 +45,6 @@ const index = ({ children }) => {
   );
 };
 
-export default withTheme(index);
+export default withTheme(Layout);
 
 // =================================================================

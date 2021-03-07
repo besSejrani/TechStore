@@ -105,7 +105,6 @@ const PreviewProduct = ({ product }) => {
 
         <Box className={classes.item}>
           <Typography variant="h6" style={{ fontSize: "1.2rem" }}>
-            {" "}
             Stock
           </Typography>
           <Typography variant="body1"> {product.stock}</Typography>

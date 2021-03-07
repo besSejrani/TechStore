@@ -23,6 +23,10 @@ import ModifyIcon from "@material-ui/icons/Create";
 //Apollo
 import { useGetProductsQuery, useDeleteProductMutation } from "../../../Graphql/index";
 
+// SSR
+import withApollo from "../../../Apollo/ssr";
+import { getDataFromTree } from "@apollo/react-ssr";
+
 // ========================================================================================================
 
 const index = () => {
@@ -49,7 +53,24 @@ const index = () => {
   }
 
   const deleteProduct = async (productId) => {
-    const { data } = await deleteProductMutation({ variables: { productId } });
+    const { data } = await deleteProductMutation({
+      variables: { productId },
+
+      // update(cache, { data }) {
+      //   const newProduct = data?.createProduct;
+
+      //   const products = cache.readQuery({
+      //     query: GetProductsDocument,
+      //   });
+
+      //   cache.writeQuery({
+      //     query: GetProductsDocument,
+      //     data: {
+      //       getProducts: [...products?.getProducts, product],
+      //     },
+      //   });
+      // },
+    });
   };
 
   if (loading) return <div>loading...</div>;
@@ -151,7 +172,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default withApollo(index, { getDataFromTree });
 
 // ========================================================================================================
 
