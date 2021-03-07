@@ -41,3 +41,13 @@
 ## Github Pages
 
 <hr/>
+
+<hr/>
+
+## Sources
+
+| Source                                      |   Author   |                                                                                         URI |
+| :------------------------------------------ | :--------: | ------------------------------------------------------------------------------------------: |
+| Prevent Your Free Heroku Dyno From Sleeping | Hackernoon | [Link](https://hackernoon.com/how-to-prevent-your-free-heroku-dyno-from-sleeping-dggxo3bi2) |
+
+<hr/>
