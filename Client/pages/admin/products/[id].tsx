@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Next
 import { useRouter } from "next/router";
@@ -29,6 +29,10 @@ import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
 // Apollo
 import { useUpdateProductMutation, useGetProductQuery } from "../../../Graphql/index";
 
+// SSR
+import withApollo from "../../../Apollo/ssr";
+import { getDataFromTree } from "@apollo/react-ssr";
+
 // ========================================================================================================
 
 type FormValues = {
@@ -42,18 +46,18 @@ const ModifyProductAdmin = ({ query }) => {
   const classes = useStyles();
 
   const [updateProduct] = useUpdateProductMutation();
-  const { data } = useGetProductQuery({ variables: { productId: query.id } });
+  const { data } = useGetProductQuery({
+    variables: { productId: query.id },
+  });
 
   const router = useRouter();
 
-  const [productName, setProductName] = useState(data?.getProduct.name);
-  const [productPrice, setProductPrice] = useState<number>(data?.getProduct.price);
-  const [productDescription, setProductDescription] = useState(data?.getProduct.description);
-  const [productStock, setProductStock] = useState<number>(data?.getProduct.stock);
-  const [productPromotion, setProductPromotion] = useState<boolean>(data?.getProduct.promotion);
-  const [productStatus, setProductStatus] = useState<string>(data?.getProduct.status);
-
-  console.log(productStatus);
+  const [productName, setProductName] = useState(data?.getProduct?.name);
+  const [productPrice, setProductPrice] = useState<number>(data?.getProduct?.price);
+  const [productDescription, setProductDescription] = useState(data?.getProduct?.description);
+  const [productStock, setProductStock] = useState<number>(data?.getProduct?.stock);
+  const [productPromotion, setProductPromotion] = useState<boolean>(data?.getProduct?.promotion);
+  const [productStatus, setProductStatus] = useState<string>(data?.getProduct?.status);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProductPromotion(!productPromotion);
@@ -256,11 +260,11 @@ const ModifyProductAdmin = ({ query }) => {
   );
 };
 
-export default ModifyProductAdmin;
-
 ModifyProductAdmin.getInitialProps = async ({ query }) => {
   return { query };
 };
+
+export default withApollo(ModifyProductAdmin, { getDataFromTree });
 
 // ========================================================================================================
 

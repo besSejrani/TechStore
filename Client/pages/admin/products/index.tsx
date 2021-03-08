@@ -21,7 +21,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ModifyIcon from "@material-ui/icons/Create";
 
 //Apollo
-import { useGetProductsQuery, useDeleteProductMutation } from "../../../Graphql/index";
+import {
+  useGetProductsQuery,
+  useDeleteProductMutation,
+  GetProductsDocument,
+  GetProductsQuery,
+} from "../../../Graphql/index";
 
 // SSR
 import withApollo from "../../../Apollo/ssr";
@@ -56,20 +61,20 @@ const index = () => {
     const { data } = await deleteProductMutation({
       variables: { productId },
 
-      // update(cache, { data }) {
-      //   const newProduct = data?.createProduct;
+      update(cache, { data }) {
+        const { getProducts }: GetProductsQuery = cache.readQuery({
+          query: GetProductsDocument,
+        });
 
-      //   const products = cache.readQuery({
-      //     query: GetProductsDocument,
-      //   });
+        const newProducts = getProducts.filter((product) => product._id !== data.deleteProduct);
 
-      //   cache.writeQuery({
-      //     query: GetProductsDocument,
-      //     data: {
-      //       getProducts: [...products?.getProducts, product],
-      //     },
-      //   });
-      // },
+        cache.writeQuery({
+          query: GetProductsDocument,
+          data: {
+            getProducts: { newProducts },
+          },
+        });
+      },
     });
   };
 
@@ -89,13 +94,7 @@ const index = () => {
       headerName: "Status",
       flex: 0.4,
       renderCell: (params: GridCellParams) => (
-        <Button
-          onClick={() => console.log(params)}
-          variant="outlined"
-          color="secondary"
-          size="small"
-          style={{ marginLeft: 16, borderRadius: 20 }}
-        >
+        <Button variant="outlined" color="secondary" size="small" style={{ marginLeft: 16, borderRadius: 20 }}>
           {params.value}
         </Button>
       ),
@@ -172,6 +171,7 @@ const index = () => {
   );
 };
 
+// export default index;
 export default withApollo(index, { getDataFromTree });
 
 // ========================================================================================================

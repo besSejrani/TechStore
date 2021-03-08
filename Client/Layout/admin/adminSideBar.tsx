@@ -52,6 +52,15 @@ const AdminSideDrawer = () => {
               </ListItem>
             </Link>
 
+            <Link href="/admin/promotions/">
+              <ListItem button>
+                <ListItemIcon>
+                  <FormatListNumberedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Promotions" />
+              </ListItem>
+            </Link>
+
             <Link href="/admin/users">
               <ListItem button>
                 <ListItemIcon>

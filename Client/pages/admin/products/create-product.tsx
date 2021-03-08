@@ -27,7 +27,11 @@ import UploadFile from "../../../Components/UploadFile/UploadFile";
 import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
 
 // Apollo
-import { useCreateProductMutation, GetProductsDocument } from "../../../Graphql/index";
+import { useCreateProductMutation, GetProductsDocument, GetProductsQuery } from "../../../Graphql/index";
+
+// SSR
+import withApollo from "../../../Apollo/ssr";
+import { getDataFromTree } from "@apollo/react-ssr";
 
 // ========================================================================================================
 
@@ -46,7 +50,7 @@ const CreateProductAdmin = () => {
   const [productPrice, setProductPrice] = useState<number>(0);
   const [productDescription, setProductDescription] = useState("");
   const [productStock, setProductStock] = useState<number>(0);
-  const [productPromotion, setProductPromotion] = useState<boolean>(true);
+  const [productPromotion, setProductPromotion] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProductPromotion(!productPromotion);
@@ -73,14 +77,14 @@ const CreateProductAdmin = () => {
       update(cache, { data }) {
         const newProduct = data?.createProduct;
 
-        const products = cache.readQuery({
+        const products: GetProductsQuery = cache.readQuery({
           query: GetProductsDocument,
         });
 
         cache.writeQuery({
           query: GetProductsDocument,
           data: {
-            getProducts: [...products?.getProducts, product],
+            getProducts: [...products?.getProducts, newProduct],
           },
         });
       },
@@ -234,8 +238,7 @@ const CreateProductAdmin = () => {
     </Box>
   );
 };
-
-export default CreateProductAdmin;
+export default withApollo(CreateProductAdmin, { getDataFromTree });
 
 // ========================================================================================================
 

@@ -21,7 +21,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ModifyIcon from "@material-ui/icons/Create";
 
 //Apollo
-import { useGetUsersQuery, useDeleteUserMutation } from "../../../Graphql/index";
+import { useGetUsersQuery, useDeleteUserMutation, GetUsersDocument, GetUsersQuery } from "../../../Graphql/index";
 
 // ========================================================================================================
 
@@ -49,7 +49,26 @@ const index = () => {
   }
 
   const deleteUser = async (userId) => {
-    const { data } = await deleteUserMutation({ variables: { userId } });
+    const { data } = await deleteUserMutation({
+      variables: { userId },
+
+      update(cache, { data }) {
+        const { getUsers }: GetUsersQuery = cache.readQuery({
+          query: GetUsersDocument,
+        });
+
+        const newUsers = getUsers.filter((user) => user._id !== data.deleteUser);
+
+        debugger;
+
+        cache.writeQuery({
+          query: GetUsersDocument,
+          data: {
+            getUsers: { newUsers },
+          },
+        });
+      },
+    });
   };
 
   if (loading) return <div>loading...</div>;

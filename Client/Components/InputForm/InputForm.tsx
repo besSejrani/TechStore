@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // React-Hook-Form
 import { ErrorMessage } from "@hookform/error-message";
@@ -33,6 +33,7 @@ const inputForm: React.FC<inputType> = ({
   onChange,
   errors,
 }) => {
+  // console.log(value);
   return (
     <>
       <TextField
