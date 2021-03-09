@@ -171,8 +171,7 @@ const index = () => {
   );
 };
 
-// export default index;
-export default withApollo(index, { getDataFromTree });
+export default withApollo(index);
 
 // ========================================================================================================
 

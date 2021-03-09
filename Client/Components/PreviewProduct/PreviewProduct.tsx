@@ -24,7 +24,6 @@ const PreviewProduct = ({ product }) => {
   const classes = useStyles();
 
   const [activeStep, setActiveStep] = React.useState(0);
-  const [expanded, setExpanded] = React.useState<string | false>(false);
   let maxSteps = product.images.length;
 
   const handleNext = () => {

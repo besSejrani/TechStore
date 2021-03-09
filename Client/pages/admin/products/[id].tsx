@@ -29,7 +29,7 @@ import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
 // Apollo
 import { useUpdateProductMutation, useGetProductQuery } from "../../../Graphql/index";
 
-// SSR
+// // SSR
 import withApollo from "../../../Apollo/ssr";
 import { getDataFromTree } from "@apollo/react-ssr";
 
@@ -42,16 +42,27 @@ type FormValues = {
   productStock: number;
 };
 
-const ModifyProductAdmin = ({ query }) => {
+const ModifyProductAdmin = () => {
   const classes = useStyles();
 
-  const [updateProduct] = useUpdateProductMutation();
-  const { data } = useGetProductQuery({
-    variables: { productId: query.id },
+  // Form
+  const { register, errors, handleSubmit } = useForm<FormValues>({
+    criteriaMode: "all",
   });
 
+  // Route
   const router = useRouter();
+  const { query } = router;
 
+  // Update Product
+  const [updateProduct] = useUpdateProductMutation();
+
+  // Get Product
+  const { data, loading } = useGetProductQuery({
+    variables: { productId: query.id as string },
+  });
+
+  // State
   const [productName, setProductName] = useState(data?.getProduct?.name);
   const [productPrice, setProductPrice] = useState<number>(data?.getProduct?.price);
   const [productDescription, setProductDescription] = useState(data?.getProduct?.description);
@@ -59,6 +70,7 @@ const ModifyProductAdmin = ({ query }) => {
   const [productPromotion, setProductPromotion] = useState<boolean>(data?.getProduct?.promotion);
   const [productStatus, setProductStatus] = useState<string>(data?.getProduct?.status);
 
+  // Events
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProductPromotion(!productPromotion);
   };
@@ -67,14 +79,11 @@ const ModifyProductAdmin = ({ query }) => {
     setProductStatus((event.target as HTMLInputElement).value);
   };
 
-  const { register, errors, handleSubmit } = useForm<FormValues>({
-    criteriaMode: "all",
-  });
-
+  // Submit Form
   const onSubmit = async (form) => {
     await updateProduct({
       variables: {
-        productId: query.id,
+        productId: query.id as string,
         name: form.productName,
         price: parseFloat(form.productPrice),
         description: form.productDescription,
@@ -87,6 +96,7 @@ const ModifyProductAdmin = ({ query }) => {
     await router.push("/admin/products");
   };
 
+  // Fake Data
   const product = {
     id: 0,
     title: productName,
@@ -105,6 +115,9 @@ const ModifyProductAdmin = ({ query }) => {
     rating: 4,
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   };
+
+  // Loader
+  if (loading) return <h1>Loading ...</h1>;
 
   return (
     <Box className={classes.root}>
@@ -258,10 +271,6 @@ const ModifyProductAdmin = ({ query }) => {
       </Card>
     </Box>
   );
-};
-
-ModifyProductAdmin.getInitialProps = async ({ query }) => {
-  return { query };
 };
 
 export default withApollo(ModifyProductAdmin, { getDataFromTree });

@@ -13,7 +13,6 @@ import { store } from "../Redux/store";
 // Apollo
 import { client } from "../Apollo/index";
 import { ApolloProvider } from "@apollo/client";
-
 // ========================================================================================================
 
 const App = ({ Component, pageProps }) => {

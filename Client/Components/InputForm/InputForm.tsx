@@ -33,7 +33,7 @@ const inputForm: React.FC<inputType> = ({
   onChange,
   errors,
 }) => {
-  // console.log(value);
+  console.log(value);
   return (
     <>
       <TextField
