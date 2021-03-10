@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 
 // Redux
-import { IAppState } from "../Redux/rootReducer";
-import { useDispatch, useSelector } from "react-redux";
-import { sidebarToggle } from "../Redux/ui/uiAction";
+// import { IAppState } from "../Redux/rootReducer";
+// import { useDispatch, useSelector } from "react-redux";
+// import { sidebarToggle } from "../Redux/ui/uiAction";
 
 // Material-Ui
 import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@material-ui/core";
@@ -27,9 +27,6 @@ type Anchor = "left";
 
 const SideDrawer: React.FC<any> = () => {
   const classes = useStyles();
-
-  const isSideDrawerOpen = useSelector((state: IAppState) => state.ui.sidebarOpen);
-  const dispatch = useDispatch();
 
   const changeSideBar = () => {
     ui({ isSideBarOpen: false });

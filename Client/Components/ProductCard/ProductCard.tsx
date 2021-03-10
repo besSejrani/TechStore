@@ -16,6 +16,10 @@ import { withStyles } from "@material-ui/core/styles";
 // Icons
 import AddIcon from "@material-ui/icons/Add";
 
+// Apollo State
+// import { useReactiveVar } from "@apollo/client";
+// import { product as productState } from "../../Apollo/state/product/index";
+
 // ========================================================================================================
 
 type IProduct = {
@@ -89,9 +93,6 @@ const Product: React.FC<IProduct> = ({ product }, loading: boolean) => {
               defaultValue={2}
               precision={0.5}
             />
-            {/* <Typography variant="body2" className={classes.ratingReview}>
-              {product.reviews.length}
-            </Typography> */}
           </div>
         ) : (
           <Skeleton variant="rect" animation="wave" width={90} height={18} />
