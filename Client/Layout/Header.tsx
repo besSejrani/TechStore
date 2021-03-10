@@ -29,10 +29,10 @@ import SearchIcon from "@material-ui/icons/Search";
 // Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart, sidebarToggle } from "../Redux/ui/uiAction";
 
 // Apollo State
-import {getUI} from "../Apollo/state/ui"
+import { useReactiveVar } from "@apollo/client";
+import { ui } from "../Apollo/state/ui/index";
 
 // ========================================================================================================
 
@@ -54,14 +54,19 @@ const HideOnScroll = (props: Props) => {
 
 const Header = () => {
   const classes = useStyles();
-
-  const dispatch = useDispatch();
   const selectProducts = useSelector((state: IAppState) => state.product.cartItems);
 
-  const changeState = () => {
-    getUI({cartOpen:true, isAdmin: true, isUser:false, sidebarOpen:false })
-      console.log(getUI())
-  }
+  const changeAdmin = () => {
+    ui({ isAdmin: true });
+  };
+
+  const changeCart = () => {
+    ui({ isCartOpen: true });
+  };
+
+  const changeSideBar = () => {
+    ui({ isSideBarOpen: true });
+  };
 
   return (
     <header className={classes.root}>
@@ -76,7 +81,7 @@ const Header = () => {
                     className={classes.menuButton}
                     color="inherit"
                     aria-label="menu"
-                    onClick={() => dispatch(sidebarToggle())}
+                    onClick={changeSideBar}
                   >
                     <MenuIcon />
                   </IconButton>
@@ -109,8 +114,8 @@ const Header = () => {
                       Blog
                     </Typography>
                   </Link>
-                  <Button variant="outlined" color="secondary" onClick={ changeState}>
-                      toggle admin
+                  <Button variant="outlined" color="secondary" onClick={changeAdmin}>
+                    toggle admin
                   </Button>
                 </Hidden>
               </Box>
@@ -120,7 +125,7 @@ const Header = () => {
                   <SearchIcon className="nav-icon" />
                 </IconButton>
 
-                <IconButton color="inherit" onClick={() => dispatch(sidebarCart())}>
+                <IconButton color="inherit" onClick={changeCart}>
                   <StyledBadge badgeContent={selectProducts} color="secondary" overlap="circle">
                     <CartIcon className="nav-icon" />
                   </StyledBadge>

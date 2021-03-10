@@ -1,8 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
-import {getUI} from "./state/ui/index"
-
+import { ui } from "./state/ui/index";
 
 // const token = localStorage.getItem("token");
 
@@ -28,17 +27,17 @@ const authLink = setContext((_, { headers }) => {
 export const client = new ApolloClient({
   link: authLink.concat(link),
   connectToDevTools: true,
-  cache: new InMemoryCache({ 
+  cache: new InMemoryCache({
     typePolicies: {
       Query: {
         fields: {
-          getUI: {
+          ui: {
             read() {
-              return getUI();
+              return ui();
             },
           },
         },
       },
-},
-}),
+    },
+  }),
 });

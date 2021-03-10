@@ -1,24 +1,24 @@
 import withApollo from "next-with-apollo";
 import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
-import {getUI} from "./state/ui"
+import { ui } from "./state/ui";
 
 export default withApollo(
   ({ initialState }) => {
     return new ApolloClient({
       uri: "http://localhost:4000/graphql",
-      cache: new InMemoryCache({ 
+      cache: new InMemoryCache({
         typePolicies: {
           Query: {
             fields: {
-              getUI: {
+              ui: {
                 read() {
-                  return getUI();
+                  return ui();
                 },
               },
             },
           },
         },
-  }).restore(initialState || {}),
+      }).restore(initialState || {}),
       ssrMode: typeof window === "undefined",
     });
   },

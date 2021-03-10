@@ -17,18 +17,24 @@ import QueueIcon from "@material-ui/icons/Queue";
 import DocumentationIcon from "@material-ui/icons/Description";
 import GithubIcon from "@material-ui/icons/GitHub";
 
+// Apollo State
+import { useReactiveVar } from "@apollo/client";
+import { ui } from "../Apollo/state/ui/index";
+
 // ========================================================================================================
 
 type Anchor = "left";
 
 const SideDrawer: React.FC<any> = () => {
   const classes = useStyles();
-  const [installable, setInstallable] = useState(false);
-
-  let defferedPrompt: any = useRef(null);
-  const dispatch = useDispatch();
 
   const isSideDrawerOpen = useSelector((state: IAppState) => state.ui.sidebarOpen);
+  const dispatch = useDispatch();
+
+  const changeSideBar = () => {
+    ui({ isSideBarOpen: false });
+  };
+  const sideBar = useReactiveVar(ui);
 
   const list = (anchor: Anchor) => (
     <div className={classes.list}>
@@ -91,7 +97,7 @@ const SideDrawer: React.FC<any> = () => {
     <div>
       {(["left"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Drawer anchor={anchor} open={isSideDrawerOpen} onClose={() => dispatch(sidebarToggle())}>
+          <Drawer anchor={anchor} open={sideBar.isSideBarOpen} onClose={() => changeSideBar()}>
             {list(anchor)}
           </Drawer>
         </React.Fragment>

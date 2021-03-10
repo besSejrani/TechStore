@@ -5,16 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Material-UI
-import { Drawer, Divider, Button } from "@material-ui/core";
+import { Drawer, Divider, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 //Redux
 import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCart } from "../Redux/ui/uiAction";
 import { increment, remove, decrement, clearCart, setSingleProduct } from "../Redux/product/productAction";
 
-import { Typography } from "@material-ui/core";
+// Apollo State
+import { useReactiveVar } from "@apollo/client";
+import { ui } from "../Apollo/state/ui/index";
 
 // ========================================================================================================
 
@@ -24,11 +25,13 @@ const SideDrawerCart: React.FC<any> = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const selectCartOpen = useSelector((state: IAppState) => state.ui.cartOpen);
   const selectCart = useSelector((state: IAppState) => state.product.cart);
   const selectCartTotal = useSelector((state: IAppState) => state.product.cartTotal);
 
-  const isSideDrawerOpen = useSelector((state: IAppState) => state.ui.sidebarOpen);
+  const changeCart = () => {
+    ui({ isCartOpen: false });
+  };
+  const cart = useReactiveVar(ui);
 
   const list = (anchor: Anchor) => (
     <div className={classes.list}>
@@ -108,7 +111,7 @@ const SideDrawerCart: React.FC<any> = () => {
     <div>
       {(["right"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Drawer anchor={anchor} open={selectCartOpen} onClose={() => dispatch(sidebarCart())}>
+          <Drawer anchor={anchor} open={cart.isCartOpen} onClose={() => changeCart()}>
             {list(anchor)}
           </Drawer>
         </React.Fragment>
