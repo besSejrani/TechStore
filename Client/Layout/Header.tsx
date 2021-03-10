@@ -31,6 +31,9 @@ import { IAppState } from "../Redux/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCart, sidebarToggle } from "../Redux/ui/uiAction";
 
+// Apollo State
+import {getUI} from "../Apollo/state/ui"
+
 // ========================================================================================================
 
 interface Props {
@@ -54,6 +57,11 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const selectProducts = useSelector((state: IAppState) => state.product.cartItems);
+
+  const changeState = () => {
+    getUI({cartOpen:true, isAdmin: true, isUser:false, sidebarOpen:false })
+      console.log(getUI())
+  }
 
   return (
     <header className={classes.root}>
@@ -101,6 +109,9 @@ const Header = () => {
                       Blog
                     </Typography>
                   </Link>
+                  <Button variant="outlined" color="secondary" onClick={ changeState}>
+                      toggle admin
+                  </Button>
                 </Hidden>
               </Box>
 

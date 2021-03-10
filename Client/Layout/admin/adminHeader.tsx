@@ -5,13 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Material-UI
-import { AppBar, Toolbar, Typography, Box } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Box, Button } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+
+// Apollo State
+import {getUI} from "../../Apollo/state/ui"
 
 // ========================================================================================================
 
 const adminHeader = () => {
   const classes = useStyles();
+
+  const changeState = () => {
+    getUI({cartOpen:true, isAdmin: false, isUser:false, sidebarOpen:false })
+      console.log(getUI())
+  }
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -29,6 +37,9 @@ const adminHeader = () => {
             <Typography variant="h6">BlueberryShop</Typography>
           </Box>
         </Link>
+        <Button variant="outlined" color="secondary" onClick={ changeState}>
+                      toggle admin
+                  </Button>
       </Toolbar>
     </AppBar>
   );
