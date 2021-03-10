@@ -1,8 +1,8 @@
 mutation CreateProduct(
   $name: String!
-  $price: Float!
+  $price: String!
   $description: String!
-  $stock: Float!
+  $stock: String!
   $promotion: Boolean!
   $status: Status!
 ) {

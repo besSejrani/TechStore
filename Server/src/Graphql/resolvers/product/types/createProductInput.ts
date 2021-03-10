@@ -1,6 +1,6 @@
 //GraphQL
 import { InputType, Field } from "type-graphql";
-import {Status} from "./statusEnum"
+import { Status } from "./statusEnum";
 
 // ========================================================================================================
 
@@ -10,17 +10,17 @@ export class CreateProductInput {
   name: string;
 
   @Field()
-  price: number;
+  price: string;
 
   @Field()
   description: string;
 
   @Field()
-  stock: number;
+  stock: string;
 
   @Field()
   promotion: boolean;
 
-  @Field(()=> Status)
-  status: Status
+  @Field(() => Status)
+  status: Status;
 }

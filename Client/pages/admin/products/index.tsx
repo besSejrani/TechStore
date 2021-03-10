@@ -58,7 +58,7 @@ const index = () => {
   }
 
   const deleteProduct = async (productId) => {
-    const { data } = await deleteProductMutation({
+    await deleteProductMutation({
       variables: { productId },
 
       update(cache, { data }) {

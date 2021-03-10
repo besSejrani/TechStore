@@ -16,10 +16,10 @@ input ChangedProfileInput {
 input CreateProductInput {
   description: String!
   name: String!
-  price: Float!
+  price: String!
   promotion: Boolean!
   status: Status!
-  stock: Float!
+  stock: String!
 }
 
 type Mutation {
