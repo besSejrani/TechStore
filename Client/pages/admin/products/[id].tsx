@@ -160,6 +160,8 @@ const ModifyProductAdmin = () => {
               label="Price"
               inputRef={register({
                 required: "This field is required",
+                maxLength: { value: 5, message: "The product price should contain maximum 5 digits" },
+                min: { value: 0, message: "The product price can not be a negative number" },
               })}
               value={productPrice}
               onChange={setProductPrice}
@@ -190,6 +192,8 @@ const ModifyProductAdmin = () => {
               label="Stock"
               inputRef={register({
                 required: "This field is required",
+                maxLength: { value: 5, message: "The product stock should contain maximum 5 digits" },
+                min: { value: 0, message: "The product stock an not be a negative number" },
               })}
               value={productStock}
               onChange={setProductStock}

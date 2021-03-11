@@ -7,6 +7,10 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 //Material-UI Dropzone
 import { DropzoneDialog } from "material-ui-dropzone";
 
+// Apollo State
+import { useReactiveVar } from "@apollo/client";
+import { product } from "../../Apollo/state/product/index";
+
 // ========================================================================================================
 
 type UploadFileType = {
@@ -22,6 +26,8 @@ const initialState = {
 const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
   const classes = useStyles();
 
+  const files = useReactiveVar(product);
+
   const [file, setFile] = useState(initialState);
   const [mediaPreview, setMediaPreview] = useState("");
   const [multipleMediaPreview, setMultipleMediaPreview] = useState([]);
@@ -34,7 +40,7 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
     setFile((prevState) => ({ ...prevState, open: false, files }));
 
     setMediaPreview(window.URL.createObjectURL(files[0]));
-    setMultipleMediaPreview(files.map((file) => window.URL.createObjectURL(file)));
+    product({ products: files.map((file) => window.URL.createObjectURL(file)) });
   };
 
   const openFileUpload = () => {

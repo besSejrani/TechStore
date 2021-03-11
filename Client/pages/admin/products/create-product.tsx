@@ -29,6 +29,10 @@ import PreviewProduct from "../../../Components/PreviewProduct/PreviewProduct";
 // Apollo
 import { useCreateProductMutation, GetProductsDocument, GetProductsQuery } from "../../../Graphql/index";
 
+// Apollo State
+import { useReactiveVar } from "@apollo/client";
+import { product as imagesUrl } from "../../../Apollo/state/product/index";
+
 // SSR
 import withApollo from "../../../Apollo/ssr";
 import { getDataFromTree } from "@apollo/react-ssr";
@@ -45,6 +49,8 @@ type FormValues = {
 
 const CreateProductAdmin = () => {
   const classes = useStyles();
+
+  const images = useReactiveVar(imagesUrl);
 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState<number>(0);
@@ -103,11 +109,7 @@ const CreateProductAdmin = () => {
     featured: false,
     options: [],
     imageUrl: "static/images/computeModule3+/1.webp",
-    images: [
-      "static/images/computeModule3+/1.webp",
-      "static/images/computeModule3+/2.webp",
-      "static/images/computeModule3+/3.webp",
-    ],
+    images: images.products,
     stock: productStock,
     rating: 4,
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
@@ -154,7 +156,8 @@ const CreateProductAdmin = () => {
               label="Price"
               inputRef={register({
                 required: "This field is required",
-                maxLength: { value: 5, message: "The product name should contain maximum 5 digits" },
+                maxLength: { value: 5, message: "The product price should contain maximum 5 digits" },
+                min: { value: 0, message: "The product price can not be a negative number" },
               })}
               value={productPrice}
               onChange={setProductPrice}
@@ -186,7 +189,7 @@ const CreateProductAdmin = () => {
               inputRef={register({
                 required: "This field is required",
                 maxLength: { value: 5, message: "The product stock should contain maximum 5 digits" },
-                min: { value: 0, message: "The product stock an not be a negative number" },
+                min: { value: 0, message: "The product stock can not be a negative number" },
               })}
               value={productStock}
               onChange={setProductStock}

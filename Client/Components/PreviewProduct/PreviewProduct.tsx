@@ -1,7 +1,4 @@
-import React from "react";
-
-// Next
-import Image from "next/image";
+import React, { useState } from "react";
 
 // Material-UI
 import theme from "../../Layout/Theme";
@@ -23,7 +20,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const PreviewProduct = ({ product }) => {
   const classes = useStyles();
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   let maxSteps = product.images.length;
 
   const handleNext = () => {
@@ -40,43 +37,47 @@ const PreviewProduct = ({ product }) => {
 
   return (
     <Box className={classes.root}>
-      <Card style={{ borderRadius: "10px" }}>
-        <AutoPlaySwipeableViews
-          interval={3500}
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
-          style={{ width: "100%" }}
-        >
-          {product.images.map((product) => {
-            return (
-              <CardActionArea className={classes.area} key={product.label} disableRipple>
-                <Image width={400} height={300} src={`/${product}`} title={product.title} alt={product.label} />
-              </CardActionArea>
-            );
-          })}
-        </AutoPlaySwipeableViews>
-        <MobileStepper
-          style={{ background: "none" }}
-          steps={maxSteps}
-          position="static"
-          variant="dots"
-          activeStep={activeStep}
-          nextButton={
-            <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-              Next
-              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              Back
-            </Button>
-          }
-        />
-      </Card>
+      {product.images.length > 0 ? (
+        <Card style={{ borderRadius: "10px" }}>
+          <AutoPlaySwipeableViews
+            interval={3500}
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={activeStep}
+            onChangeIndex={handleStepChange}
+            enableMouseEvents
+            style={{ width: "100%" }}
+          >
+            {product?.images.map((product, index) => {
+              return (
+                <CardActionArea key={index} className={classes.area} disableRipple>
+                  <img width={520} height={350} src={`${product}`} title={product.title} alt={product.label} />
+                </CardActionArea>
+              );
+            })}
+          </AutoPlaySwipeableViews>
+          <MobileStepper
+            style={{ background: "none" }}
+            steps={maxSteps}
+            position="static"
+            variant="dots"
+            activeStep={activeStep}
+            nextButton={
+              <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                Next
+                {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
+            }
+            backButton={
+              <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                Back
+              </Button>
+            }
+          />
+        </Card>
+      ) : (
+        <></>
+      )}
 
       <Box className={classes.content}>
         <Box className={classes.item}>
