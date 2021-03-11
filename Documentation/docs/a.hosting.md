@@ -20,7 +20,7 @@
 
 ## Heroku
 
-### Server Devlopment
+### Server Development
 
 | Service |              URI              | Port |
 | :------ | :---------------------------: | ---: |
@@ -39,8 +39,6 @@
 <hr/>
 
 ## Github Pages
-
-<hr/>
 
 <hr/>
 
