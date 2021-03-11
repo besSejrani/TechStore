@@ -10,6 +10,8 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 //Icons
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import GroupIcon from "@material-ui/icons/Group";
+import TimerIcon from "@material-ui/icons/Timer";
+import ReceiptIcon from "@material-ui/icons/Receipt";
 import MailIcon from "@material-ui/icons/Mail";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
 import SubjectIcon from "@material-ui/icons/Subject";
@@ -33,7 +35,7 @@ const AdminSideDrawer = () => {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-          <List subheader={<ListSubheader>Management</ListSubheader>}>
+          <List subheader={<ListSubheader>Dashboard</ListSubheader>}>
             <Link href="/admin/dashboards/">
               <ListItem button>
                 <ListItemIcon>
@@ -42,7 +44,9 @@ const AdminSideDrawer = () => {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
+          </List>
 
+          <List subheader={<ListSubheader>Products</ListSubheader>}>
             <Link href="/admin/products/">
               <ListItem button>
                 <ListItemIcon>
@@ -55,12 +59,13 @@ const AdminSideDrawer = () => {
             <Link href="/admin/promotions/">
               <ListItem button>
                 <ListItemIcon>
-                  <FormatListNumberedIcon />
+                  <TimerIcon />
                 </ListItemIcon>
                 <ListItemText primary="Promotions" />
               </ListItem>
             </Link>
-
+          </List>
+          <List subheader={<ListSubheader>Management</ListSubheader>}>
             <Link href="/admin/users">
               <ListItem button>
                 <ListItemIcon>
@@ -73,30 +78,45 @@ const AdminSideDrawer = () => {
             <Link href="/admin/orders">
               <ListItem button>
                 <ListItemIcon>
-                  <MailIcon />
+                  <ReceiptIcon />
                 </ListItemIcon>
                 <ListItemText primary="Orders" />
               </ListItem>
             </Link>
           </List>
 
-          <Link href="/admin/articles/">
-            <ListItem button>
-              <ListItemIcon>
-                <SubjectIcon />
-              </ListItemIcon>
-              <ListItemText primary="Articles" />
-            </ListItem>
-          </Link>
+          <List subheader={<ListSubheader>Blog</ListSubheader>}>
+            <Link href="/admin/articles/">
+              <ListItem button>
+                <ListItemIcon>
+                  <SubjectIcon />
+                </ListItemIcon>
+                <ListItemText primary="Articles" />
+              </ListItem>
+            </Link>
+          </List>
 
-          <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
-            <ListItem button>
-              <ListItemIcon>
-                <DescriptionIcon />
-              </ListItemIcon>
-              <ListItemText primary="Documentation" />
-            </ListItem>
-          </a>
+          <List subheader={<ListSubheader>Newsletter</ListSubheader>}>
+            <Link href="/admin/dashboards/">
+              <ListItem button>
+                <ListItemIcon>
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Newsletter" />
+              </ListItem>
+            </Link>
+          </List>
+
+          <List subheader={<ListSubheader>Documentation</ListSubheader>}>
+            <a href="https://bessejrani.github.io/BlueberryShop/" target="_blank">
+              <ListItem button>
+                <ListItemIcon>
+                  <DescriptionIcon />
+                </ListItemIcon>
+                <ListItemText primary="Documentation" />
+              </ListItem>
+            </a>
+          </List>
         </div>
       </Drawer>
     </Box>
