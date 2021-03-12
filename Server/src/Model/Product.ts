@@ -23,18 +23,15 @@ export class Product {
   name?: string;
 
   @Field()
-  @Property(
-  { required: [true, "Please provide a product price"] })
+  @Property({ required: [true, "Please provide a product price"] })
   price: number;
 
   @Field()
-  @Property(
-  { required: [true, "Please provide a product description"], trim: true, minlength: 20, maxlength: 250 })
+  @Property({ required: [true, "Please provide a product description"], trim: true, minlength: 20, maxlength: 250 })
   description: string;
 
   @Field()
-  @Property(
-  { required: [true, "Please provide a product stock"] })
+  @Property({ required: [true, "Please provide a product stock"] })
   stock: number;
 
   @Field()
@@ -42,14 +39,14 @@ export class Product {
   promotion: boolean;
 
   @Field()
-  @Property({ enum:["DRAFT", "PUBLISHED", "ARCHIVED"], default: false })
+  @Property({ enum: ["DRAFT", "PUBLISHED", "ARCHIVED"], default: false })
   status: string;
 
   // @Field()
   @Property()
   productImageUrl?: string;
 
-  // @Field(() => [String])
+  @Field(() => [String])
   @Property()
   productImages?: String[];
 

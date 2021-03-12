@@ -30,7 +30,6 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
 
   const [file, setFile] = useState(initialState);
   const [mediaPreview, setMediaPreview] = useState("");
-  const [multipleMediaPreview, setMultipleMediaPreview] = useState([]);
 
   const closeFileUpload = () => {
     setFile((prevState) => ({ ...prevState, open: false }));
@@ -38,9 +37,9 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
 
   const saveFileUpload = (files) => {
     setFile((prevState) => ({ ...prevState, open: false, files }));
-
     setMediaPreview(window.URL.createObjectURL(files[0]));
-    product({ products: files.map((file) => window.URL.createObjectURL(file)) });
+
+    product({ preview: files.map((file) => window.URL.createObjectURL(file)), images: files });
   };
 
   const openFileUpload = () => {
@@ -53,11 +52,6 @@ const UploadFile: React.FC<UploadFileType> = ({ name, filesLimit }) => {
         <Button variant="contained" style={{ backgroundColor: "white", marginBottom: "20px" }} onClick={openFileUpload}>
           {name}
         </Button>
-        <Box>
-          {multipleMediaPreview.map((file) => {
-            return <img className={classes.image} src={`${file}`} />;
-          })}
-        </Box>
       </Box>
 
       <DropzoneDialog

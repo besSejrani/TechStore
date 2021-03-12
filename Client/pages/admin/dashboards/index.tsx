@@ -25,12 +25,15 @@ const index = () => {
   const [useAddProfilePicture] = useAddProfilePictureMutation();
 
   const onSubmit = async (form) => {
+    console.log(form);
     await useAddProfilePicture({
       variables: {
         picture: form.picture[0],
       },
     });
   };
+
+  debugger;
 
   return (
     <Box className={classes.root}>

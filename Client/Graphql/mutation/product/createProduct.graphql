@@ -3,17 +3,19 @@ mutation CreateProduct(
   $price: String!
   $description: String!
   $stock: String!
-  $promotion: Boolean!
+  $picture: Upload!
   $status: Status!
+  $promotion: Boolean!
 ) {
   createProduct(
+    picture: $picture
     input: {
       name: $name
       price: $price
       description: $description
       stock: $stock
-      promotion: $promotion
       status: $status
+      promotion: $promotion
     }
   ) {
     _id
@@ -22,6 +24,6 @@ mutation CreateProduct(
     description
     stock
     promotion
-    status
+    productImages
   }
 }

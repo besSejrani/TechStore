@@ -42,6 +42,7 @@ export type Product = {
   stock: Scalars['Float'];
   promotion: Scalars['Boolean'];
   status: Scalars['String'];
+  productImages: Array<Scalars['String']>;
 };
 
 export type SigninInput = {
@@ -138,6 +139,7 @@ export type MutationSignupArgs = {
 
 export type MutationCreateProductArgs = {
   input: CreateProductInput;
+  picture: Scalars['Upload'];
 };
 
 
@@ -187,8 +189,9 @@ export type CreateProductMutationVariables = Exact<{
   price: Scalars['String'];
   description: Scalars['String'];
   stock: Scalars['String'];
-  promotion: Scalars['Boolean'];
+  picture: Scalars['Upload'];
   status: Status;
+  promotion: Scalars['Boolean'];
 }>;
 
 
@@ -196,7 +199,7 @@ export type CreateProductMutation = (
   { __typename?: 'Mutation' }
   & { createProduct: (
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'productImages'>
   ) }
 );
 
@@ -395,9 +398,10 @@ export type GetUsersQuery = (
 
 
 export const CreateProductDocument = gql`
-    mutation CreateProduct($name: String!, $price: String!, $description: String!, $stock: String!, $promotion: Boolean!, $status: Status!) {
+    mutation CreateProduct($name: String!, $price: String!, $description: String!, $stock: String!, $picture: Upload!, $status: Status!, $promotion: Boolean!) {
   createProduct(
-    input: {name: $name, price: $price, description: $description, stock: $stock, promotion: $promotion, status: $status}
+    picture: $picture
+    input: {name: $name, price: $price, description: $description, stock: $stock, status: $status, promotion: $promotion}
   ) {
     _id
     name
@@ -405,7 +409,7 @@ export const CreateProductDocument = gql`
     description
     stock
     promotion
-    status
+    productImages
   }
 }
     `;
@@ -428,8 +432,9 @@ export type CreateProductMutationFn = Apollo.MutationFunction<CreateProductMutat
  *      price: // value for 'price'
  *      description: // value for 'description'
  *      stock: // value for 'stock'
- *      promotion: // value for 'promotion'
+ *      picture: // value for 'picture'
  *      status: // value for 'status'
+ *      promotion: // value for 'promotion'
  *   },
  * });
  */

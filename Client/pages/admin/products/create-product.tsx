@@ -70,10 +70,14 @@ const CreateProductAdmin = () => {
 
   const [createProduct] = useCreateProductMutation();
 
+  console.log(images);
+
   const onSubmit = async (form) => {
     console.log(form);
+
     await createProduct({
       variables: {
+        picture: images.images[0],
         name: form.productName,
         price: form.productPrice,
         description: form.productDescription,
@@ -109,7 +113,7 @@ const CreateProductAdmin = () => {
     featured: false,
     options: [],
     imageUrl: "static/images/computeModule3+/1.webp",
-    images: images.products,
+    images: images.preview,
     stock: productStock,
     rating: 4,
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],

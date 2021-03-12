@@ -4,7 +4,7 @@ import { Resolver, Mutation, Arg } from "type-graphql";
 // Upload
 import { GraphQLUpload } from "graphql-upload";
 import { Upload } from "../../types/Upload";
-import { S3 } from "./Aws/S3";
+import { S3 } from "../../../Class/Aws/S3";
 
 // ========================================================================================================
 
