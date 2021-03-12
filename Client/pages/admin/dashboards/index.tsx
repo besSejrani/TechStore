@@ -11,7 +11,8 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { useAddProfilePictureMutation } from "../../../Graphql/index";
 
 // Compoenents
-// import UploadFile from "../../../Components/UploadFile/UploadFile";
+import withApollo from "../../../Apollo/ssr";
+import { getDataFromTree } from "@apollo/react-ssr";
 
 // ========================================================================================================
 
@@ -48,7 +49,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default withApollo(index, { getDataFromTree });
 
 // ========================================================================================================
 

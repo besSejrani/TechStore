@@ -10,22 +10,15 @@ import "../App/index.css";
 import { Provider } from "react-redux";
 import { store } from "../Redux/store";
 
-// Apollo
-import { client } from "../Apollo/index";
-import { ApolloProvider } from "@apollo/client";
-
-
 // ========================================================================================================
 
 const App = ({ Component, pageProps }) => {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <Layout {...pageProps}>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <Layout {...pageProps}>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 };
 
