@@ -26,7 +26,9 @@ export class CreateProductResolver {
       return null;
     }
 
-    await S3.uploadFile(createReadStream, filename);
+    const bla = await S3.uploadFile(createReadStream, filename);
+
+    console.log("fhwfoiwehfuewuhfwwehi",bla)
 
     const newProduct = await new ProductModel({
       name,

@@ -28,6 +28,7 @@ export class S3 {
       Body: pass,
     };
 
+    
     // Uploading files to the bucket
     s3.upload(params, function (err: any, data: any) {
       if (err) {
@@ -35,11 +36,18 @@ export class S3 {
       }
 
       console.log(`File uploaded successfully. ${data.Location}`);
+     
     });
 
     createReadStream().pipe(pass);
+
   };
 }
+
+
+
+
+
 
 // const uploadFromStream = (s3: any, filename: any) => {
 //   const pass = new Stream.PassThrough(s3);
