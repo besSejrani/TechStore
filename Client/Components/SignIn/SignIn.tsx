@@ -15,7 +15,6 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputForm from "../InputForm/InputForm";
 
 // Icons
-import GoogleIcon from "@material-ui/icons/Apple";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GithubIcon from "@material-ui/icons/GitHub";
 
@@ -98,7 +97,11 @@ const SignIn = () => {
 
             <Box className={classes.socialbuttons}>
               <a href="http://localhost:4000/auth/google">
-                <Button variant="contained" style={{ backgroundColor: "white" }} startIcon={<GoogleIcon />}>
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "white" }}
+                  startIcon={<img src="/static/google.svg" width="20" />}
+                >
                   Google
                 </Button>
               </a>

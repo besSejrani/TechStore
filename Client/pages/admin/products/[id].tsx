@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //Next
 import { useRouter } from "next/router";
@@ -62,6 +62,8 @@ const ModifyProductAdmin = () => {
     variables: { productId: query.id as string },
   });
 
+  console.log("dataaaaaaaaaaaa", data);
+
   // State
   const [productName, setProductName] = useState(data?.getProduct?.name);
   const [productPrice, setProductPrice] = useState<number>(data?.getProduct?.price);
@@ -106,11 +108,7 @@ const ModifyProductAdmin = () => {
     featured: false,
     options: [],
     imageUrl: "static/images/computeModule3+/1.webp",
-    images: [
-      "static/images/computeModule3+/1.webp",
-      "static/images/computeModule3+/2.webp",
-      "static/images/computeModule3+/3.webp",
-    ],
+    images: data?.getProduct?.productImages,
     stock: productStock,
     rating: 4,
     reviews: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],

@@ -16,7 +16,7 @@ import { S3 } from "../../../Class/Aws/S3";
 export class CreateProductResolver {
   @Mutation(() => Product)
   async createProduct(
-    @Arg("picture", () => GraphQLUpload) { createReadStream, filename }: Upload,
+    @Arg("picture", () => GraphQLUpload) File: Upload,
     @Arg("input")
     { name, price, description, stock, promotion, status }: CreateProductInput
   ): Promise<Product | null> {
@@ -26,9 +26,15 @@ export class CreateProductResolver {
       return null;
     }
 
-    const bla = await S3.uploadFile(createReadStream, filename);
+    const s3 = await new S3({
+      accessKeyId: process.env.AMAZON_KEY_ID,
+      secretAccessKey: process.env.AMAZON_SECRET_ACCESS_KEY,
+      bucket: process.env.AMAZON_S3_BUCKET,
+      signatureVersion: "v4",
+      region: "eu-west-3",
+    });
 
-    console.log("fhwfoiwehfuewuhfwwehi",bla)
+    const { url } = await s3.singleFileUploadResolver({ file: File });
 
     const newProduct = await new ProductModel({
       name,
@@ -37,6 +43,7 @@ export class CreateProductResolver {
       stock,
       promotion,
       status,
+      productImages: url,
     });
     await newProduct.save();
     return newProduct;

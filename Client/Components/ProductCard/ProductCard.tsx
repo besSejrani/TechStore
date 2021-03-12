@@ -30,6 +30,7 @@ type IProduct = {
     description: string;
     stock: number;
     promotion: boolean;
+    productImages: string[];
     // rating?: number;
     // reviews?: string[];
     // imageUrl?: any;
@@ -38,6 +39,7 @@ type IProduct = {
 };
 
 const Product: React.FC<IProduct> = ({ product }, loading: boolean) => {
+  console.log("blaa", product);
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -47,12 +49,11 @@ const Product: React.FC<IProduct> = ({ product }, loading: boolean) => {
       {loading ? (
         <CardActionArea className={classes.area}>
           <Link href="/products/[id]" as={`/products/${product._id}`} passHref>
-            <Image
+            <img
               width={300}
-              height={250}
-              className={classes.media}
+              height={235}
               onClick={() => dispatch(setSingleProduct(product._id))}
-              src={`/static/images/unknownProduct.png`}
+              src={product.productImages[0] || `/static/images/unknownProduct.png`}
               title={product.name}
             />
           </Link>
@@ -128,21 +129,14 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     width: "320px",
-    height: "445px",
+    height: "465px",
 
     borderRadius: 10,
   },
   area: {
     display: "flex",
-    padding: "20px 20px 0px 20px",
+    padding: "20px 20px 20px 20px",
     backgroundColor: "#fafafa",
-  },
-  media: {
-    transition: "0.3s",
-    "&:hover": {
-      transform: "scale(1.05)",
-      transition: "0.3s",
-    },
   },
   content: {
     padding: "20px",

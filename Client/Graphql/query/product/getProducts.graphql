@@ -7,5 +7,6 @@ query GetProducts {
     stock
     promotion
     status
+    productImages
   }
 }

@@ -346,7 +346,7 @@ export type GetProductQuery = (
   { __typename?: 'Query' }
   & { getProduct?: Maybe<(
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status' | 'productImages'>
   )> }
 );
 
@@ -357,7 +357,7 @@ export type GetProductsQuery = (
   { __typename?: 'Query' }
   & { getProducts?: Maybe<Array<(
     { __typename?: 'Product' }
-    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status'>
+    & Pick<Product, '_id' | 'name' | 'price' | 'description' | 'stock' | 'promotion' | 'status' | 'productImages'>
   )>> }
 );
 
@@ -796,6 +796,7 @@ export const GetProductDocument = gql`
     stock
     promotion
     status
+    productImages
   }
 }
     `;
@@ -835,6 +836,7 @@ export const GetProductsDocument = gql`
     stock
     promotion
     status
+    productImages
   }
 }
     `;

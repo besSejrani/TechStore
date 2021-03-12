@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 
-// Next
-import { useRouter } from "next/router";
-
 // Redux
-import { IAppState } from "../../Redux/rootReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setProducts, getItemCart } from "../../Redux/product/productAction";
 
 // Apollo
@@ -23,24 +19,22 @@ import ProductFilter from "../../Components/ProductFilter/ProductFilter";
 // Data
 import { items } from "../../Data/productData";
 
+// SSR
+import withApollo from "../../Apollo/ssr";
+import { getDataFromTree } from "@apollo/react-ssr";
+
 // ========================================================================================================
 
 const Products = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const selectProducts = useSelector((state: IAppState) => state.product.storeProducts);
-
-  const router = useRouter();
 
   const { loading, data } = useGetProductsQuery();
-
-  console.log(loading);
 
   useEffect(() => {
     // Prefetch the products page
     dispatch(setProducts(items));
     dispatch(getItemCart());
-    router.prefetch("/products");
   }, []);
 
   return (
@@ -72,7 +66,7 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default withApollo(Products, { getDataFromTree });
 
 // =================================================================
 const useStyles = makeStyles((theme: Theme) =>

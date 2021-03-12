@@ -7,5 +7,6 @@ query GetProduct($productId: String!) {
     stock
     promotion
     status
+    productImages
   }
 }
